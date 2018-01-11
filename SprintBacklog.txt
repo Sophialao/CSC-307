@@ -1,0 +1,19 @@
+PayRoll
+1/10/18
+
+Customer: Sara Bahrami
+
+Sprint 1:
+
+Backlog:
+
+1. Users in the system
+   a. Contact info (name, address, phone number, etc)
+   b. Bank info
+   c. Salary info
+   d. Position in company
+2. Time sheets
+    a. Be able to turn in hours on weekly basis
+3. Input base salary per employee
+    a. System needs to be able to calculate pay based on base salary and time sheet
+4. History of working hours per User
