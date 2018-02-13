@@ -1,49 +1,39 @@
 package model;
 
-import java.util.Date;
-
 public class Timecard {
-    private int id;
-    private int employeeId;
-    private Date timeIn;
-    private Date timeOut;
+    public final int id;
+    public final int eid;
+    public String timeIn; // YYYY-MM-DD HH:MM 24-hour (military time)
+    public String timeOut;
 
-    public Timecard(int id, int employeeId, Date timeIn, Date timeOut) {
+    public Timecard (int id, int eid, String timeIn, String timeOut) {
         this.id = id;
-        this.employeeId = employeeId;
+        this.eid = eid;
         this.timeIn = timeIn;
         this.timeOut = timeOut;
     }
 
     public int getId() {
-        return id;
+        return this.id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public String getTimeIn() {
+        return this.timeIn;
     }
 
-    public int getEmployeeId() {
-        return employeeId;
+    public String getTimeOut() {
+        return this.timeOut;
     }
 
-    public void setEmployeeId(int employeeId) {
-        this.employeeId = employeeId;
-    }
-
-    public Date getTimeIn() {
-        return timeIn;
-    }
-
-    public void setTimeIn(Date timeIn) {
+    public void setTimeIn(String timeIn) {
         this.timeIn = timeIn;
     }
 
-    public Date getTimeOut() {
-        return timeOut;
+    public void setTimeOut(String timeOut) {
+        this.timeOut = timeOut;
     }
 
-    public void setTimeOut(Date timeOut) {
-        this.timeOut = timeOut;
+    public void printTimecard() {
+        System.out.println("Time in: " + this.timeIn + "  Time out: " + this.timeOut);
     }
 }
