@@ -1,30 +1,29 @@
 package controller;
 import model.Timecard;
+import util.Utils;
 
-import java.util.HashMap;
-import java.util.ArrayList;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class TimecardController {
     // This class has an ArrayLists of ArrayLists of Timecards
     // So each element represents an ArrayList of Timecards for each eid (employee)
     public HashMap<Integer, ArrayList<Timecard>> timecards = new HashMap<Integer, ArrayList<Timecard>>();
-    public int idCount = 1;
 
     public TimecardController() {
     }
 
-    public Timecard addTimecard(int eid, String timeIn, String timeOut) {
-        int tcId = idCount++;
+    public void addTimecard(int tcId, int eid, Date timeIn, Date timeOut) {
         Timecard tc = new Timecard(tcId, eid, timeIn, timeOut);
 
         if (timecards.get(eid) == null) { // new employee
             ArrayList<Timecard> newEmpl = new ArrayList<Timecard>();
             newEmpl.add(tc);
             timecards.put(eid, newEmpl);
-            return tc;
         }
         timecards.get(eid).add(tc);
-        return tc;
     }
 
     public ArrayList<Timecard> getMostRecentTimecards(int eid) {
@@ -50,22 +49,46 @@ public class TimecardController {
         }
     }
 
+    public void parseHashMap(Map<Integer, String> hm) {
+        Set<Integer> idSet = hm.keySet();
+        Iterator<Integer> idIter = idSet.iterator();
+
+        while (idIter.hasNext()) {
+            int id = idIter.next();
+            String valueAsString = hm.get(id).trim();
+            String[] tokens = valueAsString.split(" ");
+            System.out.println(tokens.length);
+            if (tokens.length != 5) {
+                System.err.println("Timecard Controller: Incorrect number of tokens.");
+            }
+
+            int eid = Integer.parseInt(tokens[0]);
+            String timeInConcat = tokens[1] + " " + tokens[2];
+            String timeOutConcat = tokens[3] + " " + tokens[4];
+            Date timeIn = parseDateTime(timeInConcat);
+            Date timeOut = parseDateTime(timeOutConcat);
+
+            addTimecard(id, eid, timeIn, timeOut);
+        }
+    }
+
+    public Date parseDateTime(String time) {
+        Date d = null;
+        DateFormat df = new SimpleDateFormat("YYYY-MM-dd kk:mm");
+        try {
+            d = df.parse(time);
+        }
+        catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return d;
+    }
+
+
+
     public static void main(String args[]) {
         TimecardController test = new TimecardController();
-        test.addTimecard(1, "1pm", "2pm");
-        test.addTimecard(2, "3pm", "4pm");
-        test.addTimecard(1, "5pm", "6pm");
-        test.addTimecard(4, "7pm", "8pm");
-        test.addTimecard(1, "9pm", "10pm");
-        test.addTimecard(1, "11pm", "12am");
-        test.addTimecard(7, "1am", "2am");
-        test.addTimecard(1, "3am", "4am");
-        test.addTimecard(9, "5am", "6am");
-        test.addTimecard(1, "7am", "8am");
-        //        //System.out.println("number of Timecards: " + test.getNumberOfTimecards());
-        //        //test.print
-        //ArrayList<Timecard> newList = new ArrayList<Timecard>(test.getMostRecentTimecards());
-        //test.printTimecards(newList);
+        test.parseHashMap(Utils.parseFile("mock_db/Timecard.txt"));
         test.printTimecards(1);
 
     }
