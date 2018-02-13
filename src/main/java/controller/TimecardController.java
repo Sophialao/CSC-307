@@ -2,6 +2,7 @@ package controller;
 import model.Timecard;
 import util.Utils;
 
+import java.sql.Time;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -42,22 +43,33 @@ public class TimecardController {
     }
 
     public void printTimecards(int eid) {
+        if (timecards.get(eid) == null) {
+            System.err.println("Employee id " + Integer.toString(eid) + " does not exist.");
+            return;
+        }
+
         ArrayList<Timecard> tc = timecards.get(eid);
+        Collections.sort(tc, new Comparator<Timecard>() {
+            public int compare(Timecard o1, Timecard o2) {
+                return o1.getTimeIn().compareTo(o2.getTimeIn());
+            }
+        });
+        System.out.println("For employee id: " + Integer.toString(eid));
         for (int i = 0; i < tc.size(); i++) {
             Timecard curr = tc.get(i);
             curr.printTimecard();
         }
     }
 
-    public void parseHashMap(Map<Integer, String> hm) {
-        Set<Integer> idSet = hm.keySet();
+    public void parseHashMap(Map<Integer, String> m) {
+        Set<Integer> idSet = m.keySet();
         Iterator<Integer> idIter = idSet.iterator();
 
         while (idIter.hasNext()) {
             int id = idIter.next();
-            String valueAsString = hm.get(id).trim();
+            String valueAsString = m.get(id).trim();
             String[] tokens = valueAsString.split(" ");
-            System.out.println(tokens.length);
+
             if (tokens.length != 5) {
                 System.err.println("Timecard Controller: Incorrect number of tokens.");
             }
@@ -84,12 +96,29 @@ public class TimecardController {
         return d;
     }
 
+    public void writeToFile(String filename) {
+        TreeMap<Integer, String> tm = new TreeMap<Integer, String>();
+        Set<Integer> keys = timecards.keySet();
+        Iterator<Integer> keyIter = keys.iterator();
 
+        while (keyIter.hasNext()) {
+            int eid = keyIter.next();
+            ArrayList<Timecard> employeeTc = getTimecardList(eid);
+
+            for (Timecard tc : employeeTc) {
+                tm.put(tc.getId(), tc.timecardToString());
+            }
+        }
+        Utils.writeToFile(tm, filename);
+    }
 
     public static void main(String args[]) {
         TimecardController test = new TimecardController();
         test.parseHashMap(Utils.parseFile("mock_db/Timecard.txt"));
         test.printTimecards(1);
+        test.printTimecards(4);
+        test.printTimecards(22);
 
+        // test.writeToFile("mock_db/Timecard_writeOutTest.txt");
     }
 }

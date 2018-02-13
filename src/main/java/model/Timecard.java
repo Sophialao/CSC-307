@@ -1,5 +1,7 @@
 package model;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Timecard {
@@ -35,7 +37,13 @@ public class Timecard {
         this.timeOut = timeOut;
     }
 
+    public String timecardToString() {
+        DateFormat df = new SimpleDateFormat("YYYY-MM-dd kk:mm");
+        return Integer.toString(eid) + " " + df.format(timeIn) + " " + df.format(timeOut);
+    }
+
     public void printTimecard() {
-        System.out.println("Time in: " + this.timeIn + "  Time out: " + this.timeOut);
+        DateFormat df = new SimpleDateFormat("YYYY-MM-dd kk:mm");
+        System.out.println("Time in: " + df.format(timeIn) + "  Time out: " + df.format(timeOut));
     }
 }

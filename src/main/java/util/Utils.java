@@ -45,12 +45,15 @@ public class Utils {
             int key = it.next();
             String value = file.get(key);
 
-            res += file.get(key) + " ";
+            res += Integer.toString(key) + " ";
+            res += file.get(key);
 
+            /*
             String[] v = value.split(" ");
             for (String s: v) {
                 res += s + " ";
             }
+            */
             res += "\n";
         }
 
