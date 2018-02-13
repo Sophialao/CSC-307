@@ -1,58 +1,58 @@
+
 package model;
 
 public abstract class Employee {
-    private String id;
-    private String firstName;
-    private String lastName;
-    private int sickDays;
-    private int vacationDays;
+    private String name;
+    private String address;
+    private int ssn;
+    private int id;
+    private String method;
 
-    public Employee() {}
-    public Employee(String id, String firstName, String lastName, int sickDays, int vacationDays) {
+    public Employee(String name, String address, int ssn, int id, String method) {
+        this.name = name;
+        this.address = address;
+        this.ssn = ssn;
         this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.sickDays = sickDays;
-        this.vacationDays = vacationDays;
+        this.method = method;
     }
 
-    public String getId() {
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public int getSsn() {
+        return ssn;
+    }
+
+    public void setSsn(int ssn) {
+        this.ssn = ssn;
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getMethod() {
+        return method;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public int getSickDays() {
-        return sickDays;
-    }
-
-    public void setSickDays(int sickDays) {
-        this.sickDays = sickDays;
-    }
-
-    public int getVacationDays() {
-        return vacationDays;
-    }
-
-    public void setVacationDays(int vacationDays) {
-        this.vacationDays = vacationDays;
+    public void setMethod(String method) {
+        this.method = method;
     }
 }
