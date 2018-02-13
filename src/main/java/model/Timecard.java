@@ -1,12 +1,14 @@
 package model;
 
+import java.util.Date;
+
 public class Timecard {
     public final int id;
     public final int eid;
-    public String timeIn; // YYYY-MM-DD HH:MM 24-hour (military time)
-    public String timeOut;
+    public Date timeIn; // YYYY-MM-DD HH:MM 24-hour (military time)
+    public Date timeOut;
 
-    public Timecard (int id, int eid, String timeIn, String timeOut) {
+    public Timecard (int id, int eid, Date timeIn, Date timeOut) {
         this.id = id;
         this.eid = eid;
         this.timeIn = timeIn;
@@ -17,19 +19,19 @@ public class Timecard {
         return this.id;
     }
 
-    public String getTimeIn() {
+    public Date getTimeIn() {
         return this.timeIn;
     }
 
-    public String getTimeOut() {
+    public Date getTimeOut() {
         return this.timeOut;
     }
 
-    public void setTimeIn(String timeIn) {
+    public void setTimeIn(Date timeIn) {
         this.timeIn = timeIn;
     }
 
-    public void setTimeOut(String timeOut) {
+    public void setTimeOut(Date timeOut) {
         this.timeOut = timeOut;
     }
 

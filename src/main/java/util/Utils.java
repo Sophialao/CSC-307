@@ -19,7 +19,7 @@ public class Utils {
 
                 StringBuilder builder = new StringBuilder();
                 for (int i = 1; i < split.length; i++)
-                    builder.append(split[i]);
+                    builder.append(split[i]+" ");
 
                 file.put(Integer.parseInt(split[0]), builder.toString());
             }
@@ -63,4 +63,4 @@ public class Utils {
             e.printStackTrace();
         }
     }
-}   
+}
