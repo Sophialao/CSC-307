@@ -1,11 +1,13 @@
+package model;
 
-public class Report
-{
+import java.util.Date;
+
+
+public class Report {
     private Date date;
     
 
-    public Report()
-    {
+    public Report() {
 
     }
 }

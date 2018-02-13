@@ -1,35 +1,59 @@
-abstract class Employee
-{
-    private String name;
-    private Date DOB;
-    private double curPay; //for current pay period
 
-    public String getName() {
-        return name;
+package model;
+
+public abstract class Employee {
+    private String id;
+    private String firstName;
+    private String lastName;
+    private int sickDays;
+    private int vacationDays;
+
+    public Employee() {}
+    public Employee(String id, String firstName, String lastName, int sickDays, int vacationDays) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.sickDays = sickDays;
+        this.vacationDays = vacationDays;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getId() {
+        return id;
     }
 
-    public Date getDOB() {
-        return DOB;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public void setDOB(Date DOB) {
-        this.DOB = DOB;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public double getCurPay() {
-        return curPay;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public void setCurPay(double curPay) {
-        this.curPay = curPay;
+    public String getLastName() {
+        return lastName;
     }
 
-    public abstract void addEmplyee();
-    public void deleteEmployee();
-    public void updateEmployee();
-    public Employee getEmployee();
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public int getSickDays() {
+        return sickDays;
+    }
+
+    public void setSickDays(int sickDays) {
+        this.sickDays = sickDays;
+    }
+
+    public int getVacationDays() {
+        return vacationDays;
+    }
+
+    public void setVacationDays(int vacationDays) {
+        this.vacationDays = vacationDays;
+    }
 }
