@@ -46,13 +46,12 @@ public class Driver {
         else if (action.equals("q")) {
             return false;
         }
-<<<<<<< HEAD
         else if (action.equals("ph")){
             return pay("h");
         }
-        else if (action.equals("ps")){
+        else if (action.equals("ps")) {
             return pay("s");
-=======
+        }
         else if (action.equals("d")) {
             return deleteEmployee();
         }
@@ -61,14 +60,13 @@ public class Driver {
         }
         else if (action.equals("s")) {
             return setEmployeeData(Constants.SALARIED);
->>>>>>> 2ad73c22cb8817941a7049d193c1fedcb51d7c24
         }
         else {
             return returnError();
         }
     }
 
-    public static boolean createEmployee() {
+    public static boolean createEmployee(){
         boolean result = true;
         Scanner reader = new Scanner(System.in);
         System.out.println("Hourly? (y/n)");
