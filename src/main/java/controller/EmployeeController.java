@@ -8,9 +8,6 @@ import java.util.HashMap;
 
 public class EmployeeController {
 
-    // So each element represents an ArrayList of Timecards for each eid (employee)
-    public HashMap<Integer, SalaryEmployee> allSEmployees = new HashMap<Integer, SalaryEmployee>();
-    public HashMap<Integer, HourlyEmployee> allHEmployees = new HashMap<Integer, HourlyEmployee>();
 
 
     public EmployeeController() {
@@ -21,102 +18,68 @@ public class EmployeeController {
     //delete Employee
 
 
-    public Employee addSalaryEmployee(String name, String address, int number, int eid, String method, double salary,double commission, double sales) {
+    public Employee addSalaryEmployee(String name, String address, int number, double salary,double commission, double sales) {
 
-        SalaryEmployee s = new SalaryEmployee(name, address, number, eid, method, salary, commission, sales);
+        SalaryEmployee s = SalaryEmployee.getInstance(null);
 
+        s.setName(name);
+        s.setAddress(address);
+        s.setSsn(number);
+        s.setSalary(salary);
+        s.setCommission(commission);
+        s.setSales(sales);
 
-        if (allSEmployees.get(eid) == null) { // new employee
-            allSEmployees.put(eid, s);
-        }
-        else{
-            System.out.println("Employee already exists");
-        }
+        s.write();
 
-       return (allSEmployees.get(eid));
+        return s;
     }
 
-    public Employee addHourlyEmployee(String name, String address, int ssn, int eid, String method, double rate) {
+    public Employee addHourlyEmployee(String name, String address, int ssn, double rate) {
 
         HourlyEmployee h = HourlyEmployee.getInstance(null);
 
-        if (allHEmployees.get(eid) == null) { // new employee
-            allHEmployees.put(eid, h);
-        }
-        else{
-            System.out.println("Employee already exists");
-        }
+        h.setName(name);
+        h.setAddress(address);
+        h.setSsn(ssn);
+        h.setRate(rate);
 
-        return (allHEmployees.get(eid));
+        h.write();
+        return h;
     }
 
-    public void deleteEmployee(int eid){
-        if(allSEmployees.get(eid) != null){
-            allSEmployees.remove(eid);
-        }
-        else if(allHEmployees.get(eid) != null){
-            allHEmployees.remove(eid);
-        }
-        else{
-            System.out.println("employee doesn't exist");
-        }
+    public void deleteEmployee(String eid){
 
     }
 
-    public void  editSalaryEmployee(String name, String address, int number, int eid, String method, double salary,double commission, double sales){
-        if(allSEmployees.get(eid) == null){
-            //employee does not exist
-            System.out.println("employee does not exist");
-        }
-        else{
-            SalaryEmployee currEmp = allSEmployees.get(eid);
-            currEmp.setAddress(address);
-            currEmp.setMethod(method);
-            currEmp.setName(name);
-            currEmp.setCommission(commission);
-            currEmp.setSalary(salary);
-            currEmp.setSales(sales);
-            allSEmployees.put(eid,currEmp);
-        }
+    public void  editSalaryEmployee(String name, String address, int number, String eid, double salary,double commission, double sales){
+            SalaryEmployee aSP= SalaryEmployee.getInstance(eid);
+            aSP.setName(name);
+            aSP.setAddress(address);
+            aSP.setSsn(number);
+            aSP.setSalary(salary);
+            aSP.setCommission(commission);
+            aSP.setSales(sales);
+
+            aSP.write();
     }
 
-    public void editHourlyEmployee(String name, String address, int ssn, int eid, String method, double rate){
-        if(allHEmployees.get(eid) == null){
-            //employee does not exist
-            System.out.println("employee does not exist");
-        }
-        else{
-            HourlyEmployee currEmp = allHEmployees.get(eid);
-            currEmp.setAddress(address);
-            currEmp.setMethod(method);
-            currEmp.setName(name);
-            currEmp.setRate(rate);
-            allHEmployees.put(eid,currEmp);
-        }
+    public void editHourlyEmployee(String name, String address, int ssn, String eid, double rate){
+        HourlyEmployee aHP= HourlyEmployee.getInstance(eid);
+        aHP.setName(name);
+        aHP.setAddress(address);
+        aHP.setSsn(ssn);
+        aHP.setRate(rate);
+
+
+        aHP.write();
     }
 
-    public HashMap<Integer, SalaryEmployee> getAllSEmployee(){
-        System.out.println(allSEmployees.keySet());
-        return allSEmployees;
-    }
 
-    public HashMap<Integer, HourlyEmployee> getAllHEmployee(){
-        System.out.println(allHEmployees.keySet());
-        return allHEmployees;
-    }
-
-    public Employee getSEmployee(int eid){
-        return allSEmployees.get(eid);
-    }
-
-    public Employee getHEmployee(int eid){
-        return allHEmployees.get(eid);
-    }
 
     public static void main(String [] args) {
 
 
-
+/*
 
         EmployeeController ec = new EmployeeController();
 
@@ -138,6 +101,7 @@ public class EmployeeController {
         ec.getAllHEmployee();
         ec.deleteEmployee(5);
         ec.getAllHEmployee();
+        */
 
     }
 
