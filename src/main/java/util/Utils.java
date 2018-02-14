@@ -18,7 +18,7 @@ public class Utils {
 
 
             while ((line = reader.readLine()) != null) {
-                String[] split = line.split(" ");
+                String[] split = line.split(",");
                 DbWritable o = c.getConstructor().newInstance();
                 o.readFields(split);
 
@@ -40,36 +40,6 @@ public class Utils {
         return file;
     }
 
-    public static void writeToFile(Map<Integer, String> file, String fileName) {
-        String res = "";
-        Iterator<Integer> it = file.keySet().iterator();
-
-        while (it.hasNext()) {
-            int key = it.next();
-            String value = file.get(key);
-
-            res += Integer.toString(key) + " ";
-            res += file.get(key);
-
-            /*
-            String[] v = value.split(" ");
-            for (String s: v) {
-                res += s + " ";
-            }
-            */
-            res += "\n";
-        }
-
-        try {
-            FileWriter writer = new FileWriter(new File(fileName));
-            writer.write(res);
-            writer.close();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     public static String[] readLine(String fileName, String id) {
         BufferedReader reader = null;
         String line;
@@ -77,8 +47,8 @@ public class Utils {
         try {
             reader = new BufferedReader(new FileReader(fileName));
             while ((line = reader.readLine()) != null) {
-                String[] split = line.split(" ");
-                if (split[0] == id) {
+                String[] split = line.split(",");
+                if (split[0].equals(id)) {
                     return split;
                 }
             }
@@ -95,18 +65,18 @@ public class Utils {
         BufferedReader br = null;
         String line;
         File input = new File(fileName);
-        File temp = new File("temp.txt");
+        File temp = new File("mock_db/temp.txt");
 
         try {
             br = new BufferedReader(new FileReader(input));
             bw = new BufferedWriter(new FileWriter(temp));
 
             while ((line = br.readLine()) != null) {
-                String[] split = line.split(" ");
-                if (split[0] == id) continue;
+                String[] split = line.split(",");
+                if (split[0].equals(id)) continue;
                 String res = "";
                 for (String s: split) {
-                    res += s + " ";
+                    res += s + ",";
                 }
                 res += "\n";
                 bw.write(res);
