@@ -16,6 +16,12 @@ public class Payment implements DbWritable {
     public Payment() {
         this.id = UUID.randomUUID().toString();
     }
+    public Payment(String employeeId, int amount, Date date) {
+        this.employeeId = employeeId;
+        this.amount = amount;
+        this.date = date;
+        this.id = UUID.randomUUID().toString();
+    }
 
     public static Payment getInstance(String id) {
         if (id == null)

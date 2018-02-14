@@ -19,6 +19,13 @@ public class Timecard implements DbWritable {
         this.id = UUID.randomUUID().toString();
     }
 
+    public Timecard(String eId, Date timeIn, Date timeOut) {
+        this.eId = eId;
+        this.timeIn = timeIn;
+        this.timeOut = timeOut;
+        this.id = UUID.randomUUID().toString();
+    }
+
     public static Timecard getInstance(String id) {
         if (id == null)
             return new Timecard();

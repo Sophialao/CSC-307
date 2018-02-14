@@ -14,9 +14,9 @@ public class SalaryEmployee extends Employee {
     public SalaryEmployee() {
         super();
     }
-    public SalaryEmployee(String id, String name, String address, int ssn, double salary,
+    public SalaryEmployee(String name, String address, int ssn, double salary,
                           double commission, double sales) {
-        super(name, address, ssn, id);
+        super(name, address, ssn);
         this.salary = salary;
         this.commission = commission;
         this.sales = sales;
