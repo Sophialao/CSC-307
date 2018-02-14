@@ -9,13 +9,13 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-public class HourlyEmployee extends Employee implements DbWritable {
+public class HourlyEmployee extends Employee {
     private double rate;   // Annual salary
 
-    private HourlyEmployee() {
+    public HourlyEmployee() {
         super();
     }
-    private HourlyEmployee(String id, String name, String address, int ssn, double rate) {
+    public HourlyEmployee(String id, String name, String address, int ssn, double rate) {
         super(name, address, ssn, id);
         this.rate = rate;
     }
@@ -26,15 +26,15 @@ public class HourlyEmployee extends Employee implements DbWritable {
         else {
             String[] db = Utils.readLine(Constants.HOURLY_EMPLOYEE_DB, id);
             if (db != null) {
-                return new HourlyEmployee(db[0], db[1], db[2],
-                        Integer.parseInt(db[3]), Double.parseDouble(db[4]));
+                HourlyEmployee empl = new HourlyEmployee();
+                empl.readFields(db);
+                return empl;
             }
             return new HourlyEmployee();
         }
     }
 
     public static Map<String, DbWritable> getAll() {
-        ArrayList<HourlyEmployee> employees = new ArrayList<HourlyEmployee>();
         Map<String, DbWritable> db = Utils.parseFile(Constants.HOURLY_EMPLOYEE_DB, HourlyEmployee.class);
 
         return db;

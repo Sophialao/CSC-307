@@ -1,23 +1,45 @@
 package model;
 
+import util.Constants;
+import util.Utils;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Map;
+import java.util.UUID;
 
-public class Timecard {
-    public final int id;
-    public final int eid;
-    public Date timeIn; // YYYY-MM-DD HH:MM 24-hour (military time)
-    public Date timeOut;
+public class Timecard implements DbWritable {
+    private String id;
+    private String eId;
+    private Date timeIn; // YYYY-MM-DD HH:MM 24-hour (military time)
+    private Date timeOut;
 
-    public Timecard (int id, int eid, Date timeIn, Date timeOut) {
-        this.id = id;
-        this.eid = eid;
-        this.timeIn = timeIn;
-        this.timeOut = timeOut;
+    public Timecard() {
+        this.id = UUID.randomUUID().toString();
     }
 
-    public int getId() {
+    public static Timecard getInstance(String id) {
+        if (id == null)
+            return new Timecard();
+        else {
+            String[] db = Utils.readLine(Constants.TIMECARD_DB, id);
+            if (db != null) {
+                Timecard time = new Timecard();
+                time.readFields(db);
+                return time;
+            }
+            return new Timecard();
+        }
+    }
+
+    public static Map<String, DbWritable> getAll() {
+        Map<String, DbWritable> db = Utils.parseFile(Constants.TIMECARD_DB, HourlyEmployee.class);
+
+        return db;
+    }
+
+    public String getId() {
         return this.id;
     }
 
@@ -39,11 +61,26 @@ public class Timecard {
 
     public String timecardToString() {
         DateFormat df = new SimpleDateFormat("YYYY-MM-dd kk:mm");
-        return Integer.toString(eid) + " " + df.format(timeIn) + " " + df.format(timeOut);
+        return this.eId + " " + df.format(timeIn) + " " + df.format(timeOut);
     }
 
     public void printTimecard() {
         DateFormat df = new SimpleDateFormat("YYYY-MM-dd kk:mm");
         System.out.println("Time in: " + df.format(timeIn) + "  Time out: " + df.format(timeOut));
     }
+
+    public void readFields(String[] line) {
+        this.id = line[0];
+        this.eId = line[1];
+        this.timeIn = new Date(line[2]);
+        this.timeOut = new Date(line[3]);
+    }
+
+    public void write() {
+        Utils.removeLine(Constants.TIMECARD_DB, this.id);
+        String toWrite = this.id + " " + this.eId + " " + this.timeIn.toString() + " " + this.timeOut.toString();
+        Utils.appendLine(Constants.TIMECARD_DB, toWrite);
+    }
+
+
 }
