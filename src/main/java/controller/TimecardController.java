@@ -115,9 +115,9 @@ public class TimecardController {
     public static void main(String args[]) {
         TimecardController test = new TimecardController();
         test.parseHashMap(Utils.parseFile("mock_db/Timecard.txt"));
-        test.printTimecards(1);
-        test.printTimecards(4);
-        test.printTimecards(22);
+        //test.printTimecards(1);
+        //test.printTimecards(4);
+        //test.printTimecards(22);
 
         // test.writeToFile("mock_db/Timecard_writeOutTest.txt");
     }
