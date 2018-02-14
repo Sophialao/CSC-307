@@ -19,8 +19,9 @@ public class Utils {
 
                 StringBuilder builder = new StringBuilder();
                 for (int i = 1; i < split.length; i++)
-                    builder.append(split[i]);
+                    builder.append(split[i]+" ");
 
+                System.out.println(builder.toString());
                 file.put(Integer.parseInt(split[0]), builder.toString());
             }
         } catch(FileNotFoundException e) {
@@ -45,12 +46,15 @@ public class Utils {
             int key = it.next();
             String value = file.get(key);
 
-            res += file.get(key) + " ";
+            res += Integer.toString(key) + " ";
+            res += file.get(key);
 
+            /*
             String[] v = value.split(" ");
             for (String s: v) {
                 res += s + " ";
             }
+            */
             res += "\n";
         }
 
@@ -62,5 +66,9 @@ public class Utils {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void main(String[] args) {
+        parseFile("mock_db/Timecard.txt");
     }
 }
