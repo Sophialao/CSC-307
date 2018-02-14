@@ -72,10 +72,16 @@ public class Utils {
                 if (split[0].equals(id)) continue;
                 String res = "";
                 for (String s: split) {
-                    res += s + ",";
+                        if (s.equals(split[split.length-1])) {
+                            res += s;
+                        } else {
+                            res += s + ",";
+                        }
+
                 }
                 res += "\n";
                 bw.write(res);
+                bw.flush();
             }
             bw.flush();
             bw.close();

@@ -11,7 +11,7 @@ class TimecardTest2 {
 
     @Test
     void getNum() {
-        
+
     }
 
     @Test
