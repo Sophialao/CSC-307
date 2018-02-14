@@ -18,6 +18,14 @@ public class Loan implements DbWritable {
         this.id = UUID.randomUUID().toString();
     }
 
+    public Loan(String employeeId, double amount, double interestRate, int duration) {
+        this.employeeId = employeeId;
+        this.amount = amount;
+        this.interestRate = interestRate;
+        this.duration = duration;
+        this.id = UUID.randomUUID().toString();
+    }
+
     public static Loan getInstance(String id) {
         if (id == null)
             return new Loan();
