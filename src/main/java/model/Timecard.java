@@ -51,6 +51,10 @@ public class Timecard implements DbWritable {
         return this.id;
     }
 
+    public String getEId(){
+        return this.eId;
+    }
+    
     private void setId(String id) { this.id = id;}
 
     public Date getTimeIn() {

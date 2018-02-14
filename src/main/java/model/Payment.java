@@ -10,13 +10,13 @@ import java.util.UUID;
 public class Payment implements DbWritable {
     private String id;
     private String employeeId;
-    private int amount;
+    private double amount;
     private Date date;
 
     public Payment() {
         this.id = UUID.randomUUID().toString();
     }
-    public Payment(String employeeId, int amount, Date date) {
+    public Payment(String employeeId, double amount, Date date) {
         this.employeeId = employeeId;
         this.amount = amount;
         this.date = date;
@@ -60,11 +60,11 @@ public class Payment implements DbWritable {
         this.employeeId = employeeId;
     }
 
-    public int getAmount() {
+    public double getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(double amount) {
         this.amount = amount;
     }
 

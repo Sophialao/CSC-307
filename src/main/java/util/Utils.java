@@ -22,7 +22,16 @@ public class Utils {
                 DbWritable o = c.getConstructor().newInstance();
                 o.readFields(split);
 
+<<<<<<< HEAD
+                StringBuilder builder = new StringBuilder();
+                for (int i = 1; i < split.length; i++)
+                    builder.append(split[i]+" ");
+
+                //System.out.println(builder.toString());
+                file.put(Integer.parseInt(split[0]), builder.toString());
+=======
                 file.put(split[0], o);
+>>>>>>> aa8ac3d3409698662f48a37d6ccee55b2099fc61
             }
         } catch(FileNotFoundException e) {
             e.printStackTrace();
