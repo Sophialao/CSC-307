@@ -75,8 +75,10 @@ class PaymentController{
 			double after_commission = before_tax + calculateCommission(e);
 			double after_tax = after_commission - calculateTaxes(before_tax, e);
 			double after_loans = after_tax - calculateLoans(e);
-			Payment p = new Payment(key, after_loans, getDate());
-			p.write();
+			if (after_loans>0) {
+				Payment p = new Payment(key, after_loans, getDate());
+				p.write();
+			}
 		}
 	}
 
@@ -85,11 +87,17 @@ class PaymentController{
 		Map<String, DbWritable> es = HourlyEmployee.getAll();
 		for (String key : es.keySet()){
 			HourlyEmployee e = (HourlyEmployee) es.get(key);
+			//System.out.println(e.getName());
 			double before_tax = calculateTime(e);
+			//System.out.println("BEFORE TAX:" + before_tax);
 			double after_tax = before_tax - calculateTaxes(before_tax, e);
+			//System.out.println("AFTERTAX" + after_tax);
 			double after_loans = after_tax - calculateLoans(e);
-			Payment p = new Payment(key, after_loans, getDate()); 
-			p.write();
+			//System.out.println("AfterLOANS:" + after_loans);
+			if (after_loans > 0) {
+				Payment p = new Payment(key, after_loans, getDate());
+				p.write();
+			}
 		}
 	}
 
@@ -106,19 +114,27 @@ class PaymentController{
 	public static double calculateTime(HourlyEmployee e){
 		//Timecard tc = Timecard.getInstance();
 		Map<String, DbWritable> e_timecards = Timecard.getAll();   //GET INSTANCE ALL
-		float total_timeWorked = 0;
+		double total_timeWorked = 0;
 		Calendar cal = Calendar.getInstance();
 		cal.add(Calendar.DATE, -7);
 		Date dateBefore7Days = cal.getTime();
 		for (String key : e_timecards.keySet()){
+			//System.out.println("going through timecards");
 			Timecard e_timecard = (Timecard) e_timecards.get(key);
 			if (e_timecard.getEId().equals(e.getId())){
+				//System.out.println(e_timecard.getEId());
+				//System.out.println(e_timecard.getTimeIn());
+				//System.out.println(dateBefore7Days);
 				if (e_timecard.getTimeIn().after(dateBefore7Days)){
 					total_timeWorked += Math.abs(e_timecard.getTimeOut().getTime() - e_timecard.getTimeIn().getTime());
+					//System.out.println("Total time:" + total_timeWorked);
 				}
 			}
 		}
-		float hours = ((total_timeWorked / (1000*60*60)) % 24);
+		//double hours = ((total_timeWorked / ((double)((1000*60*60)) % 24)));
+		double hours = ((total_timeWorked / (double)(1000*60*60)) % 24);
+		//System.out.println("hours:" + hours);
+		//System.out.println("Rate:" + e.getRate());
 		return e.getRate() * hours;
 	}
 
@@ -130,10 +146,13 @@ class PaymentController{
 		String e_id = e.getId();
 		
 		Loan e_loan = Loan.getInstance(e_id);
+		if (e_loan.getAmount()==0){
+			return 0.0;
+		}
 		//Loan e_loan = e_l.getLoan(e_id);
 		double interest_decimal = e_loan.getInterestRate();
 		int time = e_loan.getDuration();
-		double each_month = e_loan.getAmount()/time;
+		double each_month = e_loan.getAmount()/(double)time;
 		double each_month_pay = each_month * (1+interest_decimal);
 		e_loan.setAmount(e_loan.getAmount() - each_month);
 		e_loan.setDuration(e_loan.getDuration() - 1);
@@ -143,7 +162,7 @@ class PaymentController{
 	}
 
 	public static double calculateTaxes(double before_tax_pay, Employee e){
-		double annual;
+		/*double annual;
 		double first_per_month = 7850/12;
 		double first_per_month_one = .01 * first_per_month;
 
@@ -156,17 +175,25 @@ class PaymentController{
 				return .01 * before_tax_pay;
 			}
 			else{
-				double rest_sal = annual-7850;
-				return first_per_month_one + (rest_sal*calcRestTaxes(rest_sal));
+				double rest_sal = annual;//-7850;
+				return first_per_month_one + ((rest_sal-7850)*calcRestTaxes(rest_sal));
 			}
 		}
+		System.out.println("ANNUAL" + annual);
 
 		if (annual <= 7850){
+			//System.out.println("CALCULATED TAXES" + (.01*before_tax_pay));
 			return .01 * before_tax_pay;
 		}
 
-		double rest_hourly = annual - 7850;
-		return first_per_month_one + (rest_hourly*(calcRestTaxes(rest_hourly)));
+		double rest_hourly = annual; //- 7850.0;
+
+		/*System.out.println("CALCULATED" + first_per_month_one + (((rest_hourly-7850)/12)*(calcRestTaxes(rest_hourly))));
+		System.out.println("RESTHOURLY" + rest_hourly);
+		System.out.println(calcRestTaxes(rest_hourly));
+		System.out.println(rest_hourly/12);*/
+		//return first_per_month_one + (((rest_hourly-7850)/12)*(calcRestTaxes(rest_hourly)));
+		return .2*before_tax_pay;
 	}
 
 	public static double calcRestTaxes(double rest){

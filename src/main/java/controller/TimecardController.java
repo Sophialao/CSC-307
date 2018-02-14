@@ -16,6 +16,7 @@ public class TimecardController {
     public void addTimecard(String eid, Date timeIn, Date timeOut) {
         Timecard tc = Timecard.getInstance(null);
         tc.setEId(eid);
+        System.out.println(timeIn);
         tc.setTimeIn(timeIn);
         tc.setTimeOut(timeOut);
         tc.write();

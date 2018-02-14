@@ -77,16 +77,17 @@ public class Timecard implements DbWritable {
     }
 
     public String timecardToString() {
-        DateFormat df = new SimpleDateFormat("YYYY-MM-dd kk:mm");
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd kk:mm");
         return this.eId + " " + df.format(timeIn) + " " + df.format(timeOut);
     }
 
     public void printTimecard() {
-        DateFormat df = new SimpleDateFormat("YYYY-MM-dd kk:mm");
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd kk:mm");
         System.out.println("Time in: " + df.format(timeIn) + "  Time out: " + df.format(timeOut));
     }
 
     public void readFields(String[] line) {
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd kk:mm");
         this.id = line[0];
         this.eId = line[1];
         this.timeIn = new Date(line[2]);

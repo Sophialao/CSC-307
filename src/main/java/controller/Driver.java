@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 import model.HourlyEmployee;
 import model.SalaryEmployee;
+import model.*;
 import util.Constants;
 
 public class Driver {
@@ -30,6 +31,7 @@ public class Driver {
         System.out.println("'i': input hours");
         System.out.println("'ph': pay hourly employees");
         System.out.println("'ps': pay salary employees");
+        System.out.println("'l': add loan");
         System.out.println("'q': quit");
         System.out.println("Action: ");
         String action = reader.nextLine();
@@ -60,6 +62,9 @@ public class Driver {
         }
         else if (action.equals("s")) {
             return setEmployeeData(Constants.SALARIED);
+        }
+        else if (action.equals("l")){
+            return setLoan();
         }
         else {
             return returnError();
@@ -132,17 +137,19 @@ public class Driver {
 
     public static boolean createTimecard() {
         Scanner reader = new Scanner(System.in);
-        DateFormat df = new SimpleDateFormat("YYYY-MM-dd kk:mm");
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd kk:mm");
         System.out.println("Employee ID: ");
         String eid = reader.nextLine();
         System.out.println("Time In (YYYY-MM-DD HH:MM 24hr): ");
         String dateTimeIn = reader.nextLine();
+        System.out.println(dateTimeIn);
         System.out.println("Time Out (YYYY-MM-DD HH:MM 24hr): ");
         String dateTimeOut = reader.nextLine();
 
         try {
             Date timeIn = df.parse(dateTimeIn);
             Date timeOut = df.parse(dateTimeOut);
+            System.out.println(timeIn);
             TimecardController tc = new TimecardController();
             tc.addTimecard(eid, timeIn, timeOut);
             System.out.println("Timecard created successfully!");
@@ -168,6 +175,22 @@ public class Driver {
         System.out.println("Paid successfully!");
         return true;
 
+    }
+
+    public static boolean setLoan(){
+        Scanner reader = new Scanner(System.in);
+        System.out.println("Employee ID: ");
+        String eid = reader.nextLine();
+        System.out.println("Amount: ");
+        double amt = Double.parseDouble(reader.nextLine());
+        System.out.println("Interest Rate: ");
+        double interest = Double.parseDouble(reader.nextLine());
+        System.out.println("Duration (months): ");
+        int dur = Integer.parseInt(reader.nextLine());
+        Loan l = new Loan(eid, amt, interest, dur);
+        l.write();
+        System.out.println("Set up loan successfully!");
+        return true;
     }
 
     public static boolean returnError() {
