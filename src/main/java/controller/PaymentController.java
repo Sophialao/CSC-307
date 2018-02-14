@@ -1,3 +1,4 @@
+package controller;
 import java.util.Calendar;
 import util.Utils;
 import model.Employee;
@@ -13,7 +14,7 @@ class PaymentController{
 	//public int total_payments = 0;
 	//public HashMap<Integer, Payment> payments = new HashMap<Integer, Payment>();
 
-	public static void calculatePayment(String[] args) {
+	public static void calculatePayment() {
 		boolean monthly_payday = checkLastDateofMonth();
 		boolean weekly_payday = checkMonday();
 		if (!monthly_payday && !weekly_payday){
