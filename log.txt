@@ -1,0 +1,997 @@
+commit 761a956f4a24b74e36a61e4254df83dc44e1b81c
+Author: Kelly Chen <kellychen@KellsMac.local>
+Date:   Wed Feb 14 02:18:56 2018 -0800
+
+    Added design detail and sample menu diagrams, FINAL iter1
+
+commit 35003e8afaae98946d65754f44617a9d996a8177
+Merge: 7b0b535 ed1bd72
+Author: Kelly Chen <kellychen@KellsMac.local>
+Date:   Wed Feb 14 02:03:37 2018 -0800
+
+    Working for Iteration 1
+
+commit 7b0b5359b04ebc8c613f1d678a384e4cda0b2866
+Author: Kelly Chen <kellychen@KellsMac.local>
+Date:   Wed Feb 14 02:02:40 2018 -0800
+
+    Fixed date, temp solution to tax, tested loan
+
+commit ed1bd722f9ab3743ee9c3a656692afd33c4cbba8
+Merge: 3d6d6fe 4169711
+Author: Pradeep Sangli <pradeep.sangli@gmail.com>
+Date:   Wed Feb 14 00:06:06 2018 -0800
+
+    Merge branch 'master' of https://github.com/Sophialao/CSC-307
+
+commit 3d6d6fe474ac1a221f9c5b6d01c97e19d04de3cb
+Author: Pradeep Sangli <pradeep.sangli@gmail.com>
+Date:   Wed Feb 14 00:01:29 2018 -0800
+
+    Working employee driver
+
+commit 416971161dd932de3226025bf6f4cada42e94872
+Author: Kelly Chen <kellychen@KellsMac.local>
+Date:   Tue Feb 13 23:53:47 2018 -0800
+
+    Fixed commas
+
+commit 19a6e393cde9e3b50f016d85eeec158945dc2293
+Merge: 43841b5 a2fe90b
+Author: Kelly Chen <kellychen@KellsMac.local>
+Date:   Tue Feb 13 23:38:39 2018 -0800
+
+    fjldksf
+
+commit 43841b55648873b03302b5ab41a1a059dbea3e3c
+Author: Kelly Chen <kellychen@KellsMac.local>
+Date:   Tue Feb 13 23:36:40 2018 -0800
+
+    Kefdksljf
+
+commit a2fe90bbb0bcda9f8fca4f1f6c520cd06ecbfeed
+Author: samrastovich <sam.rastovich@gmail.com>
+Date:   Tue Feb 13 23:36:01 2018 -0800
+
+    trying to fix buffer error
+
+commit b3d760feb12914ab836e0ccd9c89ff45c30de107
+Merge: ad711d8 4c7c4b8
+Author: Kelly Chen <kellychen@KellsMac.local>
+Date:   Tue Feb 13 23:32:33 2018 -0800
+
+    Merge branch 'master' of https://github.com/Sophialao/CSC-307
+
+commit ad711d8ae34a3503970c85c81c6e23d65fb772f7
+Author: Kelly Chen <kellychen@KellsMac.local>
+Date:   Tue Feb 13 23:32:29 2018 -0800
+
+    fixed brace
+
+commit 4c7c4b8b93bd75baa4eacea6f1524102e831433c
+Merge: 18098b6 dec3047
+Author: samrastovich <sam.rastovich@gmail.com>
+Date:   Tue Feb 13 23:31:56 2018 -0800
+
+    Merge branch 'master' of https://github.com/Sophialao/CSC-307
+
+commit dec3047a4eae46591f6345d2d580ee539abff994
+Merge: 74f574f 2ad73c2
+Author: Kelly Chen <kellychen@KellsMac.local>
+Date:   Tue Feb 13 23:26:14 2018 -0800
+
+    fixed conflicts
+
+commit 74f574f6b93e2d70593759dd72d9eaa7a0a34c26
+Author: Kelly Chen <kellychen@KellsMac.local>
+Date:   Tue Feb 13 23:22:25 2018 -0800
+
+    Edited bugs, added payment driver testing
+
+commit 18098b6ee81190f0e8b354b2493b4299e7db43c0
+Author: samrastovich <sam.rastovich@gmail.com>
+Date:   Tue Feb 13 23:20:38 2018 -0800
+
+    Closed buffers
+
+commit 488c32805fe8755af3eb22bc93c2ca4674950a15
+Author: Pradeep Sangli <pradeep.sangli@gmail.com>
+Date:   Tue Feb 13 22:50:52 2018 -0800
+
+    sigh
+
+commit 2ad73c22cb8817941a7049d193c1fedcb51d7c24
+Merge: d66b5e3 f82c25a
+Author: Pradeep Sangli <pradeep.sangli@gmail.com>
+Date:   Tue Feb 13 22:44:07 2018 -0800
+
+    Merge remote-tracking branch 'refs/remotes/origin/master'
+
+commit d66b5e35bf560eadd430d31dc88d8968f72bb9ee
+Author: Pradeep Sangli <pradeep.sangli@gmail.com>
+Date:   Tue Feb 13 22:40:17 2018 -0800
+
+    sighhhhhhh
+
+commit c17e99564bc5c7004c274277baec0f7dbf2feef7
+Author: Pradeep Sangli <pradeep.sangli@gmail.com>
+Date:   Tue Feb 13 22:38:58 2018 -0800
+
+    fixed driver employee now workin
+
+commit f82c25aa52bf8c26a3b589a0850f99a99db703e3
+Merge: 9605bbd 207b687
+Author: SophiaLao <sophia.lao@gmail.com>
+Date:   Tue Feb 13 21:59:30 2018 -0800
+
+    committing again
+
+commit 9605bbd7f003eeeea2d8d466135c5b11a2dc57ae
+Author: SophiaLao <sophia.lao@gmail.com>
+Date:   Tue Feb 13 21:52:40 2018 -0800
+
+    Communication Diagram
+
+commit e0b411e5fbcfe456f9b8f5c56c7f111cefbfad3b
+Merge: 232849b 207b687
+Author: Kelly Chen <kellychen@KellsMac.local>
+Date:   Tue Feb 13 21:51:32 2018 -0800
+
+    Merge branch 'master' of https://github.com/Sophialao/CSC-307
+
+commit 232849b922d35b9d9591854bda830310fbdb5cd1
+Author: Kelly Chen <kellychen@KellsMac.local>
+Date:   Tue Feb 13 21:51:28 2018 -0800
+
+    without arg
+
+commit 207b68753eab755e4cdff975944741aad9c3fccd
+Author: samrastovich <sam.rastovich@gmail.com>
+Date:   Tue Feb 13 21:50:51 2018 -0800
+
+    Fixed dependency
+
+commit 0345df21c18d4052b9b1222303aef2094b846850
+Merge: 9b02e37 8e5a441
+Author: Kelly Chen <kellychen@KellsMac.local>
+Date:   Tue Feb 13 21:46:48 2018 -0800
+
+    Merge branch 'master' of https://github.com/Sophialao/CSC-307
+
+commit 9b02e37823608869945d91cac125158fc9882bf0
+Author: Kelly Chen <kellychen@KellsMac.local>
+Date:   Tue Feb 13 21:44:16 2018 -0800
+
+    Corrected all errors
+
+commit 8e31f036839b14a9e8c3d8a182f66f91bd88fc9c
+Merge: d44acda 8e5a441
+Author: Pradeep Sangli <pradeep.sangli@gmail.com>
+Date:   Tue Feb 13 21:41:29 2018 -0800
+
+    Merge branch 'master' of https://github.com/Sophialao/CSC-307
+
+commit d44acda0955bc285617f53d8618f4063d2523fc1
+Author: Pradeep Sangli <pradeep.sangli@gmail.com>
+Date:   Tue Feb 13 21:41:19 2018 -0800
+
+    edit p1 driver
+
+commit 8e5a44178439e8e69d60b5fb1a21c2c778a936b7
+Author: samrastovich <sam.rastovich@gmail.com>
+Date:   Tue Feb 13 21:40:19 2018 -0800
+
+    Correct db names
+
+commit 7b8f6ecf89e33fb54df1f4bcd95e009b09ce35b7
+Merge: c23cedc 65a0629
+Author: samrastovich <sam.rastovich@gmail.com>
+Date:   Tue Feb 13 21:31:59 2018 -0800
+
+    Merge branch 'master' of https://github.com/Sophialao/CSC-307
+
+commit c23cedc2d2db23d87d7074fea9110ffd27afa723
+Author: samrastovich <sam.rastovich@gmail.com>
+Date:   Tue Feb 13 21:31:18 2018 -0800
+
+    Working database code
+
+commit 569afc5d8a7915757eb74757d2c7e0b7b53ed932
+Merge: 0370d47 65a0629
+Author: SophiaLao <sophia.lao@gmail.com>
+Date:   Tue Feb 13 21:09:27 2018 -0800
+
+    in order to pull
+
+commit 7a96b6bed968bcf347204abae4c9622c492f97ba
+Merge: 42ad432 65a0629
+Author: Kelly Chen <kellychen@KellsMac.local>
+Date:   Tue Feb 13 20:59:18 2018 -0800
+
+    Merge branch 'master' of https://github.com/Sophialao/CSC-307
+
+commit 65a0629428a1a1eb2f4d8a84c8fced83a314d984
+Author: Daniel Kim <phildankim@gmail.com>
+Date:   Tue Feb 13 20:58:52 2018 -0800
+
+    godfuckingdammitshithole
+
+commit 42ad432dd0c810fd0bad06cb8b79c4181360afce
+Merge: 8ae33a2 fa75643
+Author: Kelly Chen <kellychen@KellsMac.local>
+Date:   Tue Feb 13 20:57:19 2018 -0800
+
+    Merge branch 'master' of https://github.com/Sophialao/CSC-307
+
+commit 8ae33a2a37a2e5eeb2d8ceaa915fecb122e5a828
+Author: Kelly Chen <kellychen@KellsMac.local>
+Date:   Tue Feb 13 20:57:15 2018 -0800
+
+    PaymentController edits
+
+commit fa756434fe782444a202f8c16e805d98e131c01e
+Merge: 9555331 37fe87a
+Author: Daniel Kim <phildankim@gmail.com>
+Date:   Tue Feb 13 20:55:14 2018 -0800
+
+    Merge branch 'master' of https://github.com/Sophialao/CSC-307
+
+commit 9555331c83e83dc4428de3b4ffbc5e8c53fd0961
+Author: Daniel Kim <phildankim@gmail.com>
+Date:   Tue Feb 13 20:55:07 2018 -0800
+
+    slight changes to driver
+
+commit 37fe87a4ec5d786a8bd811a6fabce5151c8d27f5
+Author: samrastovich <sam.rastovich@gmail.com>
+Date:   Tue Feb 13 20:52:25 2018 -0800
+
+    Merged master
+
+commit 9b167bd27ab6db4335c82fc180a6ed40a9c475d6
+Merge: 9f40a9a 3880240
+Author: samrastovich <sam.rastovich@gmail.com>
+Date:   Tue Feb 13 20:51:57 2018 -0800
+
+    Merge branch 'master' of https://github.com/Sophialao/CSC-307
+
+commit 3880240a3383010ae3487ae00830d1a92cc8d119
+Author: Daniel Kim <phildankim@gmail.com>
+Date:   Tue Feb 13 20:51:03 2018 -0800
+
+    i swear if this doesn't fucking compile
+
+commit 9f40a9ad61fa8a493a409edc482a79fe4d57c602
+Author: samrastovich <sam.rastovich@gmail.com>
+Date:   Tue Feb 13 20:44:07 2018 -0800
+
+    Heyyyyaaa
+
+commit d1ae83bfb6189daa7107fe61bc97c8fbfbc3866e
+Merge: 6cf31e9 4427688
+Author: Daniel Kim <phildankim@gmail.com>
+Date:   Tue Feb 13 20:43:44 2018 -0800
+
+    Merge branch 'master' of https://github.com/Sophialao/CSC-307
+
+commit 6cf31e93045c47748927f59695cb6495a5b1a7e7
+Author: Daniel Kim <phildankim@gmail.com>
+Date:   Tue Feb 13 20:43:37 2018 -0800
+
+    fuckfuckfuckdriver
+
+commit 442768895c8f95c6e2cea5d9f138e97c15d3b653
+Author: Pradeep Sangli <pradeep.sangli@gmail.com>
+Date:   Tue Feb 13 20:38:40 2018 -0800
+
+    added delete
+
+commit 945372f93b0d836129c5fe3b288e3c522af00831
+Author: samrastovich <sam.rastovich@gmail.com>
+Date:   Tue Feb 13 20:36:52 2018 -0800
+
+    Added remove methods
+
+commit b81216c156015d6d46d36863899ea4187e028036
+Merge: 6df9960 b0a8d4f
+Author: Daniel Kim <phildankim@gmail.com>
+Date:   Tue Feb 13 20:34:03 2018 -0800
+
+    Merge branch 'master' of https://github.com/Sophialao/CSC-307
+
+commit 6df9960a16f7f8ccf0147c66cea165eb1580929e
+Author: Daniel Kim <phildankim@gmail.com>
+Date:   Tue Feb 13 20:33:56 2018 -0800
+
+    fucking everything
+
+commit 507415d9b9cc618f058a363d65b6b1417ecf9c4a
+Author: Daniel Kim <phildankim@gmail.com>
+Date:   Tue Feb 13 20:32:28 2018 -0800
+
+    sam made me delete everything
+
+commit 0370d4770bc361b3437304e0b2731d59f297a10b
+Merge: a410b11 b0a8d4f
+Author: SophiaLao <sophia.lao@gmail.com>
+Date:   Tue Feb 13 20:31:26 2018 -0800
+
+    Merge branch 'master' of https://github.com/Sophialao/CSC-307
+
+commit b0a8d4fd4158a4f2c715b9b3f045c0b7233d2487
+Merge: 09cd8e1 4fa8af0
+Author: Pradeep Sangli <pradeep.sangli@gmail.com>
+Date:   Tue Feb 13 20:29:11 2018 -0800
+
+    Merge branch 'master' of https://github.com/Sophialao/CSC-307
+
+commit 09cd8e164b60465f99ca8152d47bb7c4aa6b4a25
+Author: Pradeep Sangli <pradeep.sangli@gmail.com>
+Date:   Tue Feb 13 20:28:32 2018 -0800
+
+    new EC
+
+commit 8155af4e0e22977e07373f96d03c3cb53b25e167
+Merge: 66e799d 4fa8af0
+Author: Kelly Chen <kellychen@KellsMac.local>
+Date:   Tue Feb 13 20:27:20 2018 -0800
+
+    Merge branch 'master' of https://github.com/Sophialao/CSC-307
+
+commit 4fa8af0357764272af35e453fc34a4a0b6289b3d
+Merge: d2d6a93 5bd96ac
+Author: samrastovich <sam.rastovich@gmail.com>
+Date:   Tue Feb 13 20:26:58 2018 -0800
+
+    Merge branch 'master' of https://github.com/Sophialao/CSC-307
+
+commit d2d6a93433c3ec29139f99d0ee94722c34999b92
+Author: samrastovich <sam.rastovich@gmail.com>
+Date:   Tue Feb 13 20:26:36 2018 -0800
+
+    JK now they're fixed
+
+commit 3dcbc9acb36da81e5c37dcd8f892693a69610264
+Author: samrastovich <sam.rastovich@gmail.com>
+Date:   Tue Feb 13 20:25:38 2018 -0800
+
+    Fixed constructors
+
+commit 5bd96ac5c53c6abc6b7d58853789ca90673af3d7
+Author: Daniel Kim <phildankim@gmail.com>
+Date:   Tue Feb 13 20:24:15 2018 -0800
+
+    can add employee
+
+commit 66e799dc65e758f9a5748d6a0f7909db01db26f4
+Merge: cfbd152 9853bdf
+Author: Kelly Chen <kellychen@KellsMac.local>
+Date:   Tue Feb 13 20:01:03 2018 -0800
+
+    Merge branch 'master' of https://github.com/Sophialao/CSC-307
+
+commit 9853bdf6666e13b8a6ff8a9d29cc6893023333dd
+Author: Daniel Kim <phildankim@gmail.com>
+Date:   Tue Feb 13 20:00:36 2018 -0800
+
+    started on driver
+
+commit fa3ff4ec4bdff7ab7c80a2146acb1d97d9ba658c
+Merge: bea8f42 a38c87e
+Author: Daniel Kim <phildankim@gmail.com>
+Date:   Tue Feb 13 20:00:00 2018 -0800
+
+    Merge branch 'master' of https://github.com/Sophialao/CSC-307
+
+commit bea8f4252acd09233e1348c58117f8a88b0b8447
+Author: Daniel Kim <phildankim@gmail.com>
+Date:   Tue Feb 13 19:59:52 2018 -0800
+
+    sam made me delete everything
+
+commit a38c87e63b5a0c31074e227bcd433c3b9e3d744e
+Author: Pradeep Sangli <pradeep.sangli@gmail.com>
+Date:   Tue Feb 13 19:53:14 2018 -0800
+
+    state diagram
+
+commit a410b11c06ae3508ef2d89f7c42c9a57f919b645
+Merge: 3dda2bf aa8ac3d
+Author: SophiaLao <sophia.lao@gmail.com>
+Date:   Tue Feb 13 19:51:05 2018 -0800
+
+    In order to pull
+
+commit aa8ac3d3409698662f48a37d6ccee55b2099fc61
+Merge: 5731c99 ff16653
+Author: samrastovich <sam.rastovich@gmail.com>
+Date:   Tue Feb 13 19:43:08 2018 -0800
+
+    Merge branch 'master' of https://github.com/Sophialao/CSC-307
+
+commit 5731c99f261c9ae7f86279e27c5f5331a1a88887
+Author: samrastovich <sam.rastovich@gmail.com>
+Date:   Tue Feb 13 19:42:53 2018 -0800
+
+    Database modeling for all classes
+
+commit 3dda2bf0e5b3a659576b4d968f5aa23ef2e1a5d0
+Merge: 626de29 ff16653
+Author: SophiaLao <sophia.lao@gmail.com>
+Date:   Tue Feb 13 19:37:36 2018 -0800
+
+    Merge branch 'master' of https://github.com/Sophialao/CSC-307
+
+commit ff16653da8a36813fba3b1619f4561209103d654
+Merge: e94efd4 19afe7c
+Author: Pradeep Sangli <pradeep.sangli@gmail.com>
+Date:   Tue Feb 13 19:36:07 2018 -0800
+
+    Merge branch 'master' of https://github.com/Sophialao/CSC-307
+
+commit e94efd438241da8decb9e8c8d0061334254f4005
+Author: Pradeep Sangli <pradeep.sangli@gmail.com>
+Date:   Tue Feb 13 19:35:53 2018 -0800
+
+    state diagram
+
+commit cfbd152487d9e23528b9f59b3f500af909c73085
+Author: Kelly Chen <kellychen@KellsMac.local>
+Date:   Tue Feb 13 19:35:46 2018 -0800
+
+    Added Arch_Diagram
+
+commit 19afe7c777fdc71202a44f60439ab0b8ac106743
+Merge: 5632d92 4437dba
+Author: Daniel Kim <phildankim@gmail.com>
+Date:   Tue Feb 13 19:35:30 2018 -0800
+
+    Merge branch 'master' of https://github.com/Sophialao/CSC-307
+
+commit 5632d92e6be69173e107a02954a10401c55dc10a
+Author: Daniel Kim <phildankim@gmail.com>
+Date:   Tue Feb 13 19:35:23 2018 -0800
+
+    added classdiag staruml file
+
+commit c36b696b50959e4ecdb370188df32b8118f64679
+Merge: c581383 4437dba
+Author: Kelly Chen <kellychen@KellsMac.local>
+Date:   Tue Feb 13 19:31:57 2018 -0800
+
+    Merge branch 'master' of https://github.com/Sophialao/CSC-307
+
+commit 626de29f37a0249bbf5c836a36de4ea70e3fab6b
+Merge: 1d735e6 4437dba
+Author: SophiaLao <sophia.lao@gmail.com>
+Date:   Tue Feb 13 19:27:55 2018 -0800
+
+    Merge branch 'master' of https://github.com/Sophialao/CSC-307
+
+commit 1d735e6869069730ecc4e913eb660e22a3ca28fb
+Author: SophiaLao <sophia.lao@gmail.com>
+Date:   Tue Feb 13 19:27:50 2018 -0800
+
+    hello
+
+commit 687f260a8f52b813ab1709ed76aa6189225a4c7c
+Merge: 842f2b8 4437dba
+Author: samrastovich <sam.rastovich@gmail.com>
+Date:   Tue Feb 13 19:07:56 2018 -0800
+
+    Merge branch 'master' of https://github.com/Sophialao/CSC-307
+
+commit 842f2b84cc2013040c73c60ce2565fbd85b8d4f8
+Author: samrastovich <sam.rastovich@gmail.com>
+Date:   Tue Feb 13 19:07:36 2018 -0800
+
+    Added generic file parsing, and abstract factory for employee
+
+commit 4437dbac6bf66c39b9836f5e92ffdf9b9fa8422e
+Author: Pradeep Sangli <pradeep.sangli@gmail.com>
+Date:   Tue Feb 13 19:06:57 2018 -0800
+
+    re added salaryemployee
+
+commit 034c16a1a579a440562b8426218ce66397dc619e
+Author: Daniel Kim <phildankim@gmail.com>
+Date:   Tue Feb 13 18:25:29 2018 -0800
+
+    class diagram v1
+
+commit 81929dbe284bb1b151bc397bdc09751a15c69ed3
+Author: Daniel Kim <phildankim@gmail.com>
+Date:   Tue Feb 13 17:43:46 2018 -0800
+
+    made general use seq diag
+
+commit f0d8c290e1f225bbe0e60de2b87b93e2fb36b459
+Merge: 1bdceb1 aafd57c
+Author: SophiaLao <sophia.lao@gmail.com>
+Date:   Tue Feb 13 17:14:46 2018 -0800
+
+    Merge branch 'master' of https://github.com/Sophialao/CSC-307
+
+commit 1bdceb185f1f80811b1bddf5858202fd0ce7f97a
+Merge: 73bb325 0b9327c
+Author: SophiaLao <sophia.lao@gmail.com>
+Date:   Tue Feb 13 17:14:42 2018 -0800
+
+    Trying to merge master
+
+commit aafd57c3cb4d57bb039bc745993f8bd366016200
+Author: Daniel Kim <phildankim@gmail.com>
+Date:   Tue Feb 13 17:02:32 2018 -0800
+
+    began work on diagrams
+
+commit 73bb325d3d8203ea63a519ce07e34cb4519740ed
+Author: SophiaLao <sophia.lao@gmail.com>
+Date:   Tue Feb 13 17:00:44 2018 -0800
+
+    Merge branch 'master' of https://github.com/Sophialao/CSC-307
+    
+    # Conflicts:
+    #       csc307-payroll-system.iml
+    #       target/classes/util/Utils.class
+
+commit 0b9327c459dbfbec73d43361dea3031930a6f4f3
+Author: samrastovich <sam.rastovich@gmail.com>
+Date:   Tue Feb 13 16:42:21 2018 -0800
+
+    Changed git ignore to ignore class files
+
+commit c581383ec3762e56f94726cfab56d80f53d5fd1b
+Merge: 4a72e1c 15b7e6e
+Author: Kelly Chen <kellychen@KellsMac.local>
+Date:   Tue Feb 13 16:41:05 2018 -0800
+
+    Merge branch 'master' of https://github.com/Sophialao/CSC-307
+
+commit 15b7e6ed4ddee301e42d047090aa6b4b2323eb16
+Merge: 1259c41 005e845
+Author: samrastovich <sam.rastovich@gmail.com>
+Date:   Tue Feb 13 16:39:32 2018 -0800
+
+    Merge branch 'psangli2'
+
+commit 005e8454eea43cb3bbbee04cf8662d399ddb07ee
+Merge: 7c25c99 1259c41
+Author: samrastovich <sam.rastovich@gmail.com>
+Date:   Tue Feb 13 16:39:02 2018 -0800
+
+    Merge branch 'master' into psangli2
+
+commit 7c25c999888738b3b43efc2a78a1b95bc94deb46
+Merge: 81abef9 6eb31f4
+Author: Pradeep Sangli <pradeep.sangli@gmail.com>
+Date:   Tue Feb 13 16:34:22 2018 -0800
+
+    Merge branch 'psangli2' of https://github.com/Sophialao/CSC-307 into psangli2
+
+commit 81abef9c64f05befa3bb2af7f446f761c340edf2
+Author: Pradeep Sangli <pradeep.sangli@gmail.com>
+Date:   Tue Feb 13 16:34:01 2018 -0800
+
+    everything
+
+commit 4b04e895fd20f6e52bb7e783ea8659487933662f
+Author: Pradeep Sangli <pradeep.sangli@gmail.com>
+Date:   Tue Feb 13 16:32:51 2018 -0800
+
+    git ignore
+
+commit 1259c4132cd24d083badcf9603af0ec8b569bf56
+Author: samrastovich <sam.rastovich@gmail.com>
+Date:   Tue Feb 13 16:28:36 2018 -0800
+
+    Classes go bye bye
+
+commit 1d51263eba2172871cae11695ea517eaf39d1e02
+Author: samrastovich <sam.rastovich@gmail.com>
+Date:   Tue Feb 13 16:27:50 2018 -0800
+
+    Class files go bye bye
+
+commit 6eb31f4774c744751003d0909ed7f88ccf26e278
+Author: Pradeep Sangli <pradeep.sangli@gmail.com>
+Date:   Tue Feb 13 16:26:36 2018 -0800
+
+    deleted classes
+
+commit 190ed07e8e100192a668ddccc4d9fdd8d1729655
+Merge: 1c4feae 19d6a93
+Author: samrastovich <sam.rastovich@gmail.com>
+Date:   Tue Feb 13 16:13:38 2018 -0800
+
+    Merge branch 'master' of https://github.com/Sophialao/CSC-307
+
+commit 19d6a93d9c7110dababd1dd1c9eccd4d00756d08
+Merge: a0a763e 4e23191
+Author: SophiaLao <sophia.lao@gmail.com>
+Date:   Tue Feb 13 16:06:36 2018 -0800
+
+    Merge branch 'master' of https://github.com/Sophialao/CSC-307
+
+commit 648139f193844aae3f7f94f6dfdd43d578668cb2
+Author: Pradeep Sangli <pradeep.sangli@gmail.com>
+Date:   Tue Feb 13 16:04:12 2018 -0800
+
+    Employee Controller
+
+commit a0a763ed0c263ed08e4f42d9a67b55832900229c
+Author: SophiaLao <sophia.lao@gmail.com>
+Date:   Tue Feb 13 15:59:10 2018 -0800
+
+    In order to pull
+
+commit 4a72e1cfa075330f880b3f18f8aac84b48877736
+Merge: 0645d50 4e23191
+Author: Kelly Chen <kellychen@KellsMac.local>
+Date:   Tue Feb 13 15:43:42 2018 -0800
+
+    Merge branch 'master' of https://github.com/Sophialao/CSC-307
+
+commit 0645d508de05b473792cd03ac8429f266056fb96
+Author: Kelly Chen <kellychen@KellsMac.local>
+Date:   Tue Feb 13 15:43:07 2018 -0800
+
+    updating
+
+commit 1c4feae1a4c330687e7dc0e1927e32539cdf9d3f
+Author: samrastovich <sam.rastovich@gmail.com>
+Date:   Tue Feb 13 14:18:15 2018 -0800
+
+    trying to fix merge conflicts
+
+commit 4e23191c74e7859a92f0b93590ff8f840c72ac31
+Merge: bb25a7f f04b92f
+Author: samrastovich <sam.rastovich@gmail.com>
+Date:   Tue Feb 13 14:14:06 2018 -0800
+
+    Merge branch 'master' of https://github.com/Sophialao/CSC-307
+
+commit bb25a7f0fa813db7ebe5499bc01532019496373c
+Author: samrastovich <sam.rastovich@gmail.com>
+Date:   Tue Feb 13 14:13:29 2018 -0800
+
+    Trying to merge
+
+commit f04b92f6e5a4fd9e435906b9bf45cb82729bc99e
+Author: Pradeep Sangli <pradeep.sangli@gmail.com>
+Date:   Tue Feb 13 14:09:30 2018 -0800
+
+    getTimecard
+
+commit ab31d7eb534b50e83ee6af6015c0859a6ddea8d7
+Merge: 07cfaab b88dc59
+Author: Daniel Kim <phildankim@gmail.com>
+Date:   Tue Feb 13 13:52:32 2018 -0800
+
+    Merge branch 'master' of https://github.com/Sophialao/CSC-307
+
+commit 07cfaabe4ffbf8838820d79a477f615663bba4ce
+Author: Daniel Kim <phildankim@gmail.com>
+Date:   Tue Feb 13 13:52:25 2018 -0800
+
+    added file write out
+
+commit b88dc59c716b207d9129c2c9c0998b2e5bc53d94
+Merge: 54a182a 65e3601
+Author: Pradeep Sangli <pradeep.sangli@gmail.com>
+Date:   Tue Feb 13 13:26:29 2018 -0800
+
+    changed employee
+
+commit 54a182a927cb8e8d4dc8185e2d88bbc74a763fd2
+Author: Pradeep Sangli <pradeep.sangli@gmail.com>
+Date:   Tue Feb 13 13:23:00 2018 -0800
+
+    fixed employeee
+
+commit 65e3601e58f6f80032064995ceb5c97908d42c84
+Merge: 620233c 7f9cad2
+Author: Daniel Kim <phildankim@gmail.com>
+Date:   Tue Feb 13 12:48:50 2018 -0800
+
+    Merge branch 'master' of https://github.com/Sophialao/CSC-307
+
+commit 620233ce40bbec5dd7e72064a3d32b9aaf8056d3
+Author: Daniel Kim <phildankim@gmail.com>
+Date:   Tue Feb 13 12:48:41 2018 -0800
+
+    added file parsing
+
+commit 30ba8e525eca6607570166769c724585fb618495
+Author: Daniel Kim <phildankim@gmail.com>
+Date:   Tue Feb 13 12:47:32 2018 -0800
+
+    added file parsing
+
+commit 7f9cad287428a2d278553125cdc6e63f9aad6350
+Merge: 96c21a5 b9e411f
+Author: SophiaLao <sophia.lao@gmail.com>
+Date:   Tue Feb 13 12:17:57 2018 -0800
+
+    hi
+
+commit 96c21a5764d9a2566d42ffac07e9195e33a7d709
+Author: SophiaLao <sophia.lao@gmail.com>
+Date:   Tue Feb 13 12:16:09 2018 -0800
+
+    hi
+
+commit b9e411fc1edbdcc73134b2168e347c85d4ee52cc
+Author: samrastovich <sam.rastovich@gmail.com>
+Date:   Tue Feb 13 12:14:23 2018 -0800
+
+    Removed unnecessary file
+
+commit 6f5b29c6a590383a8253997b848ca13f40c754a9
+Author: SophiaLao <sophia.lao@gmail.com>
+Date:   Tue Feb 13 12:13:24 2018 -0800
+
+    "commit"
+
+commit e9672960fc93c1b50cf4a72bc2d59098b64f39ef
+Author: Pradeep Sangli <pradeep.sangli@gmail.com>
+Date:   Tue Feb 13 12:06:09 2018 -0800
+
+    organized
+
+commit 0bd843307af6ddeeb89e3258836e93bc1e299abe
+Author: Pradeep Sangli <pradeep.sangli@gmail.com>
+Date:   Tue Feb 13 12:05:12 2018 -0800
+
+    organized
+
+commit 913cae9ee37990b62fa3570267e87a4076790d0d
+Author: Pradeep Sangli <pradeep.sangli@gmail.com>
+Date:   Tue Feb 13 12:02:08 2018 -0800
+
+    deleted images
+
+commit d1973bcef35d5d25523587fc0b93d685eab34947
+Merge: a1c1253 f0519d0
+Author: Pradeep Sangli <pradeep.sangli@gmail.com>
+Date:   Tue Feb 13 12:00:02 2018 -0800
+
+    Merge branch 'psangli'
+
+commit a1c125389083e9e492b9b10a0fcf5562cf8bc722
+Author: samrastovich <sam.rastovich@gmail.com>
+Date:   Tue Feb 13 11:58:10 2018 -0800
+
+    Utility class for reading and writing text files
+
+commit 282f4c55f62d2415d42a1b9067813e1eb06016ef
+Author: samrastovich <sam.rastovich@gmail.com>
+Date:   Tue Feb 13 11:35:38 2018 -0800
+
+    Added EmployeeController and mock db
+
+commit 849cdf3a3bad1ce81f296427ea060fe9bb1270dc
+Author: Daniel Kim <phildankim@gmail.com>
+Date:   Tue Feb 13 11:31:40 2018 -0800
+
+    timecard model and timecard controller
+
+commit 7c23fa6221987206c5cef014dc3c287918b8036b
+Author: samrastovich <sam.rastovich@gmail.com>
+Date:   Tue Feb 13 11:22:36 2018 -0800
+
+    Made model classes and compiled
+
+commit f0519d03783be448344dc8905fad91d94e41f492
+Author: Pradeep Sangli <pradeep.sangli@gmail.com>
+Date:   Tue Feb 13 11:06:49 2018 -0800
+
+    Employees added
+
+commit dc6db1ec2d92e49498d28bba9c259be528eb1bbf
+Author: SophiaLao <sophia.lao@gmail.com>
+Date:   Sun Feb 11 17:32:54 2018 -0800
+
+    Made some structure outlines
+
+commit 40041a1e9f3c51f283e13d161877cd34d4dc26b0
+Author: SophiaLao <sophia.lao@gmail.com>
+Date:   Sun Feb 11 16:11:42 2018 -0800
+
+    Added new files
+
+commit bd983c1a345864c710a08380a22b438ceee6b868
+Merge: fbc8801 93ba960
+Author: SophiaLao <sophia.lao@gmail.com>
+Date:   Sun Feb 11 16:07:07 2018 -0800
+
+    Merge branch 'master' of https://github.com/Sophialao/CSC-307 into sophia
+
+commit 93ba960b8546226af38c3d43d2c8dd67b5f93e5d
+Author: samrastovich <sam.rastovich@gmail.com>
+Date:   Fri Feb 9 14:00:13 2018 -0800
+
+    Factored Java 9 project and updated README
+
+commit 22be225db8e4ff69f2e60861fcb51486dddd6a4c
+Author: samrastovich <sam.rastovich@gmail.com>
+Date:   Mon Jan 29 10:22:14 2018 -0800
+
+    Updated gitignore
+
+commit b5c3fd540421a73e4a0b09b6a88228422c106097
+Merge: 92c5720 d6a2206
+Author: Kelly Chen <kellychen@KellsMac.local>
+Date:   Sun Jan 28 22:06:46 2018 -0800
+
+    Merge branch 'master' of https://github.com/Sophialao/CSC-307
+
+commit d6a22069b8cc3901158febdec81ba3cbe496a5c2
+Author: Kelly Chen <35250920+kchen48@users.noreply.github.com>
+Date:   Sun Jan 28 22:02:25 2018 -0800
+
+    Final Specification Doc
+
+commit 92c572056cf7c500a0ed8a3b2158202de10dcb72
+Author: Kelly Chen <kellychen@KellsMac.local>
+Date:   Sun Jan 28 22:00:03 2018 -0800
+
+    Final
+
+commit a3ffbe65c9ae16be807e8815f93f33ee57043ccf
+Author: Kelly Chen <kellychen@KellsMac.local>
+Date:   Sun Jan 28 21:43:36 2018 -0800
+
+    Final Spec Doc Version
+
+commit 4c51c36a89475f903096d1ca2a137328ff053f40
+Author: Pradeep Sangli <pradeep.sangli@gmail.com>
+Date:   Sat Jan 27 17:40:28 2018 -0800
+
+    Pradeep: added DFD and dictionairy
+
+commit 0dbdf2a0d9be9e160770c229061c6a068aeb3064
+Merge: a19dbc4 560c02e
+Author: Kelly Chen <kellychen@KellsMac.local>
+Date:   Fri Jan 26 11:14:26 2018 -0800
+
+    Merge branch 'master' of https://github.com/Sophialao/CSC-307
+
+commit a19dbc4b146708ce6dfdfcc43e275ad5ed3179a8
+Author: Kelly Chen <kellychen@KellsMac.local>
+Date:   Fri Jan 26 11:09:16 2018 -0800
+
+    Added Decision Tree
+
+commit 560c02ef70f1f8281fb0a96db3c04646ac8c7fb2
+Author: samrastovich <sam.rastovich@gmail.com>
+Date:   Fri Jan 26 10:28:14 2018 -0800
+
+    Added PNGs of wireframe, and restructured files
+
+commit fbc880175a5c862574fccfa354e6c40b28a8fcaa
+Merge: 5792328 f7cea4d
+Author: SophiaLao <sophia.lao@gmail.com>
+Date:   Fri Jan 26 10:24:46 2018 -0800
+
+    Merge branch 'master' of https://github.com/Sophialao/CSC-307 into sophia
+
+commit f7cea4d1f067fdd583f54bbff3d7a5183d838b16
+Merge: b8504c3 a3eba0d
+Author: Kelly Chen <kellychen@KellsMac.local>
+Date:   Fri Jan 26 10:23:09 2018 -0800
+
+    Merge branch 'master' of https://github.com/Sophialao/CSC-307
+
+commit b8504c36798e343df07578e14000c57efb5ccadb
+Author: Kelly Chen <kellychen@KellsMac.local>
+Date:   Fri Jan 26 10:22:48 2018 -0800
+
+    Specification Document Folder
+
+commit a3eba0d47d6773c9cd5c9cd3bbb79754c9213cf3
+Author: samrastovich <sam.rastovich@gmail.com>
+Date:   Fri Jan 26 10:09:54 2018 -0800
+
+    Wireframe edits
+
+commit 8c5ca363e49a45a4391511f31b5a7bf8c7ca26ab
+Merge: 512b630 31024d2
+Author: Daniel Kim <phildankim@gmail.com>
+Date:   Wed Jan 24 10:41:50 2018 -0800
+
+    Merge branch 'master' of https://github.com/Sophialao/CSC-307
+
+commit 512b630fe89f2d4eb6ba4aed34de2f32a87cf0d4
+Merge: a4dbb2d d3a5622
+Author: Daniel Kim <phildankim@gmail.com>
+Date:   Wed Jan 24 10:41:24 2018 -0800
+
+    Merge remote-tracking branch 'refs/remotes/origin/dkim'
+
+commit 31024d2122f516db2d11afb92ed398334264b763
+Author: jackson darrow <jackson.darrow@gmail.com>
+Date:   Wed Jan 24 10:40:41 2018 -0800
+
+    Pradeep
+
+commit d3a5622e49f65d7e3ac69eb314ea6c07f8c16268
+Author: Daniel Kim <phildankim@gmail.com>
+Date:   Wed Jan 24 10:38:05 2018 -0800
+
+    just a test
+
+commit b3b83f6c5c0daf8fd25accd0a0327dd8cc648e99
+Author: jackson darrow <jackson.darrow@gmail.com>
+Date:   Wed Jan 24 10:36:56 2018 -0800
+
+    Pradeep
+
+commit 1288333a5104e6b67461875584170fbea3052a96
+Author: Kelly Chen <kellychen@KellsMac.local>
+Date:   Wed Jan 24 10:35:39 2018 -0800
+
+    Edited Kelly Changes
+
+commit a4dbb2da358d1aa5a0b5d70d7dffceb17924e37f
+Merge: e0e6949 6ec4c1a
+Author: Kelly Chen <kellychen@KellsMac.local>
+Date:   Wed Jan 24 10:30:02 2018 -0800
+
+    Merge branch 'master' of https://github.com/Sophialao/CSC-307
+
+commit e0e694934a94bba651a60d5ffa564af354a597d7
+Author: Kelly Chen <kellychen@KellsMac.local>
+Date:   Wed Jan 24 10:27:43 2018 -0800
+
+    Changes by Kelly
+
+commit 57923288fbbce009c1ad1c3c8111386cf0302b1d
+Author: SophiaLao <sophia.lao@gmail.com>
+Date:   Wed Jan 24 10:20:48 2018 -0800
+
+    //Adding in a new branch
+
+commit 6ec4c1a54f61e06ca046f30776b7eaea1eea6ef5
+Author: phildankim <phildankim@gmail.com>
+Date:   Wed Jan 24 10:16:54 2018 -0800
+
+    Add files via upload
+    
+    The start of our wonderful no BS payroll software.
+
+commit 84e5220b66e7f38eab172ac3ef1b24f5fc7083c7
+Author: samrastovich <samrastovich@Sams-MacBook-Pro-2.local>
+Date:   Mon Jan 22 09:58:30 2018 -0800
+
+    Added gitignore
+
+commit 78225f244442121581b3cc341f885319799e895f
+Author: Sophialao <sophia.lao@gmail.com>
+Date:   Wed Jan 17 10:12:43 2018 -0800
+
+    Create Leaders
+
+commit 8effc11aadd573108a2c53b47dcf0b41ceae2846
+Author: Sam Rastovich <sam.rastovich@gmail.com>
+Date:   Thu Jan 11 11:58:52 2018 -0800
+
+    Update README.md
+
+commit 3b2380dfe27a4ca96b9a58689e75e5fa7037f22c
+Author: samrastovich <samrastovich@Sams-MacBook-Pro-2.local>
+Date:   Thu Jan 11 11:53:57 2018 -0800
+
+    Edited sprint backlog to add a bit more detail
+
+commit f8dfdfde56c6225b33c7b51c1b11816943aca37f
+Author: Sophialao <sophia.lao@gmail.com>
+Date:   Wed Jan 10 10:53:37 2018 -0800
+
+    Create Sprit BackLog
+
+commit 4bc705d794ab08975b35877f372b52fe5f04e3aa
+Author: Sophialao <sophia.lao@gmail.com>
+Date:   Wed Jan 10 10:44:50 2018 -0800
+
+    Initial commit
