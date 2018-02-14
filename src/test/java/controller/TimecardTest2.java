@@ -9,18 +9,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class TimecardTest2 {
 
-    @BeforeEach
-    void setUp() {
+    @Test
+    void getNum() {
         TimecardController t = new TimecardController();
         t.parseHashMap(Utils.parseFile("mock_db/Timecard.txt"));
-    }
-
-    @AfterEach
-    void tearDown() {
-    }
-
-    @Test
-    void getId() {
+        assertEquals(3, t.getTimecardList(1), "");
     }
 
     @Test
