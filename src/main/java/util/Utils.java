@@ -77,6 +77,7 @@ public class Utils {
                 res += "\n";
                 bw.write(res);
             }
+            bw.flush();
             bw.close();
             br.close();
 

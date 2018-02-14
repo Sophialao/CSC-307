@@ -11,10 +11,7 @@ class TimecardTest2 {
 
     @Test
     void getNum() {
-        /*
-        TimecardController t = new TimecardController();
-        t.parseHashMap(Utils.parseFile("mock_db/Timecard.txt"));
-        assertEquals(3, t.getTimecardList(1), "");*/
+        
     }
 
     @Test
