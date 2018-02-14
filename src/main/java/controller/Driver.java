@@ -154,7 +154,7 @@ public class Driver {
         }
     }
 
-    public static boolean pay(String s){
+    public static boolean pay(String s) {
 
         if (s == "m"){
             PaymentController pc = new PaymentController(true, false);

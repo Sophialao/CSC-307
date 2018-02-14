@@ -22,29 +22,15 @@ public class Utils {
                 DbWritable o = c.getConstructor().newInstance();
                 o.readFields(split);
 
-<<<<<<< HEAD
-                StringBuilder builder = new StringBuilder();
-                for (int i = 1; i < split.length; i++)
-                    builder.append(split[i]+" ");
-
-                //System.out.println(builder.toString());
-                file.put(Integer.parseInt(split[0]), builder.toString());
-=======
                 file.put(split[0], o);
->>>>>>> aa8ac3d3409698662f48a37d6ccee55b2099fc61
             }
+            reader.close();
         } catch(FileNotFoundException e) {
             e.printStackTrace();
         } catch(IOException e) {
             e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            try {
-                reader.close();
-            } catch(IOException e) {
-                e.printStackTrace();
-            }
         }
         return file;
     }
@@ -61,6 +47,7 @@ public class Utils {
                     return split;
                 }
             }
+            reader.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -109,13 +96,9 @@ public class Utils {
             bw.write(line);
             bw.newLine();
             bw.flush();
+            bw.close();
         } catch (IOException e)  {
             e.printStackTrace();
-        } finally {
-            if (bw != null) try {
-                bw.close();
-            } catch (IOException s) {
-            }
         }
     }
 
