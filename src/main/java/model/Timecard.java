@@ -42,7 +42,7 @@ public class Timecard implements DbWritable {
     }
 
     public static Map<String, DbWritable> getAll() {
-        Map<String, DbWritable> db = Utils.parseFile(Constants.TIMECARD_DB, HourlyEmployee.class);
+        Map<String, DbWritable> db = Utils.parseFile(Constants.TIMECARD_DB, Timecard.class);
 
         return db;
     }

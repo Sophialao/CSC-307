@@ -13,21 +13,38 @@ import java.util.*;
 class PaymentController{
 	//public int total_payments = 0;
 	//public HashMap<Integer, Payment> payments = new HashMap<Integer, Payment>();
+    public static boolean invoke_hourly;
+    public static boolean invoke_month;
+
+    public PaymentController(boolean invoke_month, boolean invoke_hourly){
+    	this.invoke_month = invoke_month;
+    	this.invoke_hourly = invoke_hourly;
+	}
 
 	public static void calculatePayment() {
 		boolean monthly_payday = checkLastDateofMonth();
 		boolean weekly_payday = checkMonday();
+
+        if (invoke_hourly == true){
+            newWeeklyPay();
+        }
+        if (invoke_month == true){
+            newMonthlyPay();
+        }
+
 		if (!monthly_payday && !weekly_payday){
 			return;
 		}
 
-		if (monthly_payday){
-			newMonthlyPay();
-		}
+        if (invoke_month == false && invoke_hourly == false){
+            if (monthly_payday){
+                newMonthlyPay();
+            }
 
-		if (weekly_payday){
-			newWeeklyPay();
-		}
+            if (weekly_payday){
+                newWeeklyPay();
+            }
+        }
 	}
 
 	public static boolean checkLastDateofMonth(){

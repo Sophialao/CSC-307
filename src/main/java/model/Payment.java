@@ -79,7 +79,7 @@ public class Payment implements DbWritable {
     public void readFields(String[] line) {
         this.id = line[0];
         this.employeeId = line[1];
-        this.amount = Integer.parseInt(line[2]);
+        this.amount = Double.parseDouble(line[2]);
         this.date = new Date(line[3]);
     }
 
