@@ -32,6 +32,9 @@ public class Driver {
         if (action.equals("a")) {
             return createEmployee();
         }
+        else if (action.equals("i")) {
+            return createTimecard();
+        }
         return false;
     }
 
@@ -113,23 +116,21 @@ public class Driver {
             double salary = reader.nextDouble();
             System.out.println("Commission Rate: ");
             double rate = reader.nextDouble();
-            SalaryEmployee e = SalaryEmployee.getInstance(null);
-            e.setName(name);
-            e.setAddress(address);
-            e.setSsn(ssn);
-            e.setId(id);
-            e.setSalary(salary);
-            e.setCommission(rate);
-            e.setSales(0.0);
-            e.write();
+            EmployeeController ec = new EmployeeController();
+            ec.addSalaryEmployee(name, address, )Employee(name, address, ssn, id, )
             System.out.println("Employee created successfully!");
             return true;
         }
         return false;
     }
 
+    public static boolean createTimecard() {
+
+    }
+
     public static boolean returnError() {
         System.out.println("that's not a fucking option");
         return false;
     }
+
 }
