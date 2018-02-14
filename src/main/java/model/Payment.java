@@ -1,33 +1,55 @@
 package model;
 
-import java.util.Date;
+import util.Constants;
+import util.Utils;
 
-public class Payment {
-    private int id;
-    private int employeeId;
+import java.util.Date;
+import java.util.Map;
+import java.util.UUID;
+
+public class Payment implements DbWritable {
+    private String id;
+    private String employeeId;
     private int amount;
     private Date date;
 
-    public Payment(int id, int employeeId, int amount, Date date) {
-        this.id = id;
-        this.employeeId = employeeId;
-        this.amount = amount;
-        this.date = date;
+    public Payment() {
+        this.id = UUID.randomUUID().toString();
     }
 
-    public int getId() {
+    public static Payment getInstance(String id) {
+        if (id == null)
+            return new Payment();
+        else {
+            String[] db = Utils.readLine(Constants.PAYMENT_DB, id);
+            if (db != null) {
+                Payment pay = new Payment();
+                pay.readFields(db);
+                return pay;
+            }
+            return new Payment();
+        }
+    }
+
+    public static Map<String, DbWritable> getAll() {
+        Map<String, DbWritable> db = Utils.parseFile(Constants.PAYMENT_DB, HourlyEmployee.class);
+
+        return db;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public int getEmployeeId() {
+    public String getEmployeeId() {
         return employeeId;
     }
 
-    public void setEmployeeId(int employeeId) {
+    public void setEmployeeId(String employeeId) {
         this.employeeId = employeeId;
     }
 
@@ -45,5 +67,18 @@ public class Payment {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public void readFields(String[] line) {
+        this.id = line[0];
+        this.employeeId = line[1];
+        this.amount = Integer.parseInt(line[2]);
+        this.date = new Date(line[3]);
+    }
+
+    public void write() {
+        Utils.removeLine(Constants.PAYMENT_DB, this.id);
+        String toWrite = this.id + " " + this.employeeId + " " + this.amount + " " + this.date.toString();
+        Utils.appendLine(Constants.PAYMENT_DB, toWrite);
     }
 }

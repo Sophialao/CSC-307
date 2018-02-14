@@ -38,8 +38,7 @@ public class EmployeeController {
 
     public Employee addHourlyEmployee(String name, String address, int ssn, int eid, String method, double rate) {
 
-        HourlyEmployee h = new HourlyEmployee(name, address, ssn, eid, method, rate);
-
+        HourlyEmployee h = HourlyEmployee.getInstance(null);
 
         if (allHEmployees.get(eid) == null) { // new employee
             allHEmployees.put(eid, h);
