@@ -20,6 +20,7 @@ public class Payment implements DbWritable {
         this.employeeId = employeeId;
         this.amount = amount;
         this.date = date;
+        this.id = UUID.randomUUID().toString();
     }
 
     public static Payment getInstance(String id) {
