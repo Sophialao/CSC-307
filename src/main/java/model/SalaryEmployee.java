@@ -86,7 +86,7 @@ public class SalaryEmployee extends Employee {
     public void remove() {
         Utils.removeLine(Constants.SALARY_EMPLOYEE_DB, this.getId());
     }
-    
+
     public void write() {
         Utils.removeLine(Constants.SALARY_EMPLOYEE_DB, this.getId());
         String toWrite = this.getId() + " " + this.getName() + " " + this.getAddress() + " " +
