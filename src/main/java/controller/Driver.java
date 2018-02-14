@@ -24,8 +24,9 @@ public class Driver {
     public static String promptUserAction() {
         Scanner reader = new Scanner(System.in);
         System.out.println("'a': add employee");
-        //System.out.println("'d': delete employee");
-        //System.out.println("'e': edit employee");
+        System.out.println("'d': delete employee");
+        System.out.println("'h': edit hourly employee");
+        System.out.println("'s': edit salary employee");
         System.out.println("'i': input hours");
         System.out.println("'ph': pay hourly employees");
         System.out.println("'ps': pay salary employees");
@@ -45,11 +46,22 @@ public class Driver {
         else if (action.equals("q")) {
             return false;
         }
+<<<<<<< HEAD
         else if (action.equals("ph")){
             return pay("h");
         }
         else if (action.equals("ps")){
             return pay("s");
+=======
+        else if (action.equals("d")) {
+            return deleteEmployee();
+        }
+        else if (action.equals("h")) {
+            return setEmployeeData(Constants.HOURLY);
+        }
+        else if (action.equals("s")) {
+            return setEmployeeData(Constants.SALARIED);
+>>>>>>> 2ad73c22cb8817941a7049d193c1fedcb51d7c24
         }
         else {
             return returnError();
@@ -67,22 +79,12 @@ public class Driver {
             setEmployeeData(Constants.HOURLY);
             return result;
         }
-        else if (action.equals("n")) {
-            System.out.println("Commissioned? (y/n)");
-            String commissionConfirm = reader.nextLine();
-
-            if (commissionConfirm.equals("y")) {
-                System.out.println("-- Creating Commissioned Employee --");
-                return setEmployeeData(Constants.COMMISSIONED);
-            }
-            else if (commissionConfirm.equals("n")) {
-                System.out.println("-- Creating Salaried Employee --");
-                return setEmployeeData(Constants.SALARIED);
-            }
-            else {
-                return returnError();
-            }
+        else if(action.equals("n")) {
+            System.out.println("-- Creating Salary Employee --");
+            setEmployeeData(Constants.SALARIED);
+            return result;
         }
+
         else {
             return returnError();
         }
@@ -106,25 +108,28 @@ public class Driver {
             return true;
         }
 
-        else if (emplType.equals(Constants.SALARIED)) {
-            System.out.println("Salary: ");
-            double salary = reader.nextDouble();
-            EmployeeController ec = new EmployeeController();
-            ec.addSalaryEmployee(name, address, ssn, salary, 0.0,0.0);
-            System.out.println("Employee created successfully!");
-            return true;
-        }
-
         else {
             System.out.println("Salary: ");
             double salary = reader.nextDouble();
-            System.out.println("Commission Rate: ");
-            double rate = reader.nextDouble();
+            System.out.println("Commission: ");
+            double commission = reader.nextDouble();
+            System.out.println("Sales: ");
+            double sales = reader.nextDouble();
             EmployeeController ec = new EmployeeController();
-            ec.addSalaryEmployee(name, address, ssn, salary, rate,0.0);
+            ec.addSalaryEmployee(name, address, ssn, salary, commission, sales);
             System.out.println("Employee created successfully!");
             return true;
         }
+    }
+
+    public static boolean deleteEmployee(){
+        Scanner reader = new Scanner(System.in);
+        System.out.println("ID: ");
+        String eid = reader.nextLine();
+        System.out.println("eid: " + eid);
+        SalaryEmployee.getInstance(eid).remove();
+        //HourlyEmployee.getInstance(eid).remove();
+        return true;
     }
 
     public static boolean createTimecard() {
