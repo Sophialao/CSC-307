@@ -48,7 +48,7 @@ public class EmployeeController {
     }
 
     public void deleteEmployee(String eid){
-
+        SalaryEmployee.getInstance(eid).remove();
     }
 
     public void  editSalaryEmployee(String name, String address, int number, String eid, double salary,double commission, double sales){
