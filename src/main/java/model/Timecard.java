@@ -3,6 +3,7 @@ package model;
 import util.Constants;
 import util.Utils;
 
+import java.sql.Time;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -42,7 +43,7 @@ public class Timecard implements DbWritable {
     }
 
     public static Map<String, DbWritable> getAll() {
-        Map<String, DbWritable> db = Utils.parseFile(Constants.TIMECARD_DB, HourlyEmployee.class);
+        Map<String, DbWritable> db = Utils.parseFile(Constants.TIMECARD_DB, Timecard.class);
 
         return db;
     }

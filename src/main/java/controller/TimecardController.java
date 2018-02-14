@@ -21,4 +21,8 @@ public class TimecardController {
         tc.write();
     }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 416971161dd932de3226025bf6f4cada42e94872
 }
