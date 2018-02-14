@@ -1,4 +1,8 @@
 package controller;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 
 import model.HourlyEmployee;
@@ -20,9 +24,10 @@ public class Driver {
     public static String promptUserAction() {
         Scanner reader = new Scanner(System.in);
         System.out.println("'a': add employee");
-        System.out.println("'d': delete employee");
-        System.out.println("'e': edit employee");
+        //System.out.println("'d': delete employee");
+        //System.out.println("'e': edit employee");
         System.out.println("'i': input hours");
+        System.out.println("'q': quit");
         System.out.println("Action: ");
         String action = reader.nextLine();
         return action;
@@ -32,7 +37,15 @@ public class Driver {
         if (action.equals("a")) {
             return createEmployee();
         }
-        return false;
+        else if (action.equals("i")) {
+            return createTimecard();
+        }
+        else if (action.equals("q")) {
+            return false;
+        }
+        else {
+            return returnError();
+        }
     }
 
     public static boolean createEmployee() {
@@ -68,26 +81,19 @@ public class Driver {
     }
 
     public static boolean setEmployeeData(String emplType) {
-        Scanner reader = new Scanner();
+        Scanner reader = new Scanner(System.in);
         System.out.println("Name: ");
         String name = reader.nextLine();
         System.out.println("Address: " );
         String address = reader.nextLine();
         System.out.println("SSN: " );
         int ssn = Integer.parseInt(reader.nextLine());
-        System.out.println("ID: ");
-        int id = Integer.parseInt(reader.nextLine());
 
         if (emplType.equals(Constants.HOURLY)) {
             System.out.println("Wage: ");
             double rate = reader.nextDouble();
-            HourlyEmployee e = HourlyEmployee.getInstance(null);
-            e.setRate(rate);
-            e.setAddress(address);
-            e.setId(id);
-            e.setName(name);
-            e.setSsn(ssn);
-            e.write();
+            EmployeeController ec = new EmployeeController();
+            ec.addHourlyEmployee(name, address, ssn, rate);
             System.out.println("Employee created successfully!");
             return true;
         }
@@ -95,15 +101,8 @@ public class Driver {
         else if (emplType.equals(Constants.SALARIED)) {
             System.out.println("Salary: ");
             double salary = reader.nextDouble();
-            SalaryEmployee e = SalaryEmployee.getInstance(null);
-            e.setName(name);
-            e.setAddress(address);
-            e.setSsn(ssn);
-            e.setId(id);
-            e.setSalary(salary);
-            e.setCommission(0.0);
-            e.setSales(0.0);
-            e.write();
+            EmployeeController ec = new EmployeeController();
+            ec.addSalaryEmployee(name, address, ssn, salary, 0.0,0.0);
             System.out.println("Employee created successfully!");
             return true;
         }
@@ -113,23 +112,40 @@ public class Driver {
             double salary = reader.nextDouble();
             System.out.println("Commission Rate: ");
             double rate = reader.nextDouble();
-            SalaryEmployee e = SalaryEmployee.getInstance(null);
-            e.setName(name);
-            e.setAddress(address);
-            e.setSsn(ssn);
-            e.setId(id);
-            e.setSalary(salary);
-            e.setCommission(rate);
-            e.setSales(0.0);
-            e.write();
+            EmployeeController ec = new EmployeeController();
+            ec.addSalaryEmployee(name, address, ssn, salary, rate,0.0);
             System.out.println("Employee created successfully!");
             return true;
         }
-        return false;
+    }
+
+    public static boolean createTimecard() {
+        Scanner reader = new Scanner(System.in);
+        DateFormat df = new SimpleDateFormat("YYYY-MM-dd kk:mm");
+        System.out.println("Employee ID: ");
+        String eid = reader.nextLine();
+        System.out.println("Time In (YYYY-MM-DD HH:MM 24hr): ");
+        String dateTimeIn = reader.nextLine();
+        System.out.println("Time Out (YYYY-MM-DD HH:MM 24hr): ");
+        String dateTimeOut = reader.nextLine();
+
+        try {
+            Date timeIn = df.parse(dateTimeIn);
+            Date timeOut = df.parse(dateTimeOut);
+            TimecardController tc = new TimecardController();
+            tc.addTimecard(eid, timeIn, timeOut);
+            System.out.println("Timecard created successfully!");
+            return true;
+        }
+        catch (ParseException e) {
+            e.printStackTrace();
+            return returnError();
+        }
     }
 
     public static boolean returnError() {
         System.out.println("that's not a fucking option");
         return false;
     }
+
 }
