@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
+import model.Employee;
 import model.HourlyEmployee;
 import model.SalaryEmployee;
 import util.Constants;
@@ -48,10 +49,10 @@ public class Driver {
             return deleteEmployee();
         }
         else if (action.equals("h")) {
-            return setEmployeeData(Constants.HOURLY);
+            return editEmployee(Constants.HOURLY);
         }
         else if (action.equals("s")) {
-            return setEmployeeData(Constants.SALARIED);
+            return editEmployee(Constants.SALARIED);
         }
         else {
             return returnError();
@@ -82,34 +83,134 @@ public class Driver {
 
     public static boolean setEmployeeData(String emplType) {
         Scanner reader = new Scanner(System.in);
-        System.out.println("Name: ");
-        String name = reader.nextLine();
-        System.out.println("Address: " );
-        String address = reader.nextLine();
-        System.out.println("SSN: " );
-        int ssn = Integer.parseInt(reader.nextLine());
 
         if (emplType.equals(Constants.HOURLY)) {
-            System.out.println("Wage: ");
+
+            System.out.println("Name: ");
+            String name = reader.nextLine();
+            System.out.println("address: ");
+            String address = reader.nextLine();
+            System.out.println("ssn: ");
+            int ssn = reader.nextInt();
+            System.out.println("rate: ");
             double rate = reader.nextDouble();
-            EmployeeController ec = new EmployeeController();
-            ec.addHourlyEmployee(name, address, ssn, rate);
+            HourlyEmployee h = new HourlyEmployee(name, address, ssn, rate);
+            h.write();
             System.out.println("Employee created successfully!");
             return true;
         }
 
         else {
-            System.out.println("Salary: ");
-            double salary = reader.nextDouble();
-            System.out.println("Commission: ");
+            System.out.println("Name: ");
+            String name = reader.nextLine();
+            System.out.println("address: ");
+            String address = reader.nextLine();
+            System.out.println("ssn: ");
+            int ssn = reader.nextInt();
+            System.out.println("salary");
+            double salary = reader.nextInt();
+            System.out.println("commission");
             double commission = reader.nextDouble();
-            System.out.println("Sales: ");
+            System.out.println("sales");
             double sales = reader.nextDouble();
-            EmployeeController ec = new EmployeeController();
-            ec.addSalaryEmployee(name, address, ssn, salary, commission, sales);
+            SalaryEmployee s = new SalaryEmployee(name, address, ssn, salary, commission, sales);
+            s.write();
             System.out.println("Employee created successfully!");
             return true;
         }
+    }
+
+    public static boolean editEmployee(String emplType){
+        Scanner reader = new Scanner(System.in);
+        System.out.println("ID: ");
+        String eid = reader.nextLine();
+        if(emplType.equals(Constants.HOURLY)){
+            System.out.println("which field:\nname\naddress\nssn\nrate");
+            String choice = reader.nextLine();
+            if(choice.equals("name")){
+                System.out.println("Enter name:");
+                String newName = reader.nextLine();
+                HourlyEmployee he =  HourlyEmployee.getInstance(eid);
+                he.setName(newName);
+                he.write();
+            }
+            else if(choice.equals("address")){
+                System.out.println("Enter address:");
+                String newAddress = reader.nextLine();
+                HourlyEmployee he =  HourlyEmployee.getInstance(eid);
+                he.setAddress(newAddress);
+                he.write();
+            }
+            else if(choice.equals("ssn")){
+                System.out.println("Enter ssn:");
+                int newSsn = reader.nextInt();
+                HourlyEmployee he =  HourlyEmployee.getInstance(eid);
+                he.setSsn(newSsn);
+                he.write();
+            }
+            else if(choice.equals("rate")){
+                System.out.println("Enter ssn:");
+                int newRate = reader.nextInt();
+                HourlyEmployee he =  HourlyEmployee.getInstance(eid);
+                he.setRate(newRate);
+                he.write();
+            }
+            else{
+                return false;
+            }
+        }
+        else{
+            System.out.println("which field:\nname\naddress\nssn\nsalary\ncommission\nsales");
+            String choice = reader.nextLine();
+            if(choice.equals("name")){
+                System.out.println("Enter name:");
+                String newName = reader.nextLine();
+                SalaryEmployee se =  SalaryEmployee.getInstance(eid);
+                se.setName(newName);
+                se.write();
+            }
+            else if(choice.equals("address")){
+                System.out.println("Enter address:");
+                String newAddress = reader.nextLine();
+                SalaryEmployee se =  SalaryEmployee.getInstance(eid);
+                se.setAddress(newAddress);
+                se.write();
+            }
+            else if(choice.equals("ssn")){
+                System.out.println("Enter ssn:");
+                int newSsn = reader.nextInt();
+                SalaryEmployee se =  SalaryEmployee.getInstance(eid);
+                se.setSsn(newSsn);
+                se.write();
+            }
+            else if(choice.equals("salary")){
+                System.out.println("Enter ssn:");
+                int newSalary = reader.nextInt();
+                SalaryEmployee se =  SalaryEmployee.getInstance(eid);
+                se.setSalary(newSalary);
+                se.write();
+            }
+            else if(choice.equals("commission")){
+                System.out.println("Enter commission:");
+                double newCommission = reader.nextDouble();
+                SalaryEmployee se =  SalaryEmployee.getInstance(eid);
+                se.setCommission(newCommission);
+                se.write();
+            }
+            else if(choice.equals("sales")){
+                System.out.println("Enter sales:");
+                double newSales = reader.nextDouble();
+                SalaryEmployee se =  SalaryEmployee.getInstance(eid);
+                se.setSales(newSales);
+                se.write();
+            }
+            else{
+                return false;
+            }
+        }
+
+
+        return true;
     }
 
     public static boolean deleteEmployee(){
@@ -121,6 +222,7 @@ public class Driver {
         HourlyEmployee.getInstance(eid).remove();
         return true;
     }
+
 
     public static boolean createTimecard() {
         Scanner reader = new Scanner(System.in);
