@@ -31,6 +31,7 @@ public class Payment implements DbWritable {
             if (db != null) {
                 Payment pay = new Payment();
                 pay.readFields(db);
+                pay.setId(id);
                 return pay;
             }
             return new Payment();
@@ -84,7 +85,7 @@ public class Payment implements DbWritable {
 
     public void write() {
         Utils.removeLine(Constants.PAYMENT_DB, this.id);
-        String toWrite = this.id + " " + this.employeeId + " " + this.amount + " " + this.date.toString();
+        String toWrite = this.id + "," + this.employeeId + "," + this.amount + "," + this.date.toString();
         Utils.appendLine(Constants.PAYMENT_DB, toWrite);
     }
 }

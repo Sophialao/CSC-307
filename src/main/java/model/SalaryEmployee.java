@@ -30,6 +30,7 @@ public class SalaryEmployee extends Employee {
             if (db != null) {
                 SalaryEmployee empl = new SalaryEmployee();
                 empl.readFields(db);
+                empl.setId(id);
                 return empl;
             }
             return new SalaryEmployee();
@@ -89,8 +90,8 @@ public class SalaryEmployee extends Employee {
 
     public void write() {
         Utils.removeLine(Constants.SALARY_EMPLOYEE_DB, this.getId());
-        String toWrite = this.getId() + " " + this.getName() + " " + this.getAddress() + " " +
-                this.getSsn() + " " + this.salary + " " + this.commission + " " + this.sales;
+        String toWrite = this.getId() + "," + this.getName() + "," + this.getAddress() + "," +
+                this.getSsn() + "," + this.salary + "," + this.commission + "," + this.sales;
         Utils.appendLine(Constants.SALARY_EMPLOYEE_DB, toWrite);
     }
 }

@@ -34,6 +34,7 @@ public class Loan implements DbWritable {
             if (db != null) {
                 Loan loan = new Loan();
                 loan.readFields(db);
+                loan.setId(id);
                 return loan;
             }
             return new Loan();
@@ -96,8 +97,8 @@ public class Loan implements DbWritable {
 
     public void write() {
         Utils.removeLine(Constants.LOAN_DB, this.getId());
-        String toWrite = this.id + " " + this.employeeId + " " + this.amount + " " + this.interestRate +
-                " " + this.duration;
+        String toWrite = this.id + "," + this.employeeId + "," + this.amount + "," + this.interestRate +
+                "," + this.duration;
         Utils.appendLine(Constants.LOAN_DB, toWrite);
     }
 }

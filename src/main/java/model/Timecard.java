@@ -34,6 +34,7 @@ public class Timecard implements DbWritable {
             if (db != null) {
                 Timecard time = new Timecard();
                 time.readFields(db);
+                time.setId(id);
                 return time;
             }
             return new Timecard();
@@ -49,6 +50,8 @@ public class Timecard implements DbWritable {
     public String getId() {
         return this.id;
     }
+
+    private void setId(String id) { this.id = id;}
 
     public Date getTimeIn() {
         return this.timeIn;
@@ -87,7 +90,7 @@ public class Timecard implements DbWritable {
 
     public void write() {
         Utils.removeLine(Constants.TIMECARD_DB, this.id);
-        String toWrite = this.id + " " + this.eId + " " + this.timeIn.toString() + " " + this.timeOut.toString();
+        String toWrite = this.id + "," + this.eId + "," + this.timeIn.toString() + "," + this.timeOut.toString();
         Utils.appendLine(Constants.TIMECARD_DB, toWrite);
     }
 
