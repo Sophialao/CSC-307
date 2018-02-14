@@ -1,4 +1,7 @@
 package controller;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 
 import model.HourlyEmployee;
@@ -35,7 +38,9 @@ public class Driver {
         else if (action.equals("i")) {
             return createTimecard();
         }
-        return false;
+        else {
+            return returnError();
+        }
     }
 
     public static boolean createEmployee() {
@@ -78,19 +83,12 @@ public class Driver {
         String address = reader.nextLine();
         System.out.println("SSN: " );
         int ssn = Integer.parseInt(reader.nextLine());
-        System.out.println("ID: ");
-        int id = Integer.parseInt(reader.nextLine());
 
         if (emplType.equals(Constants.HOURLY)) {
             System.out.println("Wage: ");
             double rate = reader.nextDouble();
-            HourlyEmployee e = HourlyEmployee.getInstance(null);
-            e.setRate(rate);
-            e.setAddress(address);
-            e.setId(id);
-            e.setName(name);
-            e.setSsn(ssn);
-            e.write();
+            EmployeeController ec = new EmployeeController();
+            ec.addHourlyEmployee(name, address, ssn, rate);
             System.out.println("Employee created successfully!");
             return true;
         }
@@ -98,15 +96,8 @@ public class Driver {
         else if (emplType.equals(Constants.SALARIED)) {
             System.out.println("Salary: ");
             double salary = reader.nextDouble();
-            SalaryEmployee e = SalaryEmployee.getInstance(null);
-            e.setName(name);
-            e.setAddress(address);
-            e.setSsn(ssn);
-            e.setId(id);
-            e.setSalary(salary);
-            e.setCommission(0.0);
-            e.setSales(0.0);
-            e.write();
+            EmployeeController ec = new EmployeeController();
+            ec.addSalaryEmployee(name, address, ssn, salary, 0.0,0.0);
             System.out.println("Employee created successfully!");
             return true;
         }
@@ -117,7 +108,7 @@ public class Driver {
             System.out.println("Commission Rate: ");
             double rate = reader.nextDouble();
             EmployeeController ec = new EmployeeController();
-            ec.addSalaryEmployee(name, address, )Employee(name, address, ssn, id, )
+            ec.addSalaryEmployee(name, address, ssn, salary, rate,0.0);
             System.out.println("Employee created successfully!");
             return true;
         }
@@ -125,7 +116,20 @@ public class Driver {
     }
 
     public static boolean createTimecard() {
-
+        Scanner reader = new Scanner();
+        DateFormat df = new SimpleDateFormat("YYYY-MM-dd kk:mm");
+        System.out.println("Employee ID: ");
+        String eid = reader.nextLine();
+        System.out.println("Time In (YYYY-MM-DD HH:MM 24hr): ");
+        String datetime = reader.nextLine();
+        Date timeIn = df.parse(datetime);
+        System.out.println("Time Out (YYYY-MM-DD HH:MM 24hr): ");
+        String datetime = reader.nextLine();
+        Date timeOut = df.parse(datetime);
+        TimecardController tc = new TimecardController();
+        tc.addTimecard(eid, timeIn, timeOut);
+        System.out.println("Timecard created successfully!");
+        return true;
     }
 
     public static boolean returnError() {
