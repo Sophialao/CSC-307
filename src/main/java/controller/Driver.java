@@ -1,5 +1,6 @@
 package controller;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
@@ -76,7 +77,7 @@ public class Driver {
     }
 
     public static boolean setEmployeeData(String emplType) {
-        Scanner reader = new Scanner();
+        Scanner reader = new Scanner(System.in);
         System.out.println("Name: ");
         String name = reader.nextLine();
         System.out.println("Address: " );
@@ -112,24 +113,30 @@ public class Driver {
             System.out.println("Employee created successfully!");
             return true;
         }
-        return false;
     }
 
     public static boolean createTimecard() {
-        Scanner reader = new Scanner();
+        Scanner reader = new Scanner(System.in);
         DateFormat df = new SimpleDateFormat("YYYY-MM-dd kk:mm");
         System.out.println("Employee ID: ");
         String eid = reader.nextLine();
         System.out.println("Time In (YYYY-MM-DD HH:MM 24hr): ");
-        String datetime = reader.nextLine();
-        Date timeIn = df.parse(datetime);
+        String dateTimeIn = reader.nextLine();
         System.out.println("Time Out (YYYY-MM-DD HH:MM 24hr): ");
-        String datetime = reader.nextLine();
-        Date timeOut = df.parse(datetime);
-        TimecardController tc = new TimecardController();
-        tc.addTimecard(eid, timeIn, timeOut);
-        System.out.println("Timecard created successfully!");
-        return true;
+        String dateTimeOut = reader.nextLine();
+
+        try {
+            Date timeIn = df.parse(dateTimeIn);
+            Date timeOut = df.parse(dateTimeOut);
+            TimecardController tc = new TimecardController();
+            tc.addTimecard(eid, timeIn, timeOut);
+            System.out.println("Timecard created successfully!");
+            return true;
+        }
+        catch (ParseException e) {
+            e.printStackTrace();
+            return returnError();
+        }
     }
 
     public static boolean returnError() {
