@@ -1,14 +1,45 @@
 package model;
 
+import util.Constants;
+import util.Utils;
+
+import java.util.Map;
+
 public class SalaryEmployee extends Employee {
     private double salary;
     private double commission;
     private double sales;
     // Annual salary
 
-    public SalaryEmployee(String name, String address, int number, int id, String method, double salary,double commission, double sales) {
-        super(name, address, number, id, method);
-        setSalary(salary);
+    public SalaryEmployee() {
+        super();
+    }
+    public SalaryEmployee(String id, String name, String address, int ssn, double salary,
+                          double commission, double sales) {
+        super(name, address, ssn, id);
+        this.salary = salary;
+        this.commission = commission;
+        this.sales = sales;
+    }
+
+    public static SalaryEmployee getInstance(String id) {
+        if (id == null)
+            return new SalaryEmployee();
+        else {
+            String[] db = Utils.readLine(Constants.HOURLY_EMPLOYEE_DB, id);
+            if (db != null) {
+                SalaryEmployee empl = new SalaryEmployee();
+                empl.readFields(db);
+                return empl;
+            }
+            return new SalaryEmployee();
+        }
+    }
+
+    public static Map<String, DbWritable> getAll() {
+        Map<String, DbWritable> db = Utils.parseFile(Constants.SALARY_EMPLOYEE_DB, SalaryEmployee.class);
+
+        return db;
     }
 
     public void mailCheck() {
@@ -43,5 +74,19 @@ public class SalaryEmployee extends Employee {
     public double computePay() {
         System.out.println("Computing salary pay for " + getName());
         return salary/52 + sales * commission;
+    }
+
+    public void readFields(String[] line) {
+        super.readFields(line);
+        this.salary = Double.parseDouble(line[4]);
+        this.commission = Double.parseDouble(line[5]);
+        this.sales = Double.parseDouble(line[6]);
+    }
+
+    public void write() {
+        Utils.removeLine(Constants.SALARY_EMPLOYEE_DB, this.getId());
+        String toWrite = this.getId() + " " + this.getName() + " " + this.getAddress() + " " +
+                this.getSsn() + " " + this.salary + " " + this.commission + " " + this.sales;
+        Utils.appendLine(Constants.SALARY_EMPLOYEE_DB, toWrite);
     }
 }

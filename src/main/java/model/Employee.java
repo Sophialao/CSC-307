@@ -1,18 +1,21 @@
 package model;
 
-public abstract class Employee {
+import java.util.UUID;
+
+public abstract class Employee implements DbWritable {
     private String name;
     private String address;
     private int ssn;
-    private int id;
-    private String method;
+    private String id;
 
-    public Employee(String name, String address, int ssn, int id, String method) {
+    public Employee(String name, String address, int ssn, String id) {
         this.name = name;
         this.address = address;
         this.ssn = ssn;
         this.id = id;
-        this.method = method;
+    }
+    public Employee () {
+        this.id = UUID.randomUUID().toString();
     }
 
     public String getName() {
@@ -39,19 +42,22 @@ public abstract class Employee {
         this.ssn = ssn;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public String getMethod() {
-        return method;
+    public void readFields(String[] args) {
+        this.id = args[0];
+        this.name = args[1];
+        this.address = args[2];
+        this.ssn = Integer.parseInt(args[3]);
     }
 
-    public void setMethod(String method) {
-        this.method = method;
-    }
+    public abstract void write();
+
+
 }
