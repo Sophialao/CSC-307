@@ -39,7 +39,7 @@ public class Payment implements DbWritable {
     }
 
     public static Map<String, DbWritable> getAll() {
-        Map<String, DbWritable> db = Utils.parseFile(Constants.PAYMENT_DB, HourlyEmployee.class);
+        Map<String, DbWritable> db = Utils.parseFile(Constants.PAYMENT_DB, Payment.class);
 
         return db;
     }

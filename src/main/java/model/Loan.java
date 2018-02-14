@@ -42,7 +42,7 @@ public class Loan implements DbWritable {
     }
 
     public static Map<String, DbWritable> getAll() {
-        Map<String, DbWritable> db = Utils.parseFile(Constants.LOAN_DB, HourlyEmployee.class);
+        Map<String, DbWritable> db = Utils.parseFile(Constants.LOAN_DB, Loan.class);
 
         return db;
     }

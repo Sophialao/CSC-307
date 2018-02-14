@@ -75,13 +75,11 @@ public class HourlyEmployee extends Employee {
     }
 
     public static void main(String[] args) {
-        HourlyEmployee emp = HourlyEmployee.getInstance("90b5f29c-45da-4fc3-8aee-5dab3c9b395d");
-        emp.setName("You know I changed");
-        emp.setAddress("Changed cuk add");
-        emp.write();
+        //SalaryEmployee emp = new SalaryEmployee("sam", "dkfja", 234, 10.30, 10.09, 80.0);
+        //emp.write();
 
-        HourlyEmployee emp2 = HourlyEmployee.getInstance("72420dee-ae90-4670-965f-a220db89d7c9");
-        emp2.remove();
+        SalaryEmployee emp = SalaryEmployee.getInstance("77a999fd-987a-4a5d-936a-f3ceade5b6d9");
+        emp.remove();
 
     }
 

@@ -24,18 +24,13 @@ public class Utils {
 
                 file.put(split[0], o);
             }
+            reader.close();
         } catch(FileNotFoundException e) {
             e.printStackTrace();
         } catch(IOException e) {
             e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            try {
-                reader.close();
-            } catch(IOException e) {
-                e.printStackTrace();
-            }
         }
         return file;
     }
@@ -52,6 +47,7 @@ public class Utils {
                     return split;
                 }
             }
+            reader.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -100,13 +96,9 @@ public class Utils {
             bw.write(line);
             bw.newLine();
             bw.flush();
+            bw.close();
         } catch (IOException e)  {
             e.printStackTrace();
-        } finally {
-            if (bw != null) try {
-                bw.close();
-            } catch (IOException s) {
-            }
         }
     }
 
