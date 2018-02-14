@@ -4,6 +4,8 @@ public class Loan {
     private int id;
     private int employeeId;
     private double amount;
+    private double interestRate;
+    private int duration;
 
 
     public Loan(int id, int employeeId, double amount) {
@@ -34,5 +36,21 @@ public class Loan {
 
     public void setAmount(double amount) {
         this.amount = amount;
+    }
+
+    public double getInterestRate() {
+        return interestRate;
+    }
+
+    public void setInterestRate(double interestRate) {
+        this.interestRate = interestRate;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
     }
 }
