@@ -1,12 +1,8 @@
 package util;
 
-import jdk.internal.jline.internal.Nullable;
 import model.DbWritable;
 
 import java.io.*;
-import java.lang.reflect.InvocationTargetException;
-import java.nio.Buffer;
-import java.rmi.server.ExportException;
 import java.util.*;
 
 public class Utils {
@@ -83,7 +79,6 @@ public class Utils {
         }
     }
 
-    @Nullable
     public static String[] readLine(String fileName, String id) {
         BufferedReader reader = null;
         String line;

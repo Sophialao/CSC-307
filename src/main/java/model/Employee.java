@@ -8,11 +8,11 @@ public abstract class Employee implements DbWritable {
     private int ssn;
     private String id;
 
-    public Employee(String name, String address, int ssn, String id) {
+    public Employee(String name, String address, int ssn) {
         this.name = name;
         this.address = address;
         this.ssn = ssn;
-        this.id = id;
+        this.id = UUID.randomUUID().toString();
     }
     public Employee () {
         this.id = UUID.randomUUID().toString();
