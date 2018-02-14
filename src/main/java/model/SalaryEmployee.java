@@ -26,7 +26,7 @@ public class SalaryEmployee extends Employee {
         if (id == null)
             return new SalaryEmployee();
         else {
-            String[] db = Utils.readLine(Constants.HOURLY_EMPLOYEE_DB, id);
+            String[] db = Utils.readLine(Constants.SALARY_EMPLOYEE_DB, id);
             if (db != null) {
                 SalaryEmployee empl = new SalaryEmployee();
                 empl.readFields(db);
