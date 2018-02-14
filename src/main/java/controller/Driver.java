@@ -118,7 +118,7 @@ public class Driver {
         String eid = reader.nextLine();
         System.out.println("eid: " + eid);
         SalaryEmployee.getInstance(eid).remove();
-        //HourlyEmployee.getInstance(eid).remove();
+        HourlyEmployee.getInstance(eid).remove();
         return true;
     }
 
