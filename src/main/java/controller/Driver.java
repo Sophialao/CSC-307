@@ -27,7 +27,7 @@ public class Driver {
         //System.out.println("'d': delete employee");
         //System.out.println("'e': edit employee");
         System.out.println("'i': input hours");
-        System.out.println("'q': quit")
+        System.out.println("'q': quit");
         System.out.println("Action: ");
         String action = reader.nextLine();
         return action;
