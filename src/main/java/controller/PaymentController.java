@@ -6,6 +6,7 @@ import model.HourlyEmployee;
 import model.Payment;
 import model.Loan;
 import model.Timecard;
+import model.DbWritable;
 import java.util.*;
 
 class PaymentController{
@@ -49,10 +50,10 @@ class PaymentController{
 
 	public static void newMonthlyPay(){
 		//SalaryEmployee se = SalaryEmployee.getInstance();
-		HashMap<String, DbWriteable> es = SalaryEmployee.getAll();  // GET INSTANCE ALL
-		for (String key : es){
-			SalaryEmployee e = (SalaryEmployee) es[key];
-			double before_tax = e.salary/12;
+		Map<String, DbWritable> es = SalaryEmployee.getAll();  // GET INSTANCE ALL
+		for (String key : es.keySet()){
+			SalaryEmployee e = (SalaryEmployee) es.get(key);
+			double before_tax = e.getSalary()/12;
 			double after_commission = before_tax + calculateCommission(e);
 			double after_tax = after_commission - calculateTaxes(before_tax, e);
 			double after_loans = after_tax - calculateLoans(e);
@@ -63,13 +64,13 @@ class PaymentController{
 
 	public static void newWeeklyPay(){
 		//HourlyEmployee he = HourlyEmployee.getInstance();
-		Map<String, DbWriteable> es = HourlyEmployee.getAll();
-		for (String key : es){
-			HourlyEmployee e = (HourlyEmployee) es[key];
-			int before_tax = calculateTime(e.id);
-			int after_tax = before_tax - calculateTaxes(before_tax, e);
-			int after_loans = after_commission - calculateLoans(e.id);
-			Payment p = new Payment(key, after_loans, getDate()); //GET INSTANCE WRITE
+		Map<String, DbWritable> es = HourlyEmployee.getAll();
+		for (String key : es.keySet()){
+			HourlyEmployee e = (HourlyEmployee) es.get(key);
+			double before_tax = calculateTime(e);
+			double after_tax = before_tax - calculateTaxes(before_tax, e);
+			double after_loans = after_tax - calculateLoans(e);
+			Payment p = new Payment(key, after_loans, getDate()); 
 			p.write();
 		}
 	}
@@ -84,57 +85,60 @@ class PaymentController{
 		Util.writeToFile(payments_forUtil, mock_db.Payments.txt);
 	}*/
 
-	public int calculateTime(HourlyEmp e){
+	public static double calculateTime(HourlyEmployee e){
 		//Timecard tc = Timecard.getInstance();
 		Map<String, DbWritable> e_timecards = Timecard.getAll();   //GET INSTANCE ALL
 		float total_timeWorked = 0;
 		Calendar cal = Calendar.getInstance();
 		cal.add(Calendar.DATE, -7);
 		Date dateBefore7Days = cal.getTime();
-		for (Timecard e_timecard : e_timecards){
-			if (e_timecard.timeIn.comparesTo(dateBefore7Days) > 0){
-				total_timeWorked += Math.abs(e_timecard.timeOut - e_timecard.timeIn);
+		for (String key : e_timecards.keySet()){
+			Timecard e_timecard = (Timecard) e_timecards.get(key);
+			if (e_timecard.getEId().equals(e.getId())){
+				if (e_timecard.getTimeIn().after(dateBefore7Days)){
+					total_timeWorked += Math.abs(e_timecard.getTimeOut().getTime() - e_timecard.getTimeIn().getTime());
+				}
 			}
 		}
 		float hours = ((total_timeWorked / (1000*60*60)) % 24);
-		return e.rate * hours;
+		return e.getRate() * hours;
 	}
 
-	public int calculateCommission(SalaryEmployee e){
-		return e.sales * e.commisionRate;
+	public static double calculateCommission(SalaryEmployee e){
+		return e.getSales() * e.getCommission();
 	}
 
-	public double calculateLoans(Employee e){
-		String e_id = e.id;
+	public static double calculateLoans(Employee e){
+		String e_id = e.getId();
 		
 		Loan e_loan = Loan.getInstance(e_id);
 		//Loan e_loan = e_l.getLoan(e_id);
-		double interest_decimal = e_loan.interest;
-		int time = e_loan.duration;
-		double each_month = e_loan.amount/time;
+		double interest_decimal = e_loan.getInterestRate();
+		int time = e_loan.getDuration();
+		double each_month = e_loan.getAmount()/time;
 		double each_month_pay = each_month * (1+interest_decimal);
-		e_loan.amount -= each_month;
-		e_loan.duration -= 1;
+		e_loan.setAmount(e_loan.getAmount() - each_month);
+		e_loan.setDuration(e_loan.getDuration() - 1);
 		e_loan.write();
 
 		return each_month * (1+interest_decimal);
 	}
 
-	public double calculateTaxes(double before_tax_pay, Employee e){
-		int annual;
+	public static double calculateTaxes(double before_tax_pay, Employee e){
+		double annual;
 		double first_per_month = 7850/12;
 		double first_per_month_one = .01 * first_per_month;
 
 		if (e instanceof HourlyEmployee){
-			annual = e.rate * 2080;
+			annual = ((HourlyEmployee)e).getRate() * 2080;
 		}
 		else{
-			annual = e.salary;
+			annual = ((SalaryEmployee)e).getSalary();
 			if (annual <= 7850){
 				return .01 * before_tax_pay;
 			}
 			else{
-				int rest_sal = annual-7850;
+				double rest_sal = annual-7850;
 				return first_per_month_one + (rest_sal*calcRestTaxes(rest_sal));
 			}
 		}
@@ -147,26 +151,26 @@ class PaymentController{
 		return first_per_month_one + (rest_hourly*(calcRestTaxes(rest_hourly)));
 	}
 
-	public double calcRestTaxes(double rest){
-		if (7851 <= rest <= 18610){
+	public static double calcRestTaxes(double rest){
+		if ((7851 <= rest)  && (rest <= 18610)){
 			return .02;
 		}
-		else if (18611 <= rest <= 29372){
+		else if ((18611 <= rest) && (rest <= 29372)){
 			return .04;
 		}
-		else if (29373 <= rest <= 40773){
+		else if ((29373 <= rest) && (rest <= 40773)){
 			return .06;
 		}
-		else if (40774 <= rest <= 51530){
+		else if ((40774 <= rest) && (rest <= 51530)){
 			return .08;
 		}
-		else if (51531 <= rest <= 263222){
+		else if ((51531 <= rest) && (rest <= 263222)){
 			return .093;
 		}
-		else if (263223 <= rest <= 315866){
+		else if ((263223 <= rest) && (rest <= 315866)){
 			return .103;
 		}
-		else if (315867 <= rest <= 526443){
+		else if ((315867 <= rest) && (rest <= 526443)){
 			return .113;
 		}
 		else{
