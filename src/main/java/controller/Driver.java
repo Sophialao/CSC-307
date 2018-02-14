@@ -117,7 +117,7 @@ public class Driver {
             System.out.println("Commission Rate: ");
             double rate = reader.nextDouble();
             EmployeeController ec = new EmployeeController();
-            ec.addSalaryEmployee(name, address, )Employee(name, address, ssn, id, )
+            //ec.addSalaryEmployee(name, address, )Employee(name, address, ssn, id, )
             System.out.println("Employee created successfully!");
             return true;
         }
