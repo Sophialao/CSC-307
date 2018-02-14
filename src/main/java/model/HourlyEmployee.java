@@ -27,6 +27,7 @@ public class HourlyEmployee extends Employee {
             String[] db = Utils.readLine(Constants.HOURLY_EMPLOYEE_DB, id);
             if (db != null) {
                 HourlyEmployee empl = new HourlyEmployee();
+                empl.setId(id);
                 empl.readFields(db);
                 return empl;
             }
@@ -64,8 +65,8 @@ public class HourlyEmployee extends Employee {
 
     public void write() {
         Utils.removeLine(Constants.HOURLY_EMPLOYEE_DB, this.getId());
-        String toWrite = this.getId() + " " + this.getName() + " " + this.getAddress() + " " +
-                this.getSsn() + " " + this.rate ;
+        String toWrite = this.getId() + "," + this.getName() + "," + this.getAddress() + "," +
+                this.getSsn() + "," + this.rate ;
         Utils.appendLine(Constants.HOURLY_EMPLOYEE_DB, toWrite);
     }
 
@@ -74,8 +75,14 @@ public class HourlyEmployee extends Employee {
     }
 
     public static void main(String[] args) {
-        HourlyEmployee emp = new HourlyEmployee("Sam Rastovich", "yes", 234324234, 20.5);
+        HourlyEmployee emp = HourlyEmployee.getInstance("90b5f29c-45da-4fc3-8aee-5dab3c9b395d");
+        emp.setName("You know I changed");
+        emp.setAddress("Changed cuk add");
         emp.write();
+
+        HourlyEmployee emp2 = HourlyEmployee.getInstance("72420dee-ae90-4670-965f-a220db89d7c9");
+        emp2.remove();
+
     }
 
 
