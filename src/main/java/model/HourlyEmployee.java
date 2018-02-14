@@ -69,6 +69,10 @@ public class HourlyEmployee extends Employee {
         Utils.appendLine(Constants.HOURLY_EMPLOYEE_DB, toWrite);
     }
 
+    public void remove() {
+        Utils.removeLine(Constants.HOURLY_EMPLOYEE_DB, this.getId());
+    }
+
     public static void main(String[] args) {
         HourlyEmployee emp = new HourlyEmployee("Sam Rastovich", "yes", 234324234, 20.5);
         emp.write();
