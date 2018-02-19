@@ -21,8 +21,6 @@ public class Utils {
                 String[] split = line.split(",");
                 DbWritable o = c.getConstructor().newInstance();
                 o.readFields(split);
-
-
                 file.put(split[0], o);
             }
             reader.close();
