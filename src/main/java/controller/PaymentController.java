@@ -75,10 +75,8 @@ class PaymentController{
 			double after_commission = before_tax + calculateCommission(e);
 			double after_tax = after_commission - calculateTaxes(before_tax, e);
 			double after_loans = after_tax - calculateLoans(e);
-			if (after_loans>0) {
-				Payment p = new Payment(key, after_loans, getDate());
-				p.write();
-			}
+			Payment p = new Payment(key, after_loans, getDate());
+			p.write();
 		}
 	}
 
@@ -94,21 +92,13 @@ class PaymentController{
 			//System.out.println("AFTERTAX" + after_tax);
 			double after_loans = after_tax - calculateLoans(e);
 			//System.out.println("AfterLOANS:" + after_loans);
-			if (after_loans > 0) {
-				Payment p = new Payment(key, after_loans, getDate());
-				p.write();
-			}
+			Payment p = new Payment(key, after_loans, getDate());
+			p.write();
 		}
 	}
 
-	/*public static void addToPaymentFile(){
-		HashMap<Integer, String> payments_forUtil = new HashMap<Integer, String>();
-		for (Integer key : payments.keySet()){
-			Payment pm = payments[key];
-			String pm_str = Integer.toString(pm.employeeId) + Integer.toString(pm.amount) + Integer.toString(pm.date);
-			payments_forUtil.add(key, pm_str);
-		}
-		Util.writeToFile(payments_forUtil, mock_db.Payments.txt);
+	/*public static double calculateOvertime(Employee e){
+
 	}*/
 
 	public static double calculateTime(HourlyEmployee e){
@@ -144,21 +134,26 @@ class PaymentController{
 
 	public static double calculateLoans(Employee e){
 		String e_id = e.getId();
-		
-		Loan e_loan = Loan.getInstance(e_id);
-		if (e_loan.getAmount()==0){
-			return 0.0;
-		}
-		//Loan e_loan = e_l.getLoan(e_id);
-		double interest_decimal = e_loan.getInterestRate();
-		int time = e_loan.getDuration();
-		double each_month = e_loan.getAmount()/(double)time;
-		double each_month_pay = each_month * (1+interest_decimal);
-		e_loan.setAmount(e_loan.getAmount() - each_month);
-		e_loan.setDuration(e_loan.getDuration() - 1);
-		e_loan.write();
+		//System.out.println(e_id);
 
-		return each_month * (1+interest_decimal);
+		Map<String, DbWritable> e_loans = Loan.getAll();
+		for (String key : e_loans.keySet()) {
+			Loan e_loan = (Loan) e_loans.get(key);
+			if (e_loan.getEmployeeId().equals(e_id)) {
+				System.out.println(e_loan.getAmount());
+				//Loan e_loan = e_l.getLoan(e_id);
+				double interest_decimal = e_loan.getInterestRate();
+				int time = e_loan.getDuration();
+				double each_month = e_loan.getAmount() / (double) time;
+				double each_month_pay = each_month * (1 + interest_decimal);
+				e_loan.setAmount(e_loan.getAmount() - each_month);
+				//System.out.println(e_loan.getAmount());
+				e_loan.setDuration(e_loan.getDuration() - 1);
+				e_loan.write();
+				return each_month * (1 + interest_decimal);
+			}
+		}
+		return 0.0;
 	}
 
 	public static double calculateTaxes(double before_tax_pay, Employee e){

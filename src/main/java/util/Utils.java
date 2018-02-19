@@ -22,10 +22,7 @@ public class Utils {
                 DbWritable o = c.getConstructor().newInstance();
                 o.readFields(split);
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 416971161dd932de3226025bf6f4cada42e94872
                 file.put(split[0], o);
             }
             reader.close();
