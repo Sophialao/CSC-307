@@ -31,6 +31,7 @@ public class Loan implements DbWritable {
             return new Loan();
         else {
             String[] db = Utils.readLine(Constants.LOAN_DB, id);
+            System.out.println(db);
             if (db != null) {
                 Loan loan = new Loan();
                 loan.readFields(db);
