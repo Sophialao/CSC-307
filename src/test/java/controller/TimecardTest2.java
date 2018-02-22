@@ -9,12 +9,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class TimecardTest2 {
 
-   /*
-    @Test
-    void getNum() {
-
-    }
-*/
     @Test
     void getTimeIn() {
     }
