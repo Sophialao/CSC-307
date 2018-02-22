@@ -60,6 +60,9 @@ public class HourlyEmployee extends Employee {
 
     public void readFields(String[] line) {
         super.readFields(line);
+        if (line.length == 1){
+            return;
+        }
         this.rate = Double.parseDouble(line[4]);
     }
 

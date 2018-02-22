@@ -68,10 +68,14 @@ class PaymentController{
 		Map<String, DbWritable> es = SalaryEmployee.getAll();
 		for (String key : es.keySet()){
 			SalaryEmployee e = (SalaryEmployee) es.get(key);
-			double before_tax = e.getSalary()/12;
+			if (key.equals("")){
+				continue;
+			}
+			double before_tax = e.getSalary()/12.0;
 			double after_commission = before_tax + calculateCommission(e);
-			double after_tax = after_commission - calculateTaxes(before_tax, e);
+			double after_tax = after_commission - (after_commission*calculateTaxes(before_tax, e));
 			double after_loans = after_tax - calculateLoans(e);
+			//System.out.println(after_loans);
 			Payment p = new Payment(key, after_loans, getDate());
 			p.write();
 		}
@@ -82,8 +86,14 @@ class PaymentController{
 		for (String key : es.keySet()){
 			HourlyEmployee e = (HourlyEmployee) es.get(key);
 			double before_tax = calculateTime(e);
-			double after_tax = before_tax - calculateTaxes(before_tax, e);
+			if (before_tax == 0.0){
+				continue;
+			}
+			System.out.println("Original: " + before_tax);
+			double after_tax = before_tax - (before_tax*calculateTaxes(before_tax, e));
+			System.out.println("After taxes" + after_tax);
 			double after_loans = after_tax - calculateLoans(e);
+			System.out.println("After loans, final payment" + after_loans);
 			Payment p = new Payment(key, after_loans, getDate());
 			p.write();
 		}
@@ -118,10 +128,24 @@ class PaymentController{
 
 	public static double calculateLoans(Employee e){
 		String e_id = e.getId();
+		try {
+			Map<String, DbWritable> e_loans = Loan.getAll();
+		}
+		catch (Exception ex){
+			return 0.0;
+		}
+
 		Map<String, DbWritable> e_loans = Loan.getAll();
+		if (e_loans.isEmpty()){
+			return 0.0;
+		}
+
 		for (String key : e_loans.keySet()) {
 			Loan e_loan = (Loan) e_loans.get(key);
-			if (e_loan.getEmployeeId().equals(e_id)) {
+			if (e_loan.getEmployeeId() == null){
+				continue;
+			}
+			else if (e_loan.getEmployeeId().equals(e_id)) {
 				double interest_decimal = e_loan.getInterestRate();
 				int time = e_loan.getDuration();
 				double each_month = e_loan.getAmount() / (double) time;
@@ -129,6 +153,7 @@ class PaymentController{
 				e_loan.setAmount(e_loan.getAmount() - each_month);
 				e_loan.setDuration(e_loan.getDuration() - 1);
 				e_loan.write();
+				//System.out.println("LOAN PAY:" + each_month_pay);
 				return each_month_pay;
 			}
 		}
@@ -136,42 +161,21 @@ class PaymentController{
 	}
 
 	public static double calculateTaxes(double before_tax_pay, Employee e){
-		/*double annual;
-		double first_per_month = 7850/12;
-		double first_per_month_one = .01 * first_per_month;
+		double annual;
 
 		if (e instanceof HourlyEmployee){
 			annual = ((HourlyEmployee)e).getRate() * 2080;
 		}
 		else{
 			annual = ((SalaryEmployee)e).getSalary();
-			if (annual <= 7850){
-				return .01 * before_tax_pay;
-			}
-			else{
-				double rest_sal = annual;//-7850;
-				return first_per_month_one + ((rest_sal-7850)*calcRestTaxes(rest_sal));
-			}
-		}
-		System.out.println("ANNUAL" + annual);
-
-		if (annual <= 7850){
-			//System.out.println("CALCULATED TAXES" + (.01*before_tax_pay));
-			return .01 * before_tax_pay;
 		}
 
-		double rest_hourly = annual; //- 7850.0;
 
-		/*System.out.println("CALCULATED" + first_per_month_one + (((rest_hourly-7850)/12)*(calcRestTaxes(rest_hourly))));
-		System.out.println("RESTHOURLY" + rest_hourly);
-		System.out.println(calcRestTaxes(rest_hourly));
-		System.out.println(rest_hourly/12);*/
-		//return first_per_month_one + (((rest_hourly-7850)/12)*(calcRestTaxes(rest_hourly)));
-		return .2*before_tax_pay;
+		return calcRestTaxes(annual);
 	}
 
 	public static double calcRestTaxes(double rest){
-		if ((7851 <= rest)  && (rest <= 18610)){
+		if (rest <= 18610){
 			return .02;
 		}
 		else if ((18611 <= rest) && (rest <= 29372)){

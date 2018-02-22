@@ -79,6 +79,9 @@ public class SalaryEmployee extends Employee {
 
     public void readFields(String[] line) {
         super.readFields(line);
+        if (line.length == 1){
+            return;
+        }
         this.salary = Double.parseDouble(line[4]);
         this.commission = Double.parseDouble(line[5]);
         this.sales = Double.parseDouble(line[6]);

@@ -89,6 +89,9 @@ public class Loan implements DbWritable {
     }
 
     public void readFields(String[] args) {
+        if (args.length == 1){
+            return;
+        }
         this.id = args[0];
         this.employeeId = args[1];
         this.amount = Double.parseDouble(args[2]);
