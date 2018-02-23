@@ -88,6 +88,9 @@ public class Timecard implements DbWritable {
 
     public void readFields(String[] line) {
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd kk:mm");
+        if (line.length == 1){
+            return;
+        }
         this.id = line[0];
         this.eId = line[1];
         this.timeIn = new Date(line[2]);

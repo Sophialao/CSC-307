@@ -51,6 +51,9 @@ public abstract class Employee implements DbWritable {
     }
 
     public void readFields(String[] args) {
+        if (args.length == 1){
+            return;
+        }
         this.id = args[0];
         this.name = args[1];
         this.address = args[2];
