@@ -162,8 +162,8 @@ public class Driver {
                 he.write();
             }
             else if(choice.equals("rate")){
-                System.out.println("Enter ssn:");
-                int newRate = reader.nextInt();
+                System.out.println("Enter rate:");
+                double newRate = reader.nextDouble();
                 HourlyEmployee he =  HourlyEmployee.getInstance(eid);
                 he.setRate(newRate);
                 he.write();
