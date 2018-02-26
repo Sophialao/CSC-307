@@ -7,13 +7,17 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PaymentControllerTest {
+    Date d = new Date();
+    int currDate = d.getDate();
+    int currMonth = d.getMonth();
+
    @Test
     public void testHourlyEmpOneTimecardPayment() {
         EmployeeController ec = new EmployeeController();
         TimecardController tc = new TimecardController();
         HourlyEmployee kelly = (HourlyEmployee) ec.addHourlyEmployee("Kelly", "SLO", 1234, 10.0);
-        Date dIn = new Date(2018, 2, 21, 9, 0);
-        Date dOut = new Date(2018, 2, 21, 17, 0);
+        Date dIn = new Date(2018, currMonth, currDate, 9, 0);
+        Date dOut = new Date(2018, currMonth, currDate, 17, 0);
         tc.addTimecard(kelly.getId(), dIn, dOut);
         PaymentController pc = new PaymentController(true, true);
         pc.calculatePayment();
@@ -34,10 +38,10 @@ class PaymentControllerTest {
         EmployeeController ec = new EmployeeController();
         TimecardController tc = new TimecardController();
         HourlyEmployee kelly = (HourlyEmployee) ec.addHourlyEmployee("Kelly", "SLO", 1234, 10.0);
-        Date dIn = new Date(2018, 2, 20, 9, 0);
-        Date dOut = new Date(2018, 2, 20, 17, 0);
-        Date dIn2 = new Date(2018, 2, 21, 9, 0);
-        Date dOut2 = new Date(2018, 2, 21, 17, 0);
+        Date dIn = new Date(2018, currMonth, currDate, 9, 0);
+        Date dOut = new Date(2018, currMonth, currDate, 17, 0);
+        Date dIn2 = new Date(2018, currMonth, currDate, 9, 0);
+        Date dOut2 = new Date(2018, currMonth, currDate, 17, 0);
         tc.addTimecard(kelly.getId(), dIn, dOut);
         tc.addTimecard(kelly.getId(), dIn2, dOut2);
         PaymentController pc = new PaymentController(true, true);
@@ -55,15 +59,39 @@ class PaymentControllerTest {
     }
 
     @Test
+    public void testHourlyEmpMultTimecardOvertimePayment(){
+        EmployeeController ec = new EmployeeController();
+        TimecardController tc = new TimecardController();
+        HourlyEmployee kelly = (HourlyEmployee) ec.addHourlyEmployee("Kelly", "SLO", 1234, 10.0);
+        for (int i = 0; i < 10; i++){
+            Date dIn = new Date(2018, currMonth, currDate, 9, 0);
+            Date dOut = new Date(2018, currMonth, currDate, 17, 0);
+            tc.addTimecard(kelly.getId(), dIn, dOut);
+        }
+        PaymentController pc = new PaymentController(true, true);
+        pc.calculatePayment();
+        Map<String, DbWritable> payments = Payment.getAll();
+        double pay = 0.0;
+        for (String key : payments.keySet()){
+            Payment p = (Payment)payments.get(key);
+            if (p.getEmployeeId().equals(kelly.getId())){
+                pay = p.getAmount();
+                break;
+            }
+        }
+        assertEquals(960.0, pay);
+    }
+
+    @Test
     public void testHourlyEmpMultTimecardLoanPayment(){
         EmployeeController ec = new EmployeeController();
         TimecardController tc = new TimecardController();
         HourlyEmployee kelly = (HourlyEmployee) ec.addHourlyEmployee("Kelly", "SLO", 1234, 10.0);
 
-        Date dIn = new Date(2018, 2, 20, 9, 0);
-        Date dOut = new Date(2018, 2, 20, 17, 0);
-        Date dIn2 = new Date(2018, 2, 21, 9, 0);
-        Date dOut2 = new Date(2018, 2, 21, 17, 0);
+        Date dIn = new Date(2018, currMonth, currDate, 9, 0);
+        Date dOut = new Date(2018, currMonth, currDate, 17, 0);
+        Date dIn2 = new Date(2018, currMonth, currDate, 9, 0);
+        Date dOut2 = new Date(2018, currMonth, currDate, 17, 0);
         tc.addTimecard(kelly.getId(), dIn, dOut);
         tc.addTimecard(kelly.getId(), dIn2, dOut2);
 
@@ -150,8 +178,8 @@ class PaymentControllerTest {
         EmployeeController ec = new EmployeeController();
         TimecardController tc = new TimecardController();
         HourlyEmployee kelly = (HourlyEmployee) ec.addHourlyEmployee("Kelly", "SLO", 1234, 10.0);
-        Date dIn = new Date(2018, 2, 21, 9, 0);
-        Date dOut = new Date(2018, 2, 21, 17, 0);
+        Date dIn = new Date(2018, currMonth, currDate, 9, 0);
+        Date dOut = new Date(2018, currMonth, currDate, 17, 0);
         tc.addTimecard(kelly.getId(), dIn, dOut);
         PaymentController pc = new PaymentController(true, true);
         pc.calculatePayment();

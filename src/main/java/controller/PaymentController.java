@@ -113,8 +113,11 @@ class PaymentController{
 				}
 			}
 		}
-		double hours = ((total_timeWorked / (double)(1000*60*60)) % 24);
-		if (hours > 40.0){
+		double seconds = total_timeWorked / 1000.0;
+		double minutes = seconds / 60.0;
+		double hours = minutes / 60.0;
+
+		if (Double.compare(hours, 40.0) > 0){
 			double otRate = 1.5 * e.getRate();
 			double otHours = hours-40.0;
 			return (e.getRate()*40.0) + (otRate*otHours);
