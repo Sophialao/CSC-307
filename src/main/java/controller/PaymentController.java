@@ -10,9 +10,20 @@ import model.Timecard;
 import model.DbWritable;
 import java.util.*;
 
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.text.Text;
+
 class PaymentController{
     public static boolean invoke_hourly;
     public static boolean invoke_month;
+
+	@FXML private Text actiontarget;
+
+	@FXML protected void handleSubmitButtonAction(ActionEvent event) {
+		calculatePayment();
+		actiontarget.setText("Paid!");
+	}
 
     public PaymentController(boolean invoke_month, boolean invoke_hourly){
     	this.invoke_month = invoke_month;
