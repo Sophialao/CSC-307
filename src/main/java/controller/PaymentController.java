@@ -1,5 +1,7 @@
 package controller;
 import java.util.Calendar;
+
+import javafx.application.Application;
 import util.Utils;
 import model.Employee;
 import model.SalaryEmployee;
@@ -14,20 +16,26 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
 
-class PaymentController{
+public class PaymentController {
     public static boolean invoke_hourly;
     public static boolean invoke_month;
+
+
+    public PaymentController(){
+    	this.invoke_hourly = true;
+    	this.invoke_month = true;
+	}
+
+    public PaymentController(boolean invoke_month, boolean invoke_hourly){
+    	this.invoke_month = invoke_month;
+    	this.invoke_hourly = invoke_hourly;
+	}
 
 	@FXML private Text actiontarget;
 
 	@FXML protected void handleSubmitButtonAction(ActionEvent event) {
 		calculatePayment();
 		actiontarget.setText("Paid!");
-	}
-
-    public PaymentController(boolean invoke_month, boolean invoke_hourly){
-    	this.invoke_month = invoke_month;
-    	this.invoke_hourly = invoke_hourly;
 	}
 
 	public static void calculatePayment() {
