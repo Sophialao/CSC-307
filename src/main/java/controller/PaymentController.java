@@ -14,7 +14,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
 
-class PaymentController{
+public class PaymentController{
     public static boolean invoke_hourly;
     public static boolean invoke_month;
 
