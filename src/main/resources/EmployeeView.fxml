@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.EmployeeView">
+   <children>
+      <Accordion layoutX="226.0" layoutY="99.0" prefHeight="87.0" prefWidth="96.0" />
+      <TableView  layoutX="36.0" layoutY="14.0" prefHeight="384.0" prefWidth="528.0">
+        <columns>
+          <TableColumn prefWidth="48.0" text="ID" />
+          <TableColumn prefWidth="47.0" text="Name" />
+            <TableColumn prefWidth="85.0" text="Address" />
+            <TableColumn prefWidth="91.0" text="SSN" />
+            <TableColumn prefWidth="77.0" text="Salary" />
+            <TableColumn prefWidth="102.0" text="Commission" />
+            <TableColumn prefWidth="75.0" text="Sales" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
