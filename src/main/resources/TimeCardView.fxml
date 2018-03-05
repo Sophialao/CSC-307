@@ -25,9 +25,6 @@
       <RowConstraints />
       <RowConstraints />
     </rowConstraints>
-    <stylesheets>
-        <URL value="@Timecard.css" />
-    </stylesheets>
     <children>
         <Text fx:id="actiontarget" GridPane.columnIndex="1" GridPane.rowIndex="6" />
         <Button mnemonicParsing="false" onAction="#exampleButtonAction" prefHeight="26.0" prefWidth="194.0" text="Import timecard" GridPane.columnIndex="1" GridPane.rowIndex="1" />
