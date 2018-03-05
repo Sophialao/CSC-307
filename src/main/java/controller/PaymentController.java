@@ -35,11 +35,11 @@ public class PaymentController {
 
 	@FXML protected void handleSubmitButtonAction(ActionEvent event) {
 		if (!checkLastDateofMonth() && !checkMonday()){
-			actiontarget.setText("Not payday for any employees!");
+			//actiontarget.setText("Not payday for any employees!");
 		}
 		else{
 			calculatePayment();
-			actiontarget.setText("Paid!");
+			//actiontarget.setText("Paid!");
 		}
 	}
 

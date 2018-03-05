@@ -47,6 +47,11 @@ public class HomeController {
         this.setData();
     }
 
+    public void payEmployee(ActionEvent event) {
+        PaymentController controller = new PaymentController();
+        controller.handleSubmitButtonAction(event);
+    }
+
 
     public void initializeEmployee(ActionEvent event, Employee employee) {
         try {
