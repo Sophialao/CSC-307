@@ -1,12 +1,17 @@
 package controller;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 import model.Employee;
 import model.SalaryEmployee;
 import model.HourlyEmployee;
 
-import java.awt.event.ActionEvent;
+import java.io.IOException;
 
 
 public class EmployeeController {
@@ -41,6 +46,25 @@ public class EmployeeController {
                     Double.parseDouble(rate.getText()), gender);
         }
         ((Node) event.getSource()).getScene().getWindow().hide();
+    }
+
+    public void initializeHome(ActionEvent event, Employee employee) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/HomeView.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setTitle("Employee");
+            stage.setScene(new Scene(root, 700, 700));
+            stage.show();
+
+            if (employee != null) {
+                EmployeeController controller = loader.getController();
+                controller.setFields(employee);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void setFields(Employee employee) {
