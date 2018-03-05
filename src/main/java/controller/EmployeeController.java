@@ -124,7 +124,7 @@ public class EmployeeController {
         }
 
         System.out.println(hourlyEmployeeNames.toString());
-        ObservableList<String> items2 = FXCollections.observableArrayList (salaryEmployeeNames);
+        ObservableList<String> items2 = FXCollections.observableArrayList (hourlyEmployeeNames);
         hLV.setItems(items2);
     }
 
