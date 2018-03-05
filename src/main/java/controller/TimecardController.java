@@ -1,14 +1,22 @@
 package controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import model.Employee;
 import model.Timecard;
 import javafx.stage.Window;
 import util.Utils;
 
+import java.io.IOException;
 import java.sql.Time;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -23,16 +31,17 @@ public class TimecardController {
     Date tOut;
 
     @FXML private Text actiontarget;
-    @FXML private TextField eId;
+    @FXML private Text eId;
     @FXML private TextField timeInF;
     @FXML private TextField timeOutF;
 
+    @FXML protected void employeeForTimecard(Employee emp){
+        actiontarget.setText(emp.getName());
+        eId.setText(emp.getId());
+    }
+
     @FXML protected void exampleButtonAction(ActionEvent event) {
-        if(eId.getText() == null) {
-            showAlert(Alert.AlertType.ERROR, "Form Error!",
-                    "Please enter employee Id");
-            return;
-        }
+
         if(timeInF.getText() == null) {
             showAlert(Alert.AlertType.ERROR, "Form Error!",
                     "Please enter time in");
@@ -67,7 +76,7 @@ public class TimecardController {
         //addTimecard(eId.getText(),tIn,tOut);
         showAlert(Alert.AlertType.CONFIRMATION, "New timecard submitted!",
                 "Timecard submitted ");
-        eId.clear();
+
         timeInF.clear();
         timeOutF.clear();
     }
