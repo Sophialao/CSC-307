@@ -27,7 +27,6 @@
     </rowConstraints>
 
     <children>
-        <Text fx:id="actiontarget" GridPane.columnIndex="1" GridPane.rowIndex="6" />
         <Button mnemonicParsing="false" onAction="#exampleButtonAction" prefHeight="26.0" prefWidth="194.0" text="Add loan" GridPane.columnIndex="1" GridPane.rowIndex="1" />
         <GridPane GridPane.columnIndex="1">
             <columnConstraints>
@@ -63,7 +62,7 @@
                 <Label text="Loan Amount: " wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2"> </Label>
                 <Label prefHeight="81.0" prefWidth="131.0" text="Interest Rate: " wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="3"> </Label>
                 <Label prefHeight="26.0" prefWidth="96.0" text="Duration: " wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="4"> </Label>
-                <Text fx:id="large" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Loan" GridPane.columnIndex="1">
+                <Text fx:id="actiontarget" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1">
                <font>
                   <Font size="18.0" />
                </font></Text>

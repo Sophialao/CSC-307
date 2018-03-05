@@ -26,7 +26,6 @@
       <RowConstraints />
     </rowConstraints>
     <children>
-        <Text fx:id="actiontarget" GridPane.columnIndex="1" GridPane.rowIndex="6" />
         <Button mnemonicParsing="false" onAction="#exampleButtonAction" prefHeight="26.0" prefWidth="194.0" text="Import timecard" GridPane.columnIndex="1" GridPane.rowIndex="1" />
       <GridPane GridPane.columnIndex="1">
         <columnConstraints>
@@ -58,7 +57,7 @@
          <children>
              <Label text="Time in (YYYY-MM-DD HH:MM 24hr): " wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2"> </Label>
               <Label prefHeight="81.0" prefWidth="131.0" text="Time out (YYYY-MM-DD HH:MM 24hr): " wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="3"> </Label>
-              <Text fx:id="large" strokeType="OUTSIDE" strokeWidth="0.0" text="Create a timecard" GridPane.columnIndex="1" />
+              <Text fx:id="actiontarget" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" />
          </children>
       </GridPane>
     </children>

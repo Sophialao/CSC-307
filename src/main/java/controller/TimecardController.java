@@ -31,13 +31,13 @@ public class TimecardController {
     Date tOut;
 
     @FXML private Text actiontarget;
-    @FXML private Text eId;
+    String eId;
     @FXML private TextField timeInF;
     @FXML private TextField timeOutF;
 
     @FXML protected void employeeForTimecard(Employee emp){
-        actiontarget.setText(emp.getName());
-        eId.setText(emp.getId());
+        actiontarget.setText("Add Timecard For " + emp.getName());
+        eId = emp.getId();
     }
 
     @FXML protected void exampleButtonAction(ActionEvent event) {
@@ -66,7 +66,7 @@ public class TimecardController {
             DateFormat df = new SimpleDateFormat("yyyy-MM-dd kk:mm");
             tOut = df.parse(timeOutF.getText());
             System.out.println("tOut " + tOut);
-            addTimecard(eId.getText(),tIn,tOut);
+            addTimecard(eId,tIn,tOut);
         }
         catch(Exception e) {
             showAlert(Alert.AlertType.ERROR, "Form Error!",

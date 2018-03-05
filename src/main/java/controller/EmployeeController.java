@@ -48,6 +48,55 @@ public class EmployeeController {
         ((Node) event.getSource()).getScene().getWindow().hide();
     }
 
+
+    public void initializeTimecard(ActionEvent event){
+        this.initializeTimecard2(event, employee);
+    }
+
+    public void initializeTimecard2(ActionEvent event, Employee employee){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/TimecardView.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setTitle("Timecard");
+            stage.setScene(new Scene(root, 700, 700));
+            stage.show();
+
+            if (employee != null) {
+                TimecardController tc_controller = loader.getController();
+                tc_controller.employeeForTimecard(employee);
+            }
+            ((Node) event.getSource()).getScene().getWindow().hide();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void initializeLoan(ActionEvent event){
+        this.initializeLoan2(event, employee);
+    }
+
+    public void initializeLoan2(ActionEvent event, Employee employee){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LoanView.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setTitle("Loan");
+            stage.setScene(new Scene(root, 700, 700));
+            stage.show();
+
+            if (employee != null) {
+                LoanController tc_controller = loader.getController();
+                tc_controller.employeeForLoan(employee);
+            }
+            ((Node) event.getSource()).getScene().getWindow().hide();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void setFields(Employee employee) {
         this.employee = employee;
         ssn.setText(Integer.toString(employee.getSsn()));

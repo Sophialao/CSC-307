@@ -61,7 +61,7 @@
       </Button>
       <CheckBox fx:id="salaryCheck" mnemonicParsing="false" onAction="#salaryClicked" text="Salary" GridPane.columnIndex="2" GridPane.rowIndex="5" />
       <CheckBox fx:id="hourlyCheck" mnemonicParsing="false" onAction="#hourlyClicked" text="Hourly" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-      <Button mnemonicParsing="false" opacity="0.68" prefHeight="27.0" prefWidth="105.0" text="Add Timecard" translateZ="2.0" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="6" />
-      <Button mnemonicParsing="false" opacity="0.66" prefHeight="27.0" prefWidth="101.0" text="Add Loan" translateZ="2.0" GridPane.columnIndex="6" GridPane.columnSpan="2" GridPane.rowIndex="6" />
+      <Button mnemonicParsing="false" opacity="0.68" prefHeight="27.0" prefWidth="105.0" text="Add Timecard" translateZ="2.0" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="6" onAction="#initializeTimecard" />
+      <Button mnemonicParsing="false" opacity="0.66" prefHeight="27.0" prefWidth="101.0" text="Add Loan" translateZ="2.0" GridPane.columnIndex="6" GridPane.columnSpan="2" GridPane.rowIndex="6" onAction="#initializeLoan"/>
    </children>
 </GridPane>

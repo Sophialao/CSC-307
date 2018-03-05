@@ -13,19 +13,18 @@ public class LoanController {
 
     @FXML
     private Text actiontarget;
-    @FXML private TextField eId;
+    String eId;
     @FXML private TextField LoanAmount;
     @FXML private TextField InterestRate;
     @FXML private TextField Duration;
 
 
     @FXML protected void employeeForLoan(Employee emp){
-        actiontarget.setText(emp.getName());
-        eId.setText(emp.getId());
+        actiontarget.setText("Add Loan For " + emp.getName());
+        eId=emp.getId();
     }
 
     @FXML protected void exampleButtonAction(ActionEvent event) {
-        String id;
         double l;
         double interest;
         int duration;
@@ -46,14 +45,7 @@ public class LoanController {
                     "Please enter duration");
             return;
         }
-        try {
-            id = eId.getText();
-        }
-        catch(Exception e) {
-            showAlert(Alert.AlertType.ERROR, "Form Error!",
-                    "Employee id not formatted correctly");
-            return;
-        }
+
         try {
             l = Double.parseDouble(LoanAmount.getText());
         }
@@ -78,7 +70,7 @@ public class LoanController {
                     "Duration not formatted correctly");
             return;
         }
-        Loan new_loan = new Loan(id, l, interest, duration);
+        Loan new_loan = new Loan(eId, l, interest, duration);
         new_loan.write();
 
         showAlert(Alert.AlertType.CONFIRMATION, "New loan added!",
