@@ -17,6 +17,7 @@ import model.Employee;
 import model.HourlyEmployee;
 import model.SalaryEmployee;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -26,13 +27,16 @@ import java.util.Map;
 public class HomeController {
     @FXML ListView sLV;
     @FXML ListView hLV;
+    Employee emp;
 
     public void editSalaryEmployeeClicked(ActionEvent event) {
-        this.initializeEmployee(event, (Employee) sLV.getSelectionModel().getSelectedItem());
+        emp = (Employee) sLV.getSelectionModel().getSelectedItem();
+        this.initializeEmployee(event, emp);
     }
 
     public void editHourlyEmployeeClicked(ActionEvent event) {
-        this.initializeEmployee(event, (Employee) hLV.getSelectionModel().getSelectedItem());
+        emp = (Employee) hLV.getSelectionModel().getSelectedItem();
+        this.initializeEmployee(event, emp);
     }
 
     public void addEmployeeClicked(ActionEvent event) {
@@ -42,6 +46,7 @@ public class HomeController {
     public void refreshPage() {
         this.setData();
     }
+
 
     public void initializeEmployee(ActionEvent event, Employee employee) {
         try {
@@ -62,7 +67,11 @@ public class HomeController {
         }
     }
 
-    public void initializeTimecard(ActionEvent event, Employee employee){
+    public void initializeTimecard(ActionEvent event){
+        this.initializeTimecard2(event, emp);
+    }
+
+    public void initializeTimecard2(ActionEvent event, Employee employee){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/TimecardView.fxml"));
             Parent root = loader.load();
@@ -82,7 +91,11 @@ public class HomeController {
         }
     }
 
-    public void initializeLoan(ActionEvent event, Employee employee){
+    public void initializeLoan(ActionEvent event){
+        this.initializeLoan2(event, emp);
+    }
+
+    public void initializeLoan2(ActionEvent event, Employee employee){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/LoanView.fxml"));
             Parent root = loader.load();
