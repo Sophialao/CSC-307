@@ -25,6 +25,7 @@ public class EmployeeController {
     @FXML TextField rate;
     @FXML CheckBox hourlyCheck;
     @FXML CheckBox salaryCheck;
+    @FXML Button deleteButton;
     private Employee employee;
 
     public EmployeeController() {
@@ -59,6 +60,10 @@ public class EmployeeController {
             }
         }
         ((Node) event.getSource()).getScene().getWindow().hide();
+    }
+
+    public void removeEmployee() {
+        this.deleteEmployee(this.employee.getId());
     }
 
 

@@ -16,11 +16,11 @@
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="90.0" minWidth="48.0" prefWidth="82.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="154.0" minWidth="29.0" prefWidth="73.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="202.0" minWidth="15.0" prefWidth="70.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="222.0" minWidth="0.0" prefWidth="44.0" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="226.0" minWidth="30.0" prefWidth="78.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="299.0" minWidth="32.0" prefWidth="92.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="299.0" minWidth="23.0" prefWidth="101.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="219.0" minWidth="32.0" prefWidth="42.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="222.0" minWidth="0.0" prefWidth="69.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="226.0" minWidth="30.0" prefWidth="70.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="299.0" minWidth="32.0" prefWidth="94.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="299.0" minWidth="23.0" prefWidth="94.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="219.0" minWidth="30.0" prefWidth="30.0" />
   </columnConstraints>
   <rowConstraints>
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -61,7 +61,8 @@
       </Button>
       <CheckBox fx:id="salaryCheck" mnemonicParsing="false" onAction="#salaryClicked" text="Salary" GridPane.columnIndex="2" GridPane.rowIndex="5" />
       <CheckBox fx:id="hourlyCheck" mnemonicParsing="false" onAction="#hourlyClicked" text="Hourly" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-      <Button mnemonicParsing="false" opacity="0.68" prefHeight="27.0" prefWidth="105.0" text="Add Timecard" translateZ="2.0" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="6" onAction="#initializeTimecard" />
-      <Button mnemonicParsing="false" opacity="0.66" prefHeight="27.0" prefWidth="101.0" text="Add Loan" translateZ="2.0" GridPane.columnIndex="6" GridPane.columnSpan="2" GridPane.rowIndex="6" onAction="#initializeLoan"/>
+      <Button mnemonicParsing="false" onAction="#initializeTimecard" opacity="0.68" prefHeight="27.0" prefWidth="105.0" text="Add Timecard" translateZ="2.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="6" />
+      <Button mnemonicParsing="false" onAction="#initializeLoan" opacity="0.66" prefHeight="27.0" prefWidth="101.0" text="Add Loan" translateZ="2.0" GridPane.columnIndex="6" GridPane.columnSpan="2" GridPane.rowIndex="6" />
+      <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#removeEmployee" prefHeight="27.0" prefWidth="69.0" style="-fx-background-color: red;" text="Remove" GridPane.columnIndex="4" GridPane.rowIndex="6" />
    </children>
 </GridPane>

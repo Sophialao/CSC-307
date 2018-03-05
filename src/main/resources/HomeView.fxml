@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.Double?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.AmbientLight?>
 <?import javafx.scene.PointLight?>
@@ -10,9 +9,6 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.shape.Polyline?>
-<?import javafx.scene.shape.QuadCurve?>
-<?import javafx.scene.shape.Sphere?>
 
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeController">
   <columnConstraints>
@@ -41,26 +37,12 @@
          </GridPane.margin>
       </Label>
       <Label prefHeight="35.0" prefWidth="101.0" text="       Hourly" GridPane.columnIndex="4" />
-      <Button fx:id="addEmployeeButton" mnemonicParsing="false" onAction="#addEmployeeClicked" prefHeight="27.0" prefWidth="110.0" text="Add" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+      <Button fx:id="addEmployeeButton" mnemonicParsing="false" onAction="#addEmployeeClicked" prefHeight="27.0" prefWidth="110.0" style="-fx-background-color: green;" text="Add" GridPane.columnIndex="3" GridPane.rowIndex="3" />
       <Button mnemonicParsing="false" onAction="#refreshPage" text="Refresh" GridPane.columnIndex="5">
          <GridPane.margin>
             <Insets left="40.0" />
          </GridPane.margin>
       </Button>
-      <Polyline fill="CHARTREUSE" strokeType="INSIDE" GridPane.columnIndex="1" GridPane.rowIndex="1">
-        <points>
-          <Double fx:value="-50.0" />
-          <Double fx:value="-40.0" />
-          <Double fx:value="50.0" />
-          <Double fx:value="-40.0" />
-          <Double fx:value="0.0" />
-          <Double fx:value="60.0" />
-          <Double fx:value="-50.0" />
-          <Double fx:value="-40.0" />
-        </points>
-      </Polyline>
-      <QuadCurve controlX="-50.0" controlY="-100.0" endX="50.0" fill="DODGERBLUE" startX="-50.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="1" />
-      <Sphere radius="50" GridPane.columnIndex="5" GridPane.rowIndex="1" />
       <AmbientLight color="CHARTREUSE" lightOn="true" GridPane.columnIndex="3" />
       <PointLight color="CHARTREUSE" lightOn="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
    </children>
