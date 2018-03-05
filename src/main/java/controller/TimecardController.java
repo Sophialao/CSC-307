@@ -79,6 +79,7 @@ public class TimecardController {
 
         timeInF.clear();
         timeOutF.clear();
+        ((Node) event.getSource()).getScene().getWindow().hide();
     }
     public void addTimecard(String eid, Date timeIn, Date timeOut) {
         Timecard tc = Timecard.getInstance(null);

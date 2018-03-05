@@ -2,6 +2,7 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
@@ -78,6 +79,7 @@ public class LoanController {
         LoanAmount.clear();
         InterestRate.clear();
         Duration.clear();
+        ((Node) event.getSource()).getScene().getWindow().hide();
     }
 
     public static void showAlert(Alert.AlertType alertType, String title, String message) {
