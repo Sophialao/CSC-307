@@ -2,11 +2,11 @@ package controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.*;
 import model.DbWritable;
 import model.Employee;
 import model.SalaryEmployee;
 import model.HourlyEmployee;
-import javafx.scene.control.ListView;
 import view.EmployeeView;
 
 import javax.swing.text.html.parser.Entity;
@@ -25,8 +25,29 @@ public class EmployeeController {
     //edit Employee
     //delete Employee
 
+
+    @FXML TextField firstName;
+    @FXML TextField lastName;
+    @FXML TextField email;
+    @FXML TextField ssn;
+    @FXML RadioButton maleButton;
+    @FXML RadioButton femaleButton;
+    @FXML TextField commission;
+    @FXML TextField rate;
+    @FXML CheckBox hourlyCheck;
+    @FXML CheckBox salaryCheck;
+
     public void addEmployee() {
-        
+        if (salaryCheck.isSelected()) {
+            this.addSalaryEmployee(firstName.getText() + " " + lastName.getText(),
+                    "23424342w", Integer.parseInt(ssn.getText()),
+                    Double.parseDouble(rate.getText()), Double.parseDouble(commission.getText()),
+                    0.0);
+        } else {
+            this.addHourlyEmployee(firstName.getText() + " " + lastName.getText(),
+                    "23424342w", Integer.parseInt(ssn.getText()),
+                    Double.parseDouble(rate.getText()));
+        }
 
     }
 

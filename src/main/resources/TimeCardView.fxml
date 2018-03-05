@@ -60,7 +60,7 @@
              <Label text="Employee Id : " GridPane.columnIndex="1" GridPane.rowIndex="1"> </Label>
              <Label text="Time in (YYYY-MM-DD HH:MM 24hr): " wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2"> </Label>
               <Label prefHeight="81.0" prefWidth="131.0" text="Time out (YYYY-MM-DD HH:MM 24hr): " wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="3"> </Label>
-              <Text fx:id="large" strokeType="OUTSIDE" strokeWidth="0.0" text="Upload a timecard" GridPane.columnIndex="1" />
+              <Text fx:id="large" strokeType="OUTSIDE" strokeWidth="0.0" text="Create a timecard" GridPane.columnIndex="1" />
          </children>
       </GridPane>
     </children>
