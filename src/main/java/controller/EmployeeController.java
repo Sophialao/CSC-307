@@ -36,14 +36,27 @@ public class EmployeeController {
             gender = "F";
         }
         if (salaryCheck.isSelected()) {
-            this.addSalaryEmployee(this.employee.getId(), name.getText(),
-                    address.getText(), Integer.parseInt(ssn.getText()),
-                    Double.parseDouble(rate.getText()), Double.parseDouble(commission.getText()),
-                    0.0, gender);
+            if (this.employee == null) {
+                this.addSalaryEmployee(null, name.getText(),
+                        address.getText(), Integer.parseInt(ssn.getText()),
+                        Double.parseDouble(rate.getText()), Double.parseDouble(commission.getText()),
+                        0.0, gender);
+            } else {
+                this.addSalaryEmployee(this.employee.getId(), name.getText(),
+                        address.getText(), Integer.parseInt(ssn.getText()),
+                        Double.parseDouble(rate.getText()), Double.parseDouble(commission.getText()),
+                        0.0, gender);
+            }
         } else {
-            this.addHourlyEmployee(this.employee.getId(), name.getText(),
-                    address.getText(), Integer.parseInt(ssn.getText()),
-                    Double.parseDouble(rate.getText()), gender);
+            if (this.employee == null) {
+                this.addHourlyEmployee(null, name.getText(),
+                        address.getText(), Integer.parseInt(ssn.getText()),
+                        Double.parseDouble(rate.getText()), gender);
+            } else {
+                this.addHourlyEmployee(this.employee.getId(), name.getText(),
+                        address.getText(), Integer.parseInt(ssn.getText()),
+                        Double.parseDouble(rate.getText()), gender);
+            }
         }
         ((Node) event.getSource()).getScene().getWindow().hide();
     }
