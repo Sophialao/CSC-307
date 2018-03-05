@@ -94,7 +94,7 @@ public class SalaryEmployee extends Employee {
     public void write() {
         Utils.removeLine(Constants.SALARY_EMPLOYEE_DB, this.getId());
         String toWrite = this.getId() + "," + this.getName() + "," + this.getAddress() + "," +
-                this.getSsn() + "," + this.salary + "," + this.commission + "," + this.sales + "," + this.getGender();
+                this.getGender() + "," + this.getSsn() + "," + this.salary + "," + this.commission + "," + this.sales;
         Utils.appendLine(Constants.SALARY_EMPLOYEE_DB, toWrite);
     }
 }
