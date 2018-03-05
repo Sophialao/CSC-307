@@ -53,7 +53,6 @@ public class HomeController {
                 EmployeeController controller = loader.getController();
                 controller.setFields(employee);
             }
-            ((Node) event.getSource()).getScene().getWindow().hide();
         } catch (IOException e) {
             e.printStackTrace();
         }
