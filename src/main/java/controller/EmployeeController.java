@@ -25,6 +25,7 @@ public class EmployeeController {
     @FXML TextField rate;
     @FXML CheckBox hourlyCheck;
     @FXML CheckBox salaryCheck;
+    private Employee employee;
 
     public EmployeeController() {
     }
@@ -47,26 +48,8 @@ public class EmployeeController {
         ((Node) event.getSource()).getScene().getWindow().hide();
     }
 
-    public void initializeHome(ActionEvent event, Employee employee) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/HomeView.fxml"));
-            Parent root = loader.load();
-
-            Stage stage = new Stage();
-            stage.setTitle("Employee");
-            stage.setScene(new Scene(root, 700, 700));
-            stage.show();
-
-            if (employee != null) {
-                EmployeeController controller = loader.getController();
-                controller.setFields(employee);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     public void setFields(Employee employee) {
+        this.employee = employee;
         ssn.setText(Integer.toString(employee.getSsn()));
         name.setText(employee.getName());
         address.setText(employee.getAddress());
