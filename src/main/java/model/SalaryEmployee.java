@@ -15,8 +15,8 @@ public class SalaryEmployee extends Employee {
         super();
     }
     public SalaryEmployee(String name, String address, int ssn, double salary,
-                          double commission, double sales) {
-        super(name, address, ssn);
+                          double commission, double sales, String gender) {
+        super(name, address, ssn, gender);
         this.salary = salary;
         this.commission = commission;
         this.sales = sales;
@@ -82,9 +82,9 @@ public class SalaryEmployee extends Employee {
         if (line.length == 1){
             return;
         }
-        this.salary = Double.parseDouble(line[4]);
-        this.commission = Double.parseDouble(line[5]);
-        this.sales = Double.parseDouble(line[6]);
+        this.salary = Double.parseDouble(line[5]);
+        this.commission = Double.parseDouble(line[6]);
+        this.sales = Double.parseDouble(line[7]);
     }
 
     public void remove() {
@@ -94,7 +94,7 @@ public class SalaryEmployee extends Employee {
     public void write() {
         Utils.removeLine(Constants.SALARY_EMPLOYEE_DB, this.getId());
         String toWrite = this.getId() + "," + this.getName() + "," + this.getAddress() + "," +
-                this.getSsn() + "," + this.salary + "," + this.commission + "," + this.sales;
+                this.getSsn() + "," + this.salary + "," + this.commission + "," + this.sales + "," + this.getGender();
         Utils.appendLine(Constants.SALARY_EMPLOYEE_DB, toWrite);
     }
 }
