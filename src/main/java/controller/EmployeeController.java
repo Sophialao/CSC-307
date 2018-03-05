@@ -17,6 +17,11 @@ public class EmployeeController {
     //edit Employee
     //delete Employee
 
+    public void addEmployee() {
+
+
+    }
+
 
     public Employee addSalaryEmployee(String name, String address, int number, double salary,double commission, double sales) {
 
