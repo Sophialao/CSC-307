@@ -15,8 +15,8 @@ public class HourlyEmployee extends Employee {
     public HourlyEmployee() {
         super();
     }
-    public HourlyEmployee(String name, String address, int ssn, double rate) {
-        super(name, address, ssn);
+    public HourlyEmployee(String name, String address, int ssn, double rate, String gender) {
+        super(name, address, ssn, gender);
         this.rate = rate;
     }
 
@@ -63,13 +63,13 @@ public class HourlyEmployee extends Employee {
         if (line.length == 1){
             return;
         }
-        this.rate = Double.parseDouble(line[4]);
+        this.rate = Double.parseDouble(line[5]);
     }
 
     public void write() {
         Utils.removeLine(Constants.HOURLY_EMPLOYEE_DB, this.getId());
         String toWrite = this.getId() + "," + this.getName() + "," + this.getAddress() + "," +
-                this.getSsn() + "," + this.rate ;
+                this.getSsn() + "," + this.rate + "," + this.getGender();
         Utils.appendLine(Constants.HOURLY_EMPLOYEE_DB, toWrite);
     }
 
