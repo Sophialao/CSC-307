@@ -99,6 +99,7 @@ public class Timecard implements DbWritable {
 
     public void write() {
         Utils.removeLine(Constants.TIMECARD_DB, this.id);
+        System.out.println("writing atime card " + this.id + "," + this.eId + "," + this.timeIn + ","+this.timeOut);
         String toWrite = this.id + "," + this.eId + "," + this.timeIn.toString() + "," + this.timeOut.toString();
         Utils.appendLine(Constants.TIMECARD_DB, toWrite);
     }

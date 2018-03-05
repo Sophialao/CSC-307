@@ -47,8 +47,8 @@
         </rowConstraints>
          <children>
             <TextField fx:id="eId" GridPane.rowIndex="1" />
-             <DatePicker fx:id="timeIn" GridPane.rowIndex="2" />
-            <DatePicker fx:id="timeOut" GridPane.rowIndex="3" />
+             <TextField fx:id="timeInF" GridPane.rowIndex="2" />
+            <TextField fx:id="timeOutF" GridPane.rowIndex="3" />
          </children>
       </GridPane>
       <GridPane>
@@ -64,8 +64,8 @@
         </rowConstraints>
          <children>
              <Label text="Employee Id : " GridPane.columnIndex="1" GridPane.rowIndex="1"> </Label>
-             <Label text="Time in: " GridPane.columnIndex="1" GridPane.rowIndex="2"> </Label>
-              <Label text="Time out: " GridPane.columnIndex="1" GridPane.rowIndex="3"> </Label>
+             <Label text="Time in (YYYY-MM-DD HH:MM 24hr): " GridPane.columnIndex="1" GridPane.rowIndex="2"> </Label>
+              <Label text="Time out (YYYY-MM-DD HH:MM 24hr): " GridPane.columnIndex="1" GridPane.rowIndex="3"> </Label>
               <Text fx:id ="large" strokeType="OUTSIDE" strokeWidth="0.0" text="Upload a timecard" GridPane.columnIndex="1" />
          </children>
       </GridPane>
