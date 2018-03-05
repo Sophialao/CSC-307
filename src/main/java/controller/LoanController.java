@@ -6,6 +6,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
+import model.Employee;
 import model.Loan;
 
 public class LoanController {
@@ -18,17 +19,18 @@ public class LoanController {
     @FXML private TextField Duration;
 
 
+    @FXML protected void employeeForLoan(Employee emp){
+        actiontarget.setText(emp.getName());
+        eId.setText(emp.getId());
+    }
+
     @FXML protected void exampleButtonAction(ActionEvent event) {
         String id;
         double l;
         double interest;
         int duration;
 
-        if(eId.getText() == null) {
-            showAlert(Alert.AlertType.ERROR, "Form Error!",
-                    "Please enter employee Id");
-            return;
-        }
+
         if(LoanAmount.getText() == null) {
             showAlert(Alert.AlertType.ERROR, "Form Error!",
                     "Please enter loan amount");
@@ -81,7 +83,6 @@ public class LoanController {
 
         showAlert(Alert.AlertType.CONFIRMATION, "New loan added!",
                 "Loan added ");
-        eId.clear();
         LoanAmount.clear();
         InterestRate.clear();
         Duration.clear();

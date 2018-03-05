@@ -42,7 +42,6 @@
             <RowConstraints />
             </rowConstraints>
             <children>
-                <TextField fx:id="eId" GridPane.rowIndex="1" />
                 <TextField fx:id="LoanAmount" GridPane.rowIndex="2" />
                 <TextField fx:id="InterestRate" GridPane.rowIndex="3" />
                 <TextField fx:id="Duration" GridPane.rowIndex="4" />
@@ -61,7 +60,6 @@
             <RowConstraints />
             </rowConstraints>
             <children>
-                <Label text="Employee Id : " GridPane.columnIndex="1" GridPane.rowIndex="1"> </Label>
                 <Label text="Loan Amount: " wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2"> </Label>
                 <Label prefHeight="81.0" prefWidth="131.0" text="Interest Rate: " wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="3"> </Label>
                 <Label prefHeight="26.0" prefWidth="96.0" text="Duration: " wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="4"> </Label>
