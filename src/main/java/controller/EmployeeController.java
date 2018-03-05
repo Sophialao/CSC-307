@@ -1,10 +1,18 @@
 package controller;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import model.DbWritable;
 import model.Employee;
 import model.SalaryEmployee;
 import model.HourlyEmployee;
+import javafx.scene.control.ListView;
+import view.EmployeeView;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import javax.swing.text.html.parser.Entity;
+import java.util.*;
+
+import static javafx.application.Application.launch;
 
 public class EmployeeController {
 
@@ -74,34 +82,54 @@ public class EmployeeController {
         aHP.write();
     }
 
+    @FXML
+    ListView sLV;
+    @FXML
+    ListView hLV;
+    public void setData(){
+
+        Map<String, DbWritable> allS = SalaryEmployee.getAll();
+        List<SalaryEmployee> salaryEmployees = new ArrayList<SalaryEmployee>();
+        List<String> salaryEmployeeNames = new ArrayList<String>();
+
+        Iterator<String> it = allS.keySet().iterator();
+        while(it.hasNext()){
+            String key = it.next();
+            salaryEmployees.add((SalaryEmployee) allS.get(key));
+        }
+        for(int i =0;i<salaryEmployees.size();i++){
+
+            SalaryEmployee obj=salaryEmployees.get(i);
+            salaryEmployeeNames.add(obj.getName());
+        }
+
+        System.out.println(salaryEmployeeNames.toString());
+        ObservableList<String> items = FXCollections.observableArrayList (salaryEmployeeNames);
+        sLV.setItems(items);
+
+
+        Map<String, DbWritable> allH = HourlyEmployee.getAll();
+        List<HourlyEmployee> hourlyEmployees = new ArrayList<HourlyEmployee>();
+        List<String> hourlyEmployeeNames = new ArrayList<String>();
+
+        Iterator<String> it2 = allH.keySet().iterator();
+        while(it2.hasNext()){
+            String key2 = it2.next();
+            hourlyEmployees.add((HourlyEmployee) allH.get(key2));
+        }
+        for(int i =0;i<hourlyEmployees.size();i++){
+
+            HourlyEmployee obj2=hourlyEmployees.get(i);
+            hourlyEmployeeNames.add(obj2.getName());
+        }
+
+        System.out.println(hourlyEmployeeNames.toString());
+        ObservableList<String> items2 = FXCollections.observableArrayList (salaryEmployeeNames);
+        hLV.setItems(items2);
+    }
 
 
     public static void main(String [] args) {
-
-
-/*
-
-        EmployeeController ec = new EmployeeController();
-
-        ec.addSalaryEmployee("Pradeep Sangli", "Cal Poly", 123456, 1, "salary", 100000.00,0.10,5000);
-        ec.addSalaryEmployee("Sam Rastovich", "Cal Poly", 234567, 2, "salary", 100000.00,0.10,5000);
-        ec.addSalaryEmployee("Kelly Chen", "Cal Poly", 345678, 3, "salary", 100000.00,0.10,5000);
-        ec.addSalaryEmployee("Daniel Kim", "Cal Poly", 456789, 4, "salary", 100000.00,0.10,5000);
-        ec.getAllSEmployee();
-        ec.deleteEmployee(2);
-        ec.editSalaryEmployee("Pradeep Sangli", "LOCKHAVEN WAY", 123456, 1, "salary", 100000.00,0.10,5000);
-        ec.getSEmployee(1);
-        ec.getAllSEmployee();
-
-
-        ec.addHourlyEmployee("Pradeep Sangli", "CalPoly", 123456, 5, "hourly", 10.00);
-        ec.addHourlyEmployee("Sam Rastovich", "CalPoly", 123456, 6, "hourly", 10.00);
-        ec.addHourlyEmployee("Kelly Chen", "CalPoly", 123456, 7, "hourly", 10.00);
-        ec.addHourlyEmployee("Dankiel Kim", "CalPoly", 123456, 8, "hourly", 10.00);
-        ec.getAllHEmployee();
-        ec.deleteEmployee(5);
-        ec.getAllHEmployee();
-        */
 
     }
 
