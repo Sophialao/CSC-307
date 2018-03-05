@@ -45,7 +45,7 @@ public class TimecardController {
         }
         try {
             DateFormat df = new SimpleDateFormat("yyyy-MM-dd kk:mm");
-            Date tIn = df.parse(timeInF.getText());
+            tIn = df.parse(timeInF.getText());
             System.out.println("tIn " + tIn);
         }
         catch(Exception e) {
@@ -55,7 +55,7 @@ public class TimecardController {
         }
         try {
             DateFormat df = new SimpleDateFormat("yyyy-MM-dd kk:mm");
-            Date tOut = df.parse(timeOutF.getText());
+            tOut = df.parse(timeOutF.getText());
             System.out.println("tOut " + tOut);
             addTimecard(eId.getText(),tIn,tOut);
         }
@@ -65,8 +65,11 @@ public class TimecardController {
             return;
         }
         //addTimecard(eId.getText(),tIn,tOut);
-        showAlert(Alert.AlertType.CONFIRMATION,"New timecard submitted!",
+        showAlert(Alert.AlertType.CONFIRMATION, "New timecard submitted!",
                 "Timecard submitted ");
+        eId.clear();
+        timeInF.clear();
+        timeOutF.clear();
     }
     public void addTimecard(String eid, Date timeIn, Date timeOut) {
         Timecard tc = Timecard.getInstance(null);
