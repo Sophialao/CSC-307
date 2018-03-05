@@ -1,30 +1,12 @@
 package controller;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import model.DbWritable;
 import model.Employee;
 import model.SalaryEmployee;
 import model.HourlyEmployee;
-import view.EmployeeView;
 
-import javax.swing.text.html.parser.Entity;
-import java.util.*;
-
-import static javafx.application.Application.launch;
 
 public class EmployeeController {
-
-
-
-    public EmployeeController() {
-    }
-
-    //add Employee
-    //edit Employee
-    //delete Employee
-
 
     @FXML TextField firstName;
     @FXML TextField lastName;
@@ -36,6 +18,9 @@ public class EmployeeController {
     @FXML TextField rate;
     @FXML CheckBox hourlyCheck;
     @FXML CheckBox salaryCheck;
+
+    public EmployeeController() {
+    }
 
     public void addEmployee() {
         if (salaryCheck.isSelected()) {
@@ -49,6 +34,41 @@ public class EmployeeController {
                     Double.parseDouble(rate.getText()));
         }
 
+    }
+
+    public void setFields(Employee employee) {
+        System.out.println(employee.getName());
+        String[] name = employee.getName().split(" ");
+        firstName.setText(name[0]);
+        lastName.setText(name[1]);
+        ssn.setText(Integer.toString(employee.getSsn()));
+        if (employee instanceof SalaryEmployee) {
+            SalaryEmployee salary = (SalaryEmployee) employee;
+            salaryCheck.setSelected(true);
+            commission.setText(Double.toString(salary.getCommission()));
+            rate.setText(Double.toString(salary.getSalary()));
+        } else {
+            HourlyEmployee hourly = (HourlyEmployee) employee;
+            hourlyCheck.setSelected(true);
+            rate.setText(Double.toString(hourly.getRate()));
+        }
+    }
+
+    public void hourlyClicked() {
+        commission.setDisable(true);
+        salaryCheck.setSelected(false);
+    }
+
+    public void salaryClicked() {
+        commission.setDisable(false);
+        hourlyCheck.setSelected(false);
+    }
+
+    public void maleClicked() {
+        femaleButton.setSelected(false);
+    }
+    public void femaleClicked() {
+        maleButton.setSelected(false)   ;
     }
 
 
@@ -106,57 +126,6 @@ public class EmployeeController {
 
 
         aHP.write();
-    }
-
-    @FXML
-    ListView sLV;
-    @FXML
-    ListView hLV;
-    public void setData(){
-
-        Map<String, DbWritable> allS = SalaryEmployee.getAll();
-        List<SalaryEmployee> salaryEmployees = new ArrayList<SalaryEmployee>();
-        List<String> salaryEmployeeNames = new ArrayList<String>();
-
-        Iterator<String> it = allS.keySet().iterator();
-        while(it.hasNext()){
-            String key = it.next();
-            salaryEmployees.add((SalaryEmployee) allS.get(key));
-        }
-        for(int i =0;i<salaryEmployees.size();i++){
-
-            SalaryEmployee obj=salaryEmployees.get(i);
-            salaryEmployeeNames.add(obj.getName());
-        }
-
-        System.out.println(salaryEmployeeNames.toString());
-        ObservableList<String> items = FXCollections.observableArrayList (salaryEmployeeNames);
-        sLV.setItems(items);
-
-
-        Map<String, DbWritable> allH = HourlyEmployee.getAll();
-        List<HourlyEmployee> hourlyEmployees = new ArrayList<HourlyEmployee>();
-        List<String> hourlyEmployeeNames = new ArrayList<String>();
-
-        Iterator<String> it2 = allH.keySet().iterator();
-        while(it2.hasNext()){
-            String key2 = it2.next();
-            hourlyEmployees.add((HourlyEmployee) allH.get(key2));
-        }
-        for(int i =0;i<hourlyEmployees.size();i++){
-
-            HourlyEmployee obj2=hourlyEmployees.get(i);
-            hourlyEmployeeNames.add(obj2.getName());
-        }
-
-        System.out.println(hourlyEmployeeNames.toString());
-        ObservableList<String> items2 = FXCollections.observableArrayList (hourlyEmployeeNames);
-        hLV.setItems(items2);
-    }
-
-
-    public static void main(String [] args) {
-
     }
 
 }

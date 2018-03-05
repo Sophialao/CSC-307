@@ -10,7 +10,7 @@ public class EmployeeViewDriver extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/RealEmployeeView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/EmployeeView.fxml"));
 
         Scene scene = new Scene(root, 300, 275);
         stage.setTitle("Employee");
