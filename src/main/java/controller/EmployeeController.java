@@ -36,12 +36,12 @@ public class EmployeeController {
             gender = "F";
         }
         if (salaryCheck.isSelected()) {
-            this.addSalaryEmployee(name.getText(),
+            this.addSalaryEmployee(this.employee.getId(), name.getText(),
                     address.getText(), Integer.parseInt(ssn.getText()),
                     Double.parseDouble(rate.getText()), Double.parseDouble(commission.getText()),
                     0.0, gender);
         } else {
-            this.addHourlyEmployee(name.getText(),
+            this.addHourlyEmployee(this.employee.getId(), name.getText(),
                     address.getText(), Integer.parseInt(ssn.getText()),
                     Double.parseDouble(rate.getText()), gender);
         }
@@ -90,9 +90,9 @@ public class EmployeeController {
     }
 
 
-    public Employee addSalaryEmployee(String name, String address, int number, double salary,double commission, double sales, String gender) {
+    public Employee addSalaryEmployee(String eid, String name, String address, int number, double salary,double commission, double sales, String gender) {
 
-        SalaryEmployee s = SalaryEmployee.getInstance(null);
+        SalaryEmployee s = SalaryEmployee.getInstance(eid);
 
         s.setName(name);
         s.setAddress(address);
@@ -107,9 +107,9 @@ public class EmployeeController {
         return s;
     }
 
-    public Employee addHourlyEmployee(String name, String address, int ssn, double rate, String gender) {
+    public Employee addHourlyEmployee(String eid, String name, String address, int ssn, double rate, String gender) {
 
-        HourlyEmployee h = HourlyEmployee.getInstance(null);
+        HourlyEmployee h = HourlyEmployee.getInstance(eid);
 
         h.setName(name);
         h.setAddress(address);
@@ -125,7 +125,7 @@ public class EmployeeController {
         SalaryEmployee.getInstance(eid).remove();
     }
 
-    public void  editSalaryEmployee(String name, String address, int number, String eid, double salary,double commission, double sales){
+    public void editSalaryEmployee(String name, String address, int number, String eid, double salary,double commission, double sales){
             SalaryEmployee aSP= SalaryEmployee.getInstance(eid);
             aSP.setName(name);
             aSP.setAddress(address);
