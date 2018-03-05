@@ -1,16 +1,19 @@
 package controller;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import model.Employee;
 import model.SalaryEmployee;
 import model.HourlyEmployee;
+
+import java.awt.event.ActionEvent;
 
 
 public class EmployeeController {
 
     @FXML TextField firstName;
     @FXML TextField lastName;
-    @FXML TextField email;
+    @FXML TextField address;
     @FXML TextField ssn;
     @FXML RadioButton maleButton;
     @FXML RadioButton femaleButton;
@@ -22,18 +25,22 @@ public class EmployeeController {
     public EmployeeController() {
     }
 
-    public void addEmployee() {
+    public void addEmployee(ActionEvent event) {
+        String gender = "M";
+        if (femaleButton.isSelected()) {
+            gender = "F";
+        }
         if (salaryCheck.isSelected()) {
             this.addSalaryEmployee(firstName.getText() + " " + lastName.getText(),
-                    "23424342w", Integer.parseInt(ssn.getText()),
+                    address.getText(), Integer.parseInt(ssn.getText()),
                     Double.parseDouble(rate.getText()), Double.parseDouble(commission.getText()),
-                    0.0);
+                    0.0, gender);
         } else {
             this.addHourlyEmployee(firstName.getText() + " " + lastName.getText(),
-                    "23424342w", Integer.parseInt(ssn.getText()),
-                    Double.parseDouble(rate.getText()));
+                    address.getText(), Integer.parseInt(ssn.getText()),
+                    Double.parseDouble(rate.getText()), gender);
         }
-
+        ((Node) event.getSource()).getScene().getWindow().hide();
     }
 
     public void setFields(Employee employee) {
@@ -55,11 +62,13 @@ public class EmployeeController {
     }
 
     public void hourlyClicked() {
+        commission.setEditable(false);
         commission.setDisable(true);
         salaryCheck.setSelected(false);
     }
 
     public void salaryClicked() {
+        commission.setEditable(true);
         commission.setDisable(false);
         hourlyCheck.setSelected(false);
     }
@@ -72,7 +81,7 @@ public class EmployeeController {
     }
 
 
-    public Employee addSalaryEmployee(String name, String address, int number, double salary,double commission, double sales) {
+    public Employee addSalaryEmployee(String name, String address, int number, double salary,double commission, double sales, String gender) {
 
         SalaryEmployee s = SalaryEmployee.getInstance(null);
 
@@ -82,13 +91,14 @@ public class EmployeeController {
         s.setSalary(salary);
         s.setCommission(commission);
         s.setSales(sales);
+        s.setGender(gender);
 
         s.write();
 
         return s;
     }
 
-    public Employee addHourlyEmployee(String name, String address, int ssn, double rate) {
+    public Employee addHourlyEmployee(String name, String address, int ssn, double rate, String gender) {
 
         HourlyEmployee h = HourlyEmployee.getInstance(null);
 
@@ -96,6 +106,7 @@ public class EmployeeController {
         h.setAddress(address);
         h.setSsn(ssn);
         h.setRate(rate);
+        h.setGender(gender);
 
         h.write();
         return h;
