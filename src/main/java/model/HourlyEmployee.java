@@ -69,7 +69,7 @@ public class HourlyEmployee extends Employee {
     public void write() {
         Utils.removeLine(Constants.HOURLY_EMPLOYEE_DB, this.getId());
         String toWrite = this.getId() + "," + this.getName() + "," + this.getAddress() + "," +
-                this.getGender() + "," + this.getSsn() + "," + this.rate;
+                this.getSsn() + "," + this.getGender() + "," + this.rate;
         Utils.appendLine(Constants.HOURLY_EMPLOYEE_DB, toWrite);
     }
 

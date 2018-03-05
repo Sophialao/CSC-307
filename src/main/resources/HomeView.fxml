@@ -36,5 +36,10 @@
       </Label>
       <Label prefHeight="35.0" prefWidth="101.0" text="       Hourly" GridPane.columnIndex="4" />
       <Button fx:id="addEmployeeButton" mnemonicParsing="false" onAction="#addEmployeeClicked" prefHeight="27.0" prefWidth="110.0" text="Add" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+      <Button mnemonicParsing="false" onAction="#refreshPage" text="Refresh" GridPane.columnIndex="5">
+         <GridPane.margin>
+            <Insets left="40.0" />
+         </GridPane.margin>
+      </Button>
    </children>
 </GridPane>

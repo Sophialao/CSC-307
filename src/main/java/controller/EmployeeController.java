@@ -16,8 +16,7 @@ import java.io.IOException;
 
 public class EmployeeController {
 
-    @FXML TextField firstName;
-    @FXML TextField lastName;
+    @FXML TextField name;
     @FXML TextField address;
     @FXML TextField ssn;
     @FXML RadioButton maleButton;
@@ -36,12 +35,12 @@ public class EmployeeController {
             gender = "F";
         }
         if (salaryCheck.isSelected()) {
-            this.addSalaryEmployee(firstName.getText() + " " + lastName.getText(),
+            this.addSalaryEmployee(name.getText(),
                     address.getText(), Integer.parseInt(ssn.getText()),
                     Double.parseDouble(rate.getText()), Double.parseDouble(commission.getText()),
                     0.0, gender);
         } else {
-            this.addHourlyEmployee(firstName.getText() + " " + lastName.getText(),
+            this.addHourlyEmployee(name.getText(),
                     address.getText(), Integer.parseInt(ssn.getText()),
                     Double.parseDouble(rate.getText()), gender);
         }
@@ -68,11 +67,14 @@ public class EmployeeController {
     }
 
     public void setFields(Employee employee) {
-        System.out.println(employee.getName());
-        String[] name = employee.getName().split(" ");
-        firstName.setText(name[0]);
-        lastName.setText(name[1]);
         ssn.setText(Integer.toString(employee.getSsn()));
+        name.setText(employee.getName());
+        address.setText(employee.getAddress());
+        if (employee.getGender().equals("M")) {
+            maleButton.setSelected(true);
+        } else {
+            femaleButton.setSelected(true);
+        }
         if (employee instanceof SalaryEmployee) {
             SalaryEmployee salary = (SalaryEmployee) employee;
             salaryCheck.setSelected(true);

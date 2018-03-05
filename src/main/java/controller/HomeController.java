@@ -43,6 +43,10 @@ public class HomeController {
         this.initializeEmployee(event, null);
     }
 
+    public void refreshPage() {
+        this.setData();
+    }
+
 
     public void initializeEmployee(ActionEvent event, Employee employee) {
         try {
