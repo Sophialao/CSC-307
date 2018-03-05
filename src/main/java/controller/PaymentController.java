@@ -22,8 +22,8 @@ public class PaymentController {
 
 
     public PaymentController(){
-    	this.invoke_hourly = true;
-    	this.invoke_month = true;
+    	this.invoke_hourly = false;
+    	this.invoke_month = false;
 	}
 
     public PaymentController(boolean invoke_month, boolean invoke_hourly){
@@ -34,8 +34,13 @@ public class PaymentController {
 	@FXML private Text actiontarget;
 
 	@FXML protected void handleSubmitButtonAction(ActionEvent event) {
-		calculatePayment();
-		actiontarget.setText("Paid!");
+		if (!checkLastDateofMonth() && !checkMonday()){
+			actiontarget.setText("Not payday for any employees!");
+		}
+		else{
+			calculatePayment();
+			actiontarget.setText("Paid!");
+		}
 	}
 
 	public static void calculatePayment() {
@@ -145,7 +150,9 @@ public class PaymentController {
 	}
 
 	public static double calculateCommission(SalaryEmployee e){
-		return e.getSales() * e.getCommission();
+		double sales = e.getSales();
+		e.setSales(0.0);
+		return sales * e.getCommission();
 	}
 
 	public static double calculateLoans(Employee e){

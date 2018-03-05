@@ -6,17 +6,16 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class PaymentDriver extends Application{
+public class LoanDriver extends Application{
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/PaymentView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/LoanView.fxml"));
 
         Scene scene = new Scene(root, 300, 275);
-        stage.setTitle("Payment");
+        stage.setTitle("Loan");
         stage.setScene(scene);
         stage.show();
     }
-
 
     public static void main(String[] args) {
         launch(args);

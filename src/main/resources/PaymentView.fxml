@@ -19,7 +19,7 @@
   </rowConstraints>
    <children>
        <Text fx:id="actiontarget"
-             GridPane.columnIndex="1" GridPane.rowIndex="6"/>
-      <ToggleButton mnemonicParsing="false" onAction="#handleSubmitButtonAction" prefHeight="27.0" prefWidth="329.0" text="Pay!" GridPane.rowIndex="1" />
+             GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+      <ToggleButton mnemonicParsing="false" onAction="#handleSubmitButtonAction" prefHeight="27.0" prefWidth="329.0" text="Pay!" GridPane.columnIndex="1" GridPane.rowIndex="1" />
    </children>
 </GridPane>
