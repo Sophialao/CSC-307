@@ -4,3 +4,4 @@
 f35dfdca-d7e1-4c33-9d96-04bdcebe52b7,Kelly,SLO,1234,F,100000.0,0.1,0.0
 c4d8bf90-dbd1-43aa-a328-a9d581bce8ad,Kelly,SLO,1234,F,100000.0,0.1,0.0
 12768bbc-6b4b-4d52-9045-7c8b81800cfa,Bob,jkfdlfdf,1324,M,200000.0,0.2,0.0
+a3932980-320c-4bf3-8ca6-e401392f4c0d,Kelly,SLO,1234,F,1000.0,0.1,20.0

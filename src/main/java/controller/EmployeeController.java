@@ -22,6 +22,7 @@ public class EmployeeController {
     @FXML RadioButton maleButton;
     @FXML RadioButton femaleButton;
     @FXML TextField commission;
+    @FXML TextField sales;
     @FXML TextField rate;
     @FXML CheckBox hourlyCheck;
     @FXML CheckBox salaryCheck;
@@ -41,12 +42,12 @@ public class EmployeeController {
                 this.addSalaryEmployee(null, name.getText(),
                         address.getText(), Integer.parseInt(ssn.getText()),
                         Double.parseDouble(rate.getText()), Double.parseDouble(commission.getText()),
-                        0.0, gender);
+                        Double.parseDouble(sales.getText()), gender);
             } else {
                 this.addSalaryEmployee(this.employee.getId(), name.getText(),
                         address.getText(), Integer.parseInt(ssn.getText()),
                         Double.parseDouble(rate.getText()), Double.parseDouble(commission.getText()),
-                        0.0, gender);
+                        Double.parseDouble(sales.getText()), gender);
             }
         } else {
             if (this.employee == null) {
@@ -152,6 +153,8 @@ public class EmployeeController {
     public void salaryClicked() {
         commission.setEditable(true);
         commission.setDisable(false);
+        sales.setEditable(true);
+        sales.setDisable(false);
         hourlyCheck.setSelected(false);
     }
 
