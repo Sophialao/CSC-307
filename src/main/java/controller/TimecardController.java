@@ -75,7 +75,7 @@ public class TimecardController {
         }
         //addTimecard(eId.getText(),tIn,tOut);
         showAlert(Alert.AlertType.CONFIRMATION, "New timecard submitted!",
-                "Timecard submitted ");
+                "Timecard submitted: \n" + "timeIn: " + tIn + "\ntimeOut: " + tOut);
 
         timeInF.clear();
         timeOutF.clear();

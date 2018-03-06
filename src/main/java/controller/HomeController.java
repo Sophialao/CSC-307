@@ -8,12 +8,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import model.DbWritable;
 import model.Employee;
+import model.Payment;
 import model.HourlyEmployee;
 import model.SalaryEmployee;
 
@@ -23,6 +27,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Date;
+import java.util.Calendar;
+import javafx.scene.text.*;
+
 
 public class HomeController {
     @FXML ListView sLV;
@@ -49,7 +57,33 @@ public class HomeController {
 
     public void payEmployee(ActionEvent event) {
         PaymentController controller = new PaymentController();
-        controller.handleSubmitButtonAction(event);
+        if (controller.handleSubmitButtonAction(event)){
+            String pays = "";
+            Map<String, DbWritable> payments = Payment.getAll();
+            for (String key : payments.keySet()){
+                Payment p = (Payment)payments.get(key);
+                Date today = new Date();
+                Calendar cal1 = Calendar.getInstance();
+                Calendar cal2 = Calendar.getInstance();
+                cal1.setTime(p.getDate());
+                cal2.setTime(today);
+                boolean sameDay = cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) &&
+                        cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR);
+                if (sameDay){
+                    Employee e = HourlyEmployee.getInstance(p.getEmployeeId());
+                    if (e == null){
+                        e = SalaryEmployee.getInstance(p.getEmployeeId());
+                    }
+                    pays += (e.getName()+ " : " + Double.toString(p.getAmount()) + "\n");
+                }
+            }
+            showAlert(Alert.AlertType.CONFIRMATION, "Success: Paid Employees",
+                    pays);
+        }
+        else{
+            showAlert(Alert.AlertType.ERROR, "Error",
+                    "Not payday for any employees!");
+        }
     }
 
 
@@ -121,5 +155,25 @@ public class HomeController {
 
         ObservableList<HourlyEmployee> items2 = FXCollections.observableArrayList (hourlyEmployees);
         hLV.setItems(items2);
+    }
+
+    public static void showAlert(Alert.AlertType alertType, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        if (title.equals("Success: Paid Employees")) {
+            alert.setHeaderText("Payments:");
+            Text t = new Text(message);
+            ScrollPane scrollPane = new ScrollPane();
+            //scrollPane.setFitToHeight(true);
+            //scrollPane.setFitToWidth(true);
+            scrollPane.setContent(t);
+            alert.getDialogPane().setContent(scrollPane);
+            alert.getDialogPane().setPrefSize(480, 320);
+        }
+        else{
+            alert.setContentText(message);
+        }
+        alert.show();
     }
 }

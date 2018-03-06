@@ -75,7 +75,7 @@ public class LoanController {
         new_loan.write();
 
         showAlert(Alert.AlertType.CONFIRMATION, "New loan added!",
-                "Loan added ");
+                "Loan added: \n" + "Amount: " + LoanAmount.getText() + "\nInterest Rate: " + InterestRate.getText() + "\nDuration: " + Duration.getText());
         LoanAmount.clear();
         InterestRate.clear();
         Duration.clear();

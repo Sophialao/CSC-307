@@ -59,11 +59,17 @@ public class EmployeeController {
                         Double.parseDouble(rate.getText()), gender);
             }
         }
+        showAlert(Alert.AlertType.CONFIRMATION, "Success",
+                "Employee " + this.employee.getName() + " added!");
         ((Node) event.getSource()).getScene().getWindow().hide();
     }
 
-    public void removeEmployee() {
+    public void removeEmployee(ActionEvent event) {
         this.deleteEmployee(this.employee.getId());
+        showAlert(Alert.AlertType.CONFIRMATION, "Success",
+                "Employee " + this.employee.getName() + " removed!");
+        ((Node) event.getSource()).getScene().getWindow().hide();
+
     }
 
 
@@ -189,7 +195,12 @@ public class EmployeeController {
     }
 
     public void deleteEmployee(String eid){
-        SalaryEmployee.getInstance(eid).remove();
+        if (this.employee instanceof HourlyEmployee){
+            HourlyEmployee.getInstance(eid).remove();
+        }
+        else{
+            SalaryEmployee.getInstance(eid).remove();
+        }
     }
 
     public void editSalaryEmployee(String name, String address, int number, String eid, double salary,double commission, double sales){
@@ -213,6 +224,14 @@ public class EmployeeController {
 
 
         aHP.write();
+    }
+
+    public static void showAlert(Alert.AlertType alertType, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.show();
     }
 
 }
