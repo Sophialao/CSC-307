@@ -135,7 +135,13 @@ public class EmployeeController {
         if (employee instanceof SalaryEmployee) {
             SalaryEmployee salary = (SalaryEmployee) employee;
             salaryCheck.setSelected(true);
+            // shows commission and sales
+            commission.setEditable(true);
+            commission.setDisable(false);
+            sales.setEditable(true);
+            sales.setDisable(false);
             commission.setText(Double.toString(salary.getCommission()));
+            sales.setText(Double.toString(salary.getSales()));
             rate.setText(Double.toString(salary.getSalary()));
         } else {
             HourlyEmployee hourly = (HourlyEmployee) employee;
@@ -147,6 +153,8 @@ public class EmployeeController {
     public void hourlyClicked() {
         commission.setEditable(false);
         commission.setDisable(true);
+        sales.setEditable(false);
+        sales.setDisable(true);
         salaryCheck.setSelected(false);
     }
 
