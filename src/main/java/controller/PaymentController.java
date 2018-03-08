@@ -169,6 +169,8 @@ public class PaymentController {
 			return 0.0;
 		}
 
+		double each_month_pay_total = 0.0;
+
 		for (String key : e_loans.keySet()) {
 			Loan e_loan = (Loan) e_loans.get(key);
 			if (e_loan.getEmployeeId() == null){
@@ -182,11 +184,12 @@ public class PaymentController {
 				e_loan.setAmount(e_loan.getAmount() - each_month);
 				e_loan.setDuration(e_loan.getDuration() - 1);
 				e_loan.write();
+				each_month_pay_total += each_month_pay;
 				//System.out.println("LOAN PAY:" + each_month_pay);
-				return each_month_pay;
 			}
 		}
-		return 0.0;
+
+		return each_month_pay_total;
 	}
 
 	public static double calculateTaxes(double before_tax_pay, Employee e){
