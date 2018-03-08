@@ -1,17 +1,23 @@
 package controller;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import model.Employee;
-import model.SalaryEmployee;
-import model.HourlyEmployee;
+import model.*;
+import javafx.geometry.Pos;
+import javafx.scene.text.*;
+
 
 import java.io.IOException;
+import java.util.Map;
 
 
 public class EmployeeController {
@@ -27,7 +33,11 @@ public class EmployeeController {
     @FXML CheckBox hourlyCheck;
     @FXML CheckBox salaryCheck;
     @FXML Button deleteButton;
-    private Employee employee;
+
+    @FXML Text loans;
+    @FXML Text timecards;
+
+    public Employee employee;
 
     public EmployeeController() {
     }
@@ -74,54 +84,6 @@ public class EmployeeController {
     }
 
 
-    public void initializeTimecard(ActionEvent event){
-        this.initializeTimecard2(event, employee);
-    }
-
-    public void initializeTimecard2(ActionEvent event, Employee employee){
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/TimecardView.fxml"));
-            Parent root = loader.load();
-
-            Stage stage = new Stage();
-            stage.setTitle("Timecard");
-            stage.setScene(new Scene(root, 700, 700));
-            stage.show();
-
-            if (employee != null) {
-                TimecardController tc_controller = loader.getController();
-                tc_controller.employeeForTimecard(employee);
-            }
-            ((Node) event.getSource()).getScene().getWindow().hide();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void initializeLoan(ActionEvent event){
-        this.initializeLoan2(event, employee);
-    }
-
-    public void initializeLoan2(ActionEvent event, Employee employee){
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LoanView.fxml"));
-            Parent root = loader.load();
-
-            Stage stage = new Stage();
-            stage.setTitle("Loan");
-            stage.setScene(new Scene(root, 700, 700));
-            stage.show();
-
-            if (employee != null) {
-                LoanController tc_controller = loader.getController();
-                tc_controller.employeeForLoan(employee);
-            }
-            ((Node) event.getSource()).getScene().getWindow().hide();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     public void setFields(Employee employee) {
         this.employee = employee;
         ssn.setText(Integer.toString(employee.getSsn()));
@@ -148,6 +110,7 @@ public class EmployeeController {
             hourlyCheck.setSelected(true);
             rate.setText(Double.toString(hourly.getRate()));
         }
+
     }
 
     public void hourlyClicked() {
@@ -244,5 +207,8 @@ public class EmployeeController {
         alert.setContentText(message);
         alert.show();
     }
+
+
+
 
 }
