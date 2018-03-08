@@ -40,6 +40,8 @@ public class HomeController {
     public void editSalaryEmployeeClicked(ActionEvent event) {
         emp = (Employee) sLV.getSelectionModel().getSelectedItem();
         this.initializeEmployee(event, emp);
+        //EmployeeController ec = new EmployeeController();
+        //ec.initializeTab();
     }
 
     public void editHourlyEmployeeClicked(ActionEvent event) {
@@ -89,7 +91,7 @@ public class HomeController {
 
     public void initializeEmployee(ActionEvent event, Employee employee) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/EmployeeView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/EmployeeTotalView.fxml"));
             Parent root = loader.load();
 
             Stage stage = new Stage();
@@ -98,8 +100,9 @@ public class HomeController {
             stage.show();
 
             if (employee != null) {
-                EmployeeController controller = loader.getController();
-                controller.setFields(employee);
+                EmployeeTotal controller = loader.getController();
+                controller.empController.setFields(employee);
+                //controller.setFields(employee);
             }
         } catch (IOException e) {
             e.printStackTrace();

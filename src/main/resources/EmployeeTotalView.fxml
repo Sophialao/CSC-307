@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.EmployeeTotal"
+            prefHeight="400.0" prefWidth="700.0">
+
+    <TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+            <Tab text="Personal Info">
+                <fx:include fx:id="emp" source="EmployeeView.fxml"/>
+            </Tab>
+            <Tab fx:id="timecard_tab" text="Timecards" onSelectionChanged="#initializeTimecardAll1">
+                <content>
+                    <fx:include fx:id="employeeTimecards" source="EmployeeTimecards.fxml"/>
+                </content>
+            </Tab>
+            <Tab fx:id="loan_tab" text="Loans" onSelectionChanged="#initializeLoanAll1">
+                <content>
+                    <fx:include fx:id="employeeLoans" source="EmployeeLoans.fxml"/>
+                </content>
+            </Tab>
+        </tabs>
+    </TabPane>
+</AnchorPane>
