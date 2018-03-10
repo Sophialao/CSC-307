@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="467.0" prefWidth="832.0" style="-fx-background-color: #ffff;" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
+   <children>
+      <AnchorPane layoutX="479.0" layoutY="14.0" prefHeight="439.0" prefWidth="315.0" style="-fx-background-color: #D8D8D8;">
+         <children>
+            <TextField layoutX="36.0" layoutY="120.0" prefHeight="26.0" prefWidth="235.0" promptText="username" />
+            <PasswordField layoutX="35.0" layoutY="207.0" prefHeight="26.0" prefWidth="235.0" promptText="password" />
+            <Button fx:id="loginButton" layoutX="38.0" layoutY="301.0" mnemonicParsing="false" onAction="#goToHome" prefHeight="26.0" prefWidth="229.0" text="Log In" />
+            <Label layoutX="112.0" layoutY="34.0" prefHeight="50.0" prefWidth="84.0" text="Sign In">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Label>
+            <Button fx:id="signUpButton" layoutX="38.0" layoutY="353.0" mnemonicParsing="false" onAction="#goToSignUp" prefHeight="26.0" prefWidth="229.0" text="Sign Up" />
+         </children>
+      </AnchorPane>
+      <ImageView fitHeight="418.0" fitWidth="463.0" layoutX="14.0" layoutY="105.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@sammoney.jpg" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" contentDisplay="TOP" layoutX="21.0" layoutY="25.0" prefHeight="35.0" prefWidth="420.0" text="Golden Soft" textFill="#59e801">
+         <font>
+            <Font size="53.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
