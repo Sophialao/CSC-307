@@ -6,14 +6,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class LoginView extends Application{
+public class LoginDriver extends Application{
 
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/LoginView.fxml"));
 
         Scene scene = new Scene(root, 300, 275);
-        stage.setTitle("Employee");
+        stage.setTitle("Login");
         stage.setScene(scene);
         stage.show();
     }

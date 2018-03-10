@@ -7,6 +7,7 @@ public class Constants {
     public final static String TIMECARD_DB = "mock_db/timecard.txt";
     public final static String PAYMENT_DB = "mock_db/payment.txt";
     public final static String LOAN_DB = "mock_db/loan.txt";
+    public final static String LOGIN_DB = "mock_db/login.txt";
 
     public final static String HOURLY = "hourly";
     public final static String SALARIED = "salaried";
