@@ -33,6 +33,7 @@ public class EmployeeController {
     @FXML CheckBox hourlyCheck;
     @FXML CheckBox salaryCheck;
     @FXML Button deleteButton;
+    @FXML TextField sickdays;
 
     @FXML Text loans;
     @FXML Text timecards;
