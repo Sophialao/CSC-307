@@ -56,6 +56,8 @@ public class LoginController {
             stage.setScene(new Scene(root, 800, 460));
             stage.show();
 
+            HomeController controller = loader.getController();
+            controller.setData();
 
 
 
