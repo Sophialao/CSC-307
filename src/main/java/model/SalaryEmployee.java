@@ -1,8 +1,11 @@
 package model;
 
 import util.Constants;
-import util.Utils;
+import util.DbUtils;
 
+import javax.xml.transform.Result;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Map;
 
 public class SalaryEmployee extends Employee {
@@ -15,8 +18,8 @@ public class SalaryEmployee extends Employee {
         super();
     }
     public SalaryEmployee(String name, String address, int ssn, double salary,
-                          double commission, double sales, String gender) {
-        super(name, address, ssn, gender);
+                          double commission, double sales, String gender, int sickDays) {
+        super(name, address, ssn, gender, sickDays);
         this.salary = salary;
         this.commission = commission;
         this.sales = sales;
@@ -26,20 +29,12 @@ public class SalaryEmployee extends Employee {
         if (id == null)
             return new SalaryEmployee();
         else {
-            String[] db = Utils.readLine(Constants.SALARY_EMPLOYEE_DB, id);
-            if (db != null) {
-                SalaryEmployee empl = new SalaryEmployee();
-                empl.readFields(db);
-                empl.setId(id);
-                return empl;
-            }
-            return new SalaryEmployee();
+            return (SalaryEmployee) DbUtils.getObject(SalaryEmployee.class, id, Constants.SALARY_EMPLOYEE_DB);
         }
     }
 
     public static Map<String, DbWritable> getAll() {
-        Map<String, DbWritable> db = Utils.parseFile(Constants.SALARY_EMPLOYEE_DB, SalaryEmployee.class);
-
+        Map<String, DbWritable> db = DbUtils.getAll(SalaryEmployee.class, Constants.SALARY_EMPLOYEE_DB);
         return db;
     }
 
@@ -77,24 +72,38 @@ public class SalaryEmployee extends Employee {
         return salary/52 + sales * commission;
     }
 
-    public void readFields(String[] line) {
-        super.readFields(line);
-        if (line.length == 1){
-            return;
-        }
-        this.salary = Double.parseDouble(line[5]);
-        this.commission = Double.parseDouble(line[6]);
-        this.sales = Double.parseDouble(line[7]);
+    public void readFields(ResultSet res) throws SQLException {
+        super.readFields(res);
+        this.setSalary(res.getDouble("salary"));
+        this.setCommission(res.getDouble("commission"));
+        this.setSales(res.getDouble("sales"));
     }
 
-    public void remove() {
-        Utils.removeLine(Constants.SALARY_EMPLOYEE_DB, this.getId());
+    public void update() {
+        String stmt = "UPDATE " + Constants.SALARY_EMPLOYEE_DB + " SET ";
+        stmt += "name = " + this.getName() + ", ";
+        stmt += "address = " + this.getAddress() + ", ";
+        stmt += "ssn = " + this.getSsn() + ", ";
+        stmt += "gender = " + this.getGender() + ", ";
+        stmt += "sickDays = " + this.getSickDays() + ", ";
+        stmt += "rate = " + this.getSalary() + ", ";
+        stmt += "commission = " + this.getCommission() + ", ";
+        stmt += "sales = " + this.getSales() + ", ";
+        stmt += " WHERE id = '" + this.getId() +"';";
+        DbUtils.insertOrDelete(stmt);
     }
 
     public void write() {
-        Utils.removeLine(Constants.SALARY_EMPLOYEE_DB, this.getId());
-        String toWrite = this.getId() + "," + this.getName() + "," + this.getAddress() + "," +
-                this.getSsn() + "," + this.getGender() + "," + this.salary + "," + this.commission + "," + this.sales;
-        Utils.appendLine(Constants.SALARY_EMPLOYEE_DB, toWrite);
+        String stmt = "INSERT INTO " + Constants.SALARY_EMPLOYEE_DB + "(name, address, ssn, gender, sickDays, " +
+                "rate, commission, sales) VALUES (";
+        stmt += this.getName() + ", " + this.getAddress() + ", " + this.getSsn() + this.getGender() + ", " +
+                this.getSickDays() + ", " + this.getSalary() + ", " + this.getCommission() + ", " +
+                this.getSales() + ");";
+        DbUtils.insertOrDelete(stmt);
+    }
+
+    public void remove() {
+        String stmt = "DELETE FROM " + Constants.SALARY_EMPLOYEE_DB + " WHERE id = '" + this.getId() + "';";
+        DbUtils.insertOrDelete(stmt);
     }
 }

@@ -1,5 +1,7 @@
 package model;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.UUID;
 
 public abstract class Employee implements DbWritable {
@@ -8,12 +10,14 @@ public abstract class Employee implements DbWritable {
     private int ssn;
     private String id;
     private String gender;
+    private int sickDays;
 
-    public Employee(String name, String address, int ssn, String gender) {
+    public Employee(String name, String address, int ssn, String gender, int sickDaysa) {
         this.name = name;
         this.address = address;
         this.ssn = ssn;
         this.gender = gender;
+        this.sickDays = sickDays;
         this.id = UUID.randomUUID().toString();
     }
     public Employee () {
@@ -56,15 +60,21 @@ public abstract class Employee implements DbWritable {
 
     public void setGender(String gender) { this.gender = gender; }
 
-    public void readFields(String[] args) {
-        if (args.length == 1){
-            return;
-        }
-        this.id = args[0];
-        this.name = args[1];
-        this.address = args[2];
-        this.ssn = Integer.parseInt(args[3]);
-        this.gender = args[4];
+    public int getSickDays() {
+        return sickDays;
+    }
+
+    public void setSickDays(int sickDays) {
+        this.sickDays = sickDays;
+    }
+
+    public void readFields(ResultSet res) throws SQLException {
+        this.setId(res.getString("id"));
+        this.setName(res.getString("name"));
+        this.setAddress(res.getString("address"));
+        this.setSsn(res.getInt("ssn"));
+        this.setGender(res.getString("gender"));
+        this.setSickDays(res.getInt("sickDays"));
     }
 
     public abstract void write();

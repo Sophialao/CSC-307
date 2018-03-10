@@ -1,8 +1,10 @@
 package model;
 
 import util.Constants;
-import util.Utils;
+import util.DbUtils;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Map;
 import java.util.UUID;
 
@@ -30,21 +32,12 @@ public class Loan implements DbWritable {
         if (id == null)
             return new Loan();
         else {
-            String[] db = Utils.readLine(Constants.LOAN_DB, id);
-            System.out.println(db);
-            if (db != null) {
-                Loan loan = new Loan();
-                loan.readFields(db);
-                loan.setId(id);
-                return loan;
-            }
-            return new Loan();
+            return (Loan) DbUtils.getObject(Loan.class, id, Constants.LOAN_DB);
         }
     }
 
     public static Map<String, DbWritable> getAll() {
-        Map<String, DbWritable> db = Utils.parseFile(Constants.LOAN_DB, Loan.class);
-
+        Map<String, DbWritable> db = DbUtils.getAll(Loan.class, Constants.LOAN_DB);
         return db;
     }
 
@@ -88,21 +81,33 @@ public class Loan implements DbWritable {
         this.duration = duration;
     }
 
-    public void readFields(String[] args) {
-        if (args.length == 1){
-            return;
-        }
-        this.id = args[0];
-        this.employeeId = args[1];
-        this.amount = Double.parseDouble(args[2]);
-        this.interestRate = Double.parseDouble(args[3]);
-        this.duration = Integer.parseInt(args[4]);
+    public void readFields(ResultSet res) throws SQLException {
+        this.setId(res.getString("id"));
+        this.setAmount(res.getDouble("amount"));
+        this.setDuration(res.getInt("duration"));
+        this.setEmployeeId(res.getString("employeeId"));
+        this.setInterestRate(res.getDouble("interestRate"));
+    }
+
+    public void update() {
+        String stmt = "UPDATE " + Constants.LOAN_DB + " SET ";
+        stmt += "amount = " + this.getAmount() + ", ";
+        stmt += "interestRate = " + this.getInterestRate() + ", ";
+        stmt += "duration = " + this.getDuration() + ", ";
+        stmt += "employeeId = " + this.getEmployeeId();
+        stmt += " WHERE id = '" + this.getId() +"';";
+        DbUtils.insertOrDelete(stmt);
     }
 
     public void write() {
-        Utils.removeLine(Constants.LOAN_DB, this.getId());
-        String toWrite = this.id + "," + this.employeeId + "," + this.amount + "," + this.interestRate +
-                "," + this.duration;
-        Utils.appendLine(Constants.LOAN_DB, toWrite);
+        String stmt = "INSERT INTO " + Constants.LOAN_DB + "(amount, interestRate, duration, employeeId) VALUES (";
+        stmt += this.getAmount() + ", " + this.getInterestRate() + ", " + this.getDuration() + ", " +
+                this.getEmployeeId() + ");";
+        DbUtils.insertOrDelete(stmt);
+    }
+
+    public void remove() {
+        String stmt = "DELETE FROM " + Constants.LOAN_DB + " WHERE id = '" + this.getId() + "';";
+        DbUtils.insertOrDelete(stmt);
     }
 }
