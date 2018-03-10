@@ -81,7 +81,7 @@ public class TimecardController {
         timeOutF.clear();
         ((Node) event.getSource()).getScene().getWindow().hide();
     }
-    public void addTimecard(String eid, Date timeIn, Date timeOut) {
+    public Timecard addTimecard(String eid, Date timeIn, Date timeOut) {
         Timecard tc = Timecard.getInstance(null);
         tc.setEId(eid);
         System.out.println("timeIn " + timeIn);
@@ -89,6 +89,7 @@ public class TimecardController {
         tc.setTimeIn(timeIn);
         tc.setTimeOut(timeOut);
         tc.write();
+        return tc;
     }
     public static void showAlert(Alert.AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType);

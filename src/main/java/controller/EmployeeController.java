@@ -33,6 +33,7 @@ public class EmployeeController {
     @FXML CheckBox hourlyCheck;
     @FXML CheckBox salaryCheck;
     @FXML Button deleteButton;
+    @FXML TextField sickdays;
 
     @FXML Text loans;
     @FXML Text timecards;
@@ -49,7 +50,7 @@ public class EmployeeController {
         }
         if (salaryCheck.isSelected()) {
             if (this.employee == null) {
-                this.addSalaryEmployee(null, name.getText(),
+                this.employee = this.addSalaryEmployee(null, name.getText(),
                         address.getText(), Integer.parseInt(ssn.getText()),
                         Double.parseDouble(rate.getText()), Double.parseDouble(commission.getText()),
                         Double.parseDouble(sales.getText()), gender);
@@ -61,7 +62,7 @@ public class EmployeeController {
             }
         } else {
             if (this.employee == null) {
-                this.addHourlyEmployee(null, name.getText(),
+                this.employee = this.addHourlyEmployee(null, name.getText(),
                         address.getText(), Integer.parseInt(ssn.getText()),
                         Double.parseDouble(rate.getText()), gender);
             } else {
@@ -150,7 +151,6 @@ public class EmployeeController {
         s.setGender(gender);
 
         s.write();
-
         return s;
     }
 

@@ -32,7 +32,7 @@ public class EmployeeTimecardsController {
                 all_timecards += ("\tTime In: " + t.getTimeIn() + " Time Out: " + t.getTimeOut() + "\n");
             }
         }
-        if (all_timecards == ""){
+        if (all_timecards == "\n\n\n"){
             timecards.setText("\n\n\n\tNo timecards");
         }
         else {
