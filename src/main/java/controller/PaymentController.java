@@ -33,14 +33,35 @@ public class PaymentController {
 
 	@FXML private Text actiontarget;
 
-	@FXML protected boolean handleSubmitButtonAction(ActionEvent event) {
+	@FXML protected String handleSubmitButtonAction(ActionEvent event) {
 		if (!checkLastDateofMonth() && !checkMonday()){
-			return false;
+			return "Not Payday";
+		}
+		else if (checkPaid()){
+			return "Already Paid";
 		}
 		else{
 			calculatePayment();
-			return true;
+			return "Paid";
 		}
+	}
+
+	public static boolean checkPaid(){
+		Map<String, DbWritable> payments = Payment.getAll();
+		for (String key : payments.keySet()){
+			Payment p = (Payment) payments.get(key);
+			Date today = new Date();
+			Calendar cal1 = Calendar.getInstance();
+			Calendar cal2 = Calendar.getInstance();
+			cal1.setTime(p.getDate());
+			cal2.setTime(today);
+			boolean sameDay = cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) &&
+					cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR);
+			if (sameDay){
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public static void calculatePayment() {
