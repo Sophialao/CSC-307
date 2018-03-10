@@ -1,6 +1,7 @@
 package util;
 
 import model.DbWritable;
+import model.Timecard;
 
 import java.sql.*;
 import java.util.HashMap;
@@ -72,6 +73,10 @@ public class DbUtils {
         } catch(Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static void main(String[] args) {
+        Timecard time = new Timecard()
     }
 
 }

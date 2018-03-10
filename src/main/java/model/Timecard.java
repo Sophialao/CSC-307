@@ -99,8 +99,8 @@ public class Timecard implements DbWritable {
     }
 
     public void write() {
-        String stmt = "INSERT INTO " + Constants.TIMECARD_DB + "(timeIn, timeOut, employeeId) VALUES (";
-        stmt += this.getTimeIn() + ", " + this.getTimeOut() + ", " + this.getEId() + ");";
+        String stmt = "INSERT INTO " + Constants.TIMECARD_DB + "(id, timeIn, timeOut, employeeId) VALUES (";
+        stmt += this.getId() + ", " + this.getTimeIn() + ", " + this.getTimeOut() + ", " + this.getEId() + ");";
         DbUtils.insertOrDelete(stmt);
     }
 

@@ -66,10 +66,10 @@ public class HourlyEmployee extends Employee {
     }
 
     public void write() {
-        String stmt = "INSERT INTO " + Constants.HOURLY_EMPLOYEE_DB + "(name, address, ssn, gender, sickDays, " +
+        String stmt = "INSERT INTO " + Constants.HOURLY_EMPLOYEE_DB + "(id, name, address, ssn, gender, sickDays, " +
                 "rate) VALUES (";
-        stmt += this.getName() + ", " + this.getAddress() + ", " + this.getSsn() + this.getGender() + ", " +
-                this.getSickDays() + ", " + this.getRate() + ");";
+        stmt += this.getId() + ", " + this.getName() + ", " + this.getAddress() + ", " + this.getSsn() +
+                this.getGender() + ", " + this.getSickDays() + ", " + this.getRate() + ");";
         DbUtils.insertOrDelete(stmt);
     }
 

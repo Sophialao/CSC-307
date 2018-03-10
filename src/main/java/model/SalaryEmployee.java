@@ -94,9 +94,9 @@ public class SalaryEmployee extends Employee {
     }
 
     public void write() {
-        String stmt = "INSERT INTO " + Constants.SALARY_EMPLOYEE_DB + "(name, address, ssn, gender, sickDays, " +
+        String stmt = "INSERT INTO " + Constants.SALARY_EMPLOYEE_DB + "(id, name, address, ssn, gender, sickDays, " +
                 "rate, commission, sales) VALUES (";
-        stmt += this.getName() + ", " + this.getAddress() + ", " + this.getSsn() + this.getGender() + ", " +
+        stmt += this.getId() + ", " + this.getName() + ", " + this.getAddress() + ", " + this.getSsn() + this.getGender() + ", " +
                 this.getSickDays() + ", " + this.getSalary() + ", " + this.getCommission() + ", " +
                 this.getSales() + ");";
         DbUtils.insertOrDelete(stmt);

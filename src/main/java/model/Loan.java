@@ -100,8 +100,8 @@ public class Loan implements DbWritable {
     }
 
     public void write() {
-        String stmt = "INSERT INTO " + Constants.LOAN_DB + "(amount, interestRate, duration, employeeId) VALUES (";
-        stmt += this.getAmount() + ", " + this.getInterestRate() + ", " + this.getDuration() + ", " +
+        String stmt = "INSERT INTO " + Constants.LOAN_DB + "(id, amount, interestRate, duration, employeeId) VALUES (";
+        stmt += this.getId() + ", " + this.getAmount() + ", " + this.getInterestRate() + ", " + this.getDuration() + ", " +
                 this.getEmployeeId() + ");";
         DbUtils.insertOrDelete(stmt);
     }

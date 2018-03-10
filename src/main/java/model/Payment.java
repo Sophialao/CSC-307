@@ -89,8 +89,8 @@ public class Payment implements DbWritable {
     }
 
     public void write() {
-        String stmt = "INSERT INTO " + Constants.PAYMENT_DB + "(employeeId, amount, date) VALUES (";
-        stmt += this.getEmployeeId() + ", " + this.getAmount() + ", " + this.getDate() + ");";
+        String stmt = "INSERT INTO " + Constants.PAYMENT_DB + "(id, employeeId, amount, date) VALUES (";
+        stmt += this.getId() + ", " + this.getEmployeeId() + ", " + this.getAmount() + ", " + this.getDate() + ");";
         DbUtils.insertOrDelete(stmt);
     }
 

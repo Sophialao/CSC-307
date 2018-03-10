@@ -8,4 +8,6 @@ public interface DbWritable {
     String getId();
     void write();
     void readFields(ResultSet res) throws SQLException;
+    void update();
+    void remove();
 }
