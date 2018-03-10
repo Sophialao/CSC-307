@@ -31,7 +31,7 @@ public class EmployeeLoansController {
                 all_loans += ("\tAmount: " + l.getAmount() + " Interest Rate: " + l.getInterestRate() + " Duration: " + l.getDuration() + "\n");
             }
         }
-        if (all_loans == ""){
+        if (all_loans == "\n\n\n"){
             loans.setText("\n\n\n\tNo Loans");
         }
         else {
