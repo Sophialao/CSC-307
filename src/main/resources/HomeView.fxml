@@ -36,6 +36,7 @@
             <Font name="System Bold Italic" size="24.0" />
          </font></Label>
       <Button fx:id="editSalaryButton" mnemonicParsing="false" onAction="#editSalaryEmployeeClicked" prefHeight="26.0" prefWidth="305.0" text="View/Edit" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+      <Button fx:id="generateSalaryReport" mnemonicParsing="false" onAction="#generateSalaryReport" prefHeight="26.0" prefWidth="305.0" text="View/Edit" GridPane.columnIndex="2" GridPane.rowIndex="3" />
       <ListView fx:id="sLV" prefHeight="247.0" prefWidth="118.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
       <ListView fx:id="hLV" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
       <Button fx:id="editHourlyButton" mnemonicParsing="false" onAction="#editHourlyEmployeeClicked" prefHeight="26.0" prefWidth="305.0" text="View/Edit" GridPane.columnIndex="4" GridPane.rowIndex="3" />

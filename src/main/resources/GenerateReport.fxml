@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="476.0" prefWidth="759.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="controller.ReportController">
+  <children>
+    <TableView layoutX="46.0" layoutY="39.0" prefHeight="191.0" prefWidth="671.0">
+      <columns>
+        <TableColumn prefWidth="75.0" text="Name" />
+      </columns>
+    </TableView>
+  </children>
+</AnchorPane>
