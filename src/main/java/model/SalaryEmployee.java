@@ -81,10 +81,10 @@ public class SalaryEmployee extends Employee {
 
     public void update() {
         String stmt = "UPDATE " + Constants.SALARY_EMPLOYEE_DB + " SET ";
-        stmt += "name = " + this.getName() + ", ";
-        stmt += "address = " + this.getAddress() + ", ";
+        stmt += "name = '" + this.getName() + "', ";
+        stmt += "address = '" + this.getAddress() + "', ";
         stmt += "ssn = " + this.getSsn() + ", ";
-        stmt += "gender = " + this.getGender() + ", ";
+        stmt += "gender = '" + this.getGender() + "', ";
         stmt += "sickDays = " + this.getSickDays() + ", ";
         stmt += "rate = " + this.getSalary() + ", ";
         stmt += "commission = " + this.getCommission() + ", ";
@@ -96,7 +96,8 @@ public class SalaryEmployee extends Employee {
     public void write() {
         String stmt = "INSERT INTO " + Constants.SALARY_EMPLOYEE_DB + "(id, name, address, ssn, gender, sickDays, " +
                 "rate, commission, sales) VALUES (";
-        stmt += this.getId() + ", " + this.getName() + ", " + this.getAddress() + ", " + this.getSsn() + this.getGender() + ", " +
+        stmt += "'" + this.getId() + ", '" + this.getName() + "', '" + this.getAddress() + "', " + this.getSsn() +
+                ", '" + this.getGender() + "', " +
                 this.getSickDays() + ", " + this.getSalary() + ", " + this.getCommission() + ", " +
                 this.getSales() + ");";
         DbUtils.insertOrDelete(stmt);

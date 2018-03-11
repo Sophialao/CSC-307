@@ -7,6 +7,8 @@ import util.DbUtils;
 import javax.xml.transform.Result;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
 import java.util.UUID;
@@ -80,17 +82,24 @@ public class Payment implements DbWritable {
     }
 
     public void update() {
+        DateFormat df = new SimpleDateFormat("yyyy-mm-dd kk:mm:00");
+        String dateFormat = df.format(this.getDate());
+
         String stmt = "UPDATE " + Constants.PAYMENT_DB + " SET ";
-        stmt += "employeeId = " + this.getEmployeeId() + ", ";
+        stmt += "employeeId = '" + this.getEmployeeId() + "', ";
         stmt += "amount = " + this.getAmount() + ", ";
-        stmt += "date = " + this.getDate();
+        stmt += "date = '" + dateFormat + "'";
         stmt += " WHERE id = '" + this.getId() +"';";
         DbUtils.insertOrDelete(stmt);
     }
 
     public void write() {
+        DateFormat df = new SimpleDateFormat("yyyy-mm-dd kk:mm:00");
+        String dateFormat = df.format(this.getDate());
+
+
         String stmt = "INSERT INTO " + Constants.PAYMENT_DB + "(id, employeeId, amount, date) VALUES (";
-        stmt += this.getId() + ", " + this.getEmployeeId() + ", " + this.getAmount() + ", " + this.getDate() + ");";
+        stmt += "'" + this.getId() + "', '" + this.getEmployeeId() + "', " + this.getAmount() + ", '" + dateFormat + "');";
         DbUtils.insertOrDelete(stmt);
     }
 
