@@ -26,7 +26,7 @@ class IntegrationTest {
 
         // Edit employee
         k.setAddress("SAC");
-        ec.addHourlyEmployee(k.getId(), k.getName(), "SAC", k.getSsn(), k.getRate(), k.getGender(), k.getSickDays());
+        ec.editHourlyEmployee(k.getName(), "SAC", k.getSsn(), k.getId(), k.getRate(), k.getGender(), k.getSickDays());
 
         // Check gets back same employee with updated info
         HourlyEmployee k2 = HourlyEmployee.getInstance(kelly_id);
@@ -84,7 +84,7 @@ class IntegrationTest {
 
         // Edit employee
         k3.setAddress("SAC");
-        ec.addSalaryEmployee(k3.getId(), k3.getName(), "SAC", k3.getSsn(), k3.getSalary(), k3.getCommission(), k3.getSales(), k3.getGender(), k3.getSickDays());
+        ec.editSalaryEmployee(k3.getName(), "SAC", k3.getSsn(), k3.getId(), k3.getSalary(), k3.getCommission(), k3.getSales(), k3.getGender(), k3.getSickDays());
 
         // Check gets back same employee with updated info
         SalaryEmployee k4 = SalaryEmployee.getInstance(kelly_id2);
