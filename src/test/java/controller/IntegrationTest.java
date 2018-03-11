@@ -17,7 +17,7 @@ class IntegrationTest {
         TimecardController tc = new TimecardController();
 
         // Add hourly employee
-        HourlyEmployee kelly = (HourlyEmployee) ec.addHourlyEmployee(null,"Kelly", "SLO", 1234, 10.0, "F");
+        HourlyEmployee kelly = (HourlyEmployee) ec.addHourlyEmployee(null,"Kelly", "SLO", 1234, 10.0, "F", 6);
 
         // Check gets back same employee
         String kelly_id = kelly.getId();
@@ -26,7 +26,7 @@ class IntegrationTest {
 
         // Edit employee
         k.setAddress("SAC");
-        ec.addHourlyEmployee(k.getId(), k.getName(), "SAC", k.getSsn(), k.getRate(), k.getGender());
+        ec.addHourlyEmployee(k.getId(), k.getName(), "SAC", k.getSsn(), k.getRate(), k.getGender(), k.getSickDays());
 
         // Check gets back same employee with updated info
         HourlyEmployee k2 = HourlyEmployee.getInstance(kelly_id);
@@ -75,7 +75,7 @@ class IntegrationTest {
 
 
         // Add salary employee
-        SalaryEmployee kelly2 = (SalaryEmployee) ec.addSalaryEmployee(null,"Kelly", "SLO", 1234, 100000.0, .1, 100.0, "F");
+        SalaryEmployee kelly2 = (SalaryEmployee) ec.addSalaryEmployee(null,"Kelly", "SLO", 1234, 100000.0, .1, 100.0, "F", 6);
 
         // Checks gets back same employee
         String kelly_id2 = kelly2.getId();
@@ -84,7 +84,7 @@ class IntegrationTest {
 
         // Edit employee
         k3.setAddress("SAC");
-        ec.addSalaryEmployee(k3.getId(), k3.getName(), "SAC", k3.getSsn(), k3.getSalary(), k3.getCommission(), k3.getSales(), k3.getGender());
+        ec.addSalaryEmployee(k3.getId(), k3.getName(), "SAC", k3.getSsn(), k3.getSalary(), k3.getCommission(), k3.getSales(), k3.getGender(), k3.getSickDays());
 
         // Check gets back same employee with updated info
         SalaryEmployee k4 = SalaryEmployee.getInstance(kelly_id2);

@@ -60,12 +60,9 @@
                <Insets left="10.0" />
            </GridPane.margin>
        </Label>
-       <Spinner fx:id="sickdays" editable="true" GridPane.columnIndex="5" GridPane.rowIndex="5">
-           <valueFactory>
-               <SpinnerValueFactory.IntegerSpinnerValueFactory min="0" max="10" initialValue="5" amountToStepBy="1"/>
-           </valueFactory>
-       </Spinner>
-      <Label prefHeight="17.0" prefWidth="76.0" text="Commission" GridPane.columnIndex="6" GridPane.rowIndex="5">
+       <TextField fx:id="sickdays" prefHeight="27.0" prefWidth="95.0" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+
+       <Label prefHeight="17.0" prefWidth="76.0" text="Commission" GridPane.columnIndex="6" GridPane.rowIndex="5">
 
        <GridPane.margin>
             <Insets left="10.0" />

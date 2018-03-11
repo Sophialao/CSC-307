@@ -33,7 +33,7 @@ public class EmployeeController {
     @FXML CheckBox hourlyCheck;
     @FXML CheckBox salaryCheck;
     @FXML Button deleteButton;
-    @FXML Spinner<Integer> sickdays;
+    @FXML TextField sickdays;
 
     @FXML Text loans;
     @FXML Text timecards;
@@ -53,22 +53,22 @@ public class EmployeeController {
                 this.employee = this.addSalaryEmployee(null, name.getText(),
                         address.getText(), Integer.parseInt(ssn.getText()),
                         Double.parseDouble(rate.getText()), Double.parseDouble(commission.getText()),
-                        Double.parseDouble(sales.getText()), gender, (Integer)sickdays.getValue());
+                        Double.parseDouble(sales.getText()), gender, Integer.parseInt(sickdays.getText()));
             } else {
                 this.addSalaryEmployee(this.employee.getId(), name.getText(),
                         address.getText(), Integer.parseInt(ssn.getText()),
                         Double.parseDouble(rate.getText()), Double.parseDouble(commission.getText()),
-                        Double.parseDouble(sales.getText()), gender, (Integer)sickdays.getValue());
+                        Double.parseDouble(sales.getText()), gender, Integer.parseInt(sickdays.getText()));
             }
         } else {
             if (this.employee == null) {
                 this.employee = this.addHourlyEmployee(null, name.getText(),
                         address.getText(), Integer.parseInt(ssn.getText()),
-                        Double.parseDouble(rate.getText()), gender, (Integer)sickdays.getValue());
+                        Double.parseDouble(rate.getText()), gender, Integer.parseInt(sickdays.getText()));
             } else {
                 this.addHourlyEmployee(this.employee.getId(), name.getText(),
                         address.getText(), Integer.parseInt(ssn.getText()),
-                        Double.parseDouble(rate.getText()), gender, (Integer)sickdays.getValue());
+                        Double.parseDouble(rate.getText()), gender, Integer.parseInt(sickdays.getText()));
             }
         }
         showAlert(Alert.AlertType.CONFIRMATION, "Success",
@@ -90,7 +90,7 @@ public class EmployeeController {
         ssn.setText(Integer.toString(employee.getSsn()));
         name.setText(employee.getName());
         address.setText(employee.getAddress());
-        sickdays.getValueFactory().setValue(employee.getSickDays());
+        sickdays.setText(Integer.toString(employee.getSickDays()));
         //sickdays.setValue(Spinner(employee.getSickDays()));
         if (employee.getGender().equals("M")) {
             maleButton.setSelected(true);
