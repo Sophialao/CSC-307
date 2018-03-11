@@ -176,7 +176,7 @@ public class PaymentController {
 		return sales * e.getCommission();
 	}
 
-	public static double calculateLoans(Employee e){
+	public static double calculateLoans(Employee e) {
 		String e_id = e.getId();
 		try {
 			Map<String, DbWritable> e_loans = Loan.getAll();

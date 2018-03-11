@@ -60,7 +60,7 @@ public class SignUpController {
             return;
         }
        eId = UUID.randomUUID().toString();
-       Login aLogin = new Login(eId,username, password);
+       Login aLogin = new Login(username, password);
        aLogin.write();
 
         showAlert(Alert.AlertType.CONFIRMATION, "New account added!",
