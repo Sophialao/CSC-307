@@ -3,16 +3,10 @@ package util;
 import model.DbWritable;
 import model.Employee;
 import model.HourlyEmployee;
-import model.Timecard;
 
-import javax.xml.transform.Result;
 import java.sql.*;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
-import java.util.Date;
 
 public class DbUtils {
 

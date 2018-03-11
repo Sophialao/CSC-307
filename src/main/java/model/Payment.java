@@ -1,10 +1,8 @@
 package model;
 
-import com.sun.tools.classfile.ConstantPool;
 import util.Constants;
 import util.DbUtils;
 
-import javax.xml.transform.Result;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;

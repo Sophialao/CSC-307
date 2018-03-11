@@ -1,7 +1,6 @@
 package controller;
 import java.util.Calendar;
 
-import javafx.application.Application;
 import model.Employee;
 import model.SalaryEmployee;
 import model.HourlyEmployee;

@@ -6,12 +6,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.text.*;
 import javafx.stage.Stage;
 import model.DbWritable;
 import model.Employee;
 import model.Loan;
-import javafx.event.Event;
 import javafx.scene.control.Label;
 
 import java.io.IOException;

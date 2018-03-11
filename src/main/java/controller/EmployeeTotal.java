@@ -4,12 +4,7 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import model.DbWritable;
 import model.Employee;
-import model.Loan;
-import model.Timecard;
-
-import java.util.Map;
 
 public class EmployeeTotal {
     @FXML
