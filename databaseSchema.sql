@@ -17,13 +17,14 @@ CREATE TABLE Employee(
 );
 
 CREATE TABLE Loan(
-	id CHAR(36) PRIMARY KEY, 
+	id CHAR(36) PRIMARY KEY,
     amount DOUBLE(10, 2),
     interestRate DOUBLE(2, 2),
     duration INT(2),
     employeeId CHAR(36),
     CONSTRAINT FKLoan_employeeId FOREIGN KEY (employeeId)
-		REFERENCES Employee (id)
+		REFERENCES Employee (id) 
+        ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE Payment(
@@ -33,6 +34,7 @@ CREATE TABLE Payment(
     date DATETIME,
 	CONSTRAINT FKPayment_employeeId FOREIGN KEY (employeeId)
 		REFERENCES Employee (id)
+        ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE Timecard(
@@ -42,6 +44,7 @@ CREATE TABLE Timecard(
     employeeId CHAR(36),
 	CONSTRAINT FKTimecard_employeeId FOREIGN KEY (employeeId)
 		REFERENCES Employee (id)
+        ON DELETE CASCADE ON UPDATE CASCADE
 );
 
  

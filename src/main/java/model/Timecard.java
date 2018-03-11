@@ -90,17 +90,28 @@ public class Timecard implements DbWritable {
     }
 
     public void update() {
+        DateFormat df = new SimpleDateFormat("yyyy-mm-dd kk:mm:00");
+        String timeInFormat = df.format(this.getTimeIn());
+        String timeOutFormat = df.format(this.getTimeOut());
+
         String stmt = "UPDATE " + Constants.TIMECARD_DB + " SET ";
-        stmt += "timeIn = " + this.getTimeIn() + ", ";
-        stmt += "timeOut = " + this.getTimeOut() + ", ";
-        stmt += "employeeId = " + this.getEId();
+        stmt += "timeIn = '" + timeInFormat + "', ";
+        stmt += "timeOut = '" + timeOutFormat + "', ";
+        stmt += "employeeId = '" + this.getEId() + "'";
         stmt += " WHERE id = '" + this.getId() +"';";
         DbUtils.insertOrDelete(stmt);
     }
 
     public void write() {
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd kk:mm:00");
+        String timeInFormat = df.format(this.getTimeIn());
+        String timeOutFormat = df.format(this.getTimeOut());
+
         String stmt = "INSERT INTO " + Constants.TIMECARD_DB + "(id, timeIn, timeOut, employeeId) VALUES (";
-        stmt += this.getId() + ", " + this.getTimeIn() + ", " + this.getTimeOut() + ", " + this.getEId() + ");";
+        stmt += "'" + this.getId() + "', " +
+                "'" + timeInFormat + "', " +
+                "'" + timeOutFormat + "', '" +
+                this.getEId() + "');";
         DbUtils.insertOrDelete(stmt);
     }
 

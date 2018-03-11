@@ -5,8 +5,8 @@ public class Constants {
     public final static String HOURLY_EMPLOYEE_DB = "Employee";
     public final static String SALARY_EMPLOYEE_DB = "Employee";
     public final static String TIMECARD_DB = "Timecard";
-    public final static String PAYMENT_DB = "mock_db/payment.txt";
-    public final static String LOAN_DB = "mock_db/loan.txt";
+    public final static String PAYMENT_DB = "Payment";
+    public final static String LOAN_DB = "Loan";
 
     public final static String HOURLY = "hourly";
     public final static String SALARIED = "salaried";
