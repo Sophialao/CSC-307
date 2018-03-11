@@ -1,8 +1,11 @@
 package model;
 
 import util.Constants;
-import util.Utils;
+import util.DbUtils;
 
+import javax.xml.transform.Result;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Time;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -31,20 +34,12 @@ public class Timecard implements DbWritable {
         if (id == null)
             return new Timecard();
         else {
-            String[] db = Utils.readLine(Constants.TIMECARD_DB, id);
-            if (db != null) {
-                Timecard time = new Timecard();
-                time.readFields(db);
-                time.setId(id);
-                return time;
-            }
-            return new Timecard();
+            return (Timecard) DbUtils.getObject(Timecard.class, id, Constants.TIMECARD_DB);
         }
     }
 
     public static Map<String, DbWritable> getAll() {
-        Map<String, DbWritable> db = Utils.parseFile(Constants.TIMECARD_DB, Timecard.class);
-
+        Map<String, DbWritable> db = DbUtils.getAll(Timecard.class, Constants.TIMECARD_DB);
         return db;
     }
 
@@ -86,22 +81,43 @@ public class Timecard implements DbWritable {
         System.out.println("Time in: " + df.format(timeIn) + "  Time out: " + df.format(timeOut));
     }
 
-    public void readFields(String[] line) {
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd kk:mm");
-        if (line.length == 1){
-            return;
-        }
-        this.id = line[0];
-        this.eId = line[1];
-        this.timeIn = new Date(line[2]);
-        this.timeOut = new Date(line[3]);
+    public void readFields(ResultSet res) throws SQLException {
+        this.setId(res.getString("id"));
+        this.setEId(res.getString("employeeId"));
+        this.setTimeIn(res.getDate("timeIn"));
+        this.setTimeOut(res.getDate("timeOut"));
+
+    }
+
+    public void update() {
+        DateFormat df = new SimpleDateFormat("yyyy-mm-dd kk:mm:00");
+        String timeInFormat = df.format(this.getTimeIn());
+        String timeOutFormat = df.format(this.getTimeOut());
+
+        String stmt = "UPDATE " + Constants.TIMECARD_DB + " SET ";
+        stmt += "timeIn = '" + timeInFormat + "', ";
+        stmt += "timeOut = '" + timeOutFormat + "', ";
+        stmt += "employeeId = '" + this.getEId() + "'";
+        stmt += " WHERE id = '" + this.getId() +"';";
+        DbUtils.insertOrDelete(stmt);
     }
 
     public void write() {
-        Utils.removeLine(Constants.TIMECARD_DB, this.id);
-        System.out.println("writing atime card " + this.id + "," + this.eId + "," + this.timeIn + ","+this.timeOut);
-        String toWrite = this.id + "," + this.eId + "," + this.timeIn.toString() + "," + this.timeOut.toString();
-        Utils.appendLine(Constants.TIMECARD_DB, toWrite);
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd kk:mm:00");
+        String timeInFormat = df.format(this.getTimeIn());
+        String timeOutFormat = df.format(this.getTimeOut());
+
+        String stmt = "INSERT INTO " + Constants.TIMECARD_DB + "(id, timeIn, timeOut, employeeId) VALUES (";
+        stmt += "'" + this.getId() + "', " +
+                "'" + timeInFormat + "', " +
+                "'" + timeOutFormat + "', '" +
+                this.getEId() + "');";
+        DbUtils.insertOrDelete(stmt);
+    }
+
+    public void remove() {
+        String stmt = "DELETE FROM " + Constants.TIMECARD_DB + " WHERE id = '" + this.getId() + "';";
+        DbUtils.insertOrDelete(stmt);
     }
 
 

@@ -1,8 +1,14 @@
 package model;
 
+import com.sun.tools.classfile.ConstantPool;
 import util.Constants;
-import util.Utils;
+import util.DbUtils;
 
+import javax.xml.transform.Result;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
 import java.util.UUID;
@@ -27,20 +33,12 @@ public class Payment implements DbWritable {
         if (id == null)
             return new Payment();
         else {
-            String[] db = Utils.readLine(Constants.PAYMENT_DB, id);
-            if (db != null) {
-                Payment pay = new Payment();
-                pay.readFields(db);
-                pay.setId(id);
-                return pay;
-            }
-            return new Payment();
+            return (Payment) DbUtils.getObject(Payment.class, id, Constants.PAYMENT_DB);
         }
     }
 
     public static Map<String, DbWritable> getAll() {
-        Map<String, DbWritable> db = Utils.parseFile(Constants.PAYMENT_DB, Payment.class);
-
+        Map<String, DbWritable> db = DbUtils.getAll(Payment.class, Constants.PAYMENT_DB);
         return db;
     }
 
@@ -76,19 +74,37 @@ public class Payment implements DbWritable {
         this.date = date;
     }
 
-    public void readFields(String[] line) {
-        if (line.length == 1){
-            return;
-        }
-        this.id = line[0];
-        this.employeeId = line[1];
-        this.amount = Double.parseDouble(line[2]);
-        this.date = new Date(line[3]);
+    public void readFields(ResultSet res) throws SQLException {
+        this.setId(res.getString("id"));
+        this.setEmployeeId(res.getString("employeeId"));
+        this.setAmount(res.getDouble("amount"));
+        this.setDate(res.getDate("date"));
+    }
+
+    public void update() {
+        DateFormat df = new SimpleDateFormat("yyyy-mm-dd kk:mm:00");
+        String dateFormat = df.format(this.getDate());
+
+        String stmt = "UPDATE " + Constants.PAYMENT_DB + " SET ";
+        stmt += "employeeId = '" + this.getEmployeeId() + "', ";
+        stmt += "amount = " + this.getAmount() + ", ";
+        stmt += "date = '" + dateFormat + "'";
+        stmt += " WHERE id = '" + this.getId() +"';";
+        DbUtils.insertOrDelete(stmt);
     }
 
     public void write() {
-        Utils.removeLine(Constants.PAYMENT_DB, this.id);
-        String toWrite = this.id + "," + this.employeeId + "," + this.amount + "," + this.date.toString();
-        Utils.appendLine(Constants.PAYMENT_DB, toWrite);
+        DateFormat df = new SimpleDateFormat("yyyy-mm-dd kk:mm:00");
+        String dateFormat = df.format(this.getDate());
+
+
+        String stmt = "INSERT INTO " + Constants.PAYMENT_DB + "(id, employeeId, amount, date) VALUES (";
+        stmt += "'" + this.getId() + "', '" + this.getEmployeeId() + "', " + this.getAmount() + ", '" + dateFormat + "');";
+        DbUtils.insertOrDelete(stmt);
+    }
+
+    public void remove() {
+        String stmt = "DELETE FROM " + Constants.PAYMENT_DB + " WHERE id = '" + this.getId() + "';";
+        DbUtils.insertOrDelete(stmt);
     }
 }

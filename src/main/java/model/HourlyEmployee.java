@@ -1,12 +1,9 @@
 package model;
 
-import controller.TimecardController;
 import util.Constants;
-import util.Utils;
-
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import util.DbUtils;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Map;
 
 public class HourlyEmployee extends Employee {
@@ -15,8 +12,8 @@ public class HourlyEmployee extends Employee {
     public HourlyEmployee() {
         super();
     }
-    public HourlyEmployee(String name, String address, int ssn, double rate, String gender) {
-        super(name, address, ssn, gender);
+    public HourlyEmployee(String name, String address, int ssn, double rate, String gender, int sickDays) {
+        super(name, address, ssn, gender, sickDays);
         this.rate = rate;
     }
 
@@ -24,20 +21,12 @@ public class HourlyEmployee extends Employee {
         if (id == null)
             return new HourlyEmployee();
         else {
-            String[] db = Utils.readLine(Constants.HOURLY_EMPLOYEE_DB, id);
-            if (db != null) {
-                HourlyEmployee empl = new HourlyEmployee();
-                empl.setId(id);
-                empl.readFields(db);
-                return empl;
-            }
-            return new HourlyEmployee();
+            return (HourlyEmployee) DbUtils.getObject(HourlyEmployee.class, id, Constants.HOURLY_EMPLOYEE_DB);
         }
     }
 
     public static Map<String, DbWritable> getAll() {
-        Map<String, DbWritable> db = Utils.parseFile(Constants.HOURLY_EMPLOYEE_DB, HourlyEmployee.class);
-
+        Map<String, DbWritable> db = DbUtils.getAll(HourlyEmployee.class, Constants.HOURLY_EMPLOYEE_DB);
         return db;
     }
 
@@ -58,34 +47,36 @@ public class HourlyEmployee extends Employee {
         return rate/52;
     }
 
-    public void readFields(String[] line) {
-        super.readFields(line);
-        if (line.length == 1){
-            return;
-        }
-        this.rate = Double.parseDouble(line[5]);
+    public void readFields(ResultSet res) throws SQLException {
+        super.readFields(res);
+        this.setRate(res.getDouble("rate"));
+
+    }
+
+    public void update() {
+        String stmt = "UPDATE " + Constants.HOURLY_EMPLOYEE_DB + " SET ";
+        stmt += "name = '" + this.getName() + "', ";
+        stmt += "address = '" + this.getAddress() + "', ";
+        stmt += "ssn = " + this.getSsn() + ", ";
+        stmt += "gender = '" + this.getGender() + "', ";
+        stmt += "sickDays = " + this.getSickDays() + ", ";
+        stmt += "rate = " + this.getRate();
+        stmt += " WHERE id = '" + this.getId() +"';";
+        DbUtils.insertOrDelete(stmt);
     }
 
     public void write() {
-        Utils.removeLine(Constants.HOURLY_EMPLOYEE_DB, this.getId());
-        String toWrite = this.getId() + "," + this.getName() + "," + this.getAddress() + "," +
-                this.getSsn() + "," + this.getGender() + "," + this.rate;
-        Utils.appendLine(Constants.HOURLY_EMPLOYEE_DB, toWrite);
+        String stmt = "INSERT INTO " + Constants.HOURLY_EMPLOYEE_DB + "(id, name, address, ssn, gender, sickDays, " +
+                "rate) VALUES (";
+        stmt += "'" + this.getId() + "', '" + this.getName() + "', '" + this.getAddress() + "', " + this.getSsn() + ", '" +
+                this.getGender() + "', " + this.getSickDays() + ", " + this.getRate() + ");";
+        DbUtils.insertOrDelete(stmt);
     }
 
     public void remove() {
-        Utils.removeLine(Constants.HOURLY_EMPLOYEE_DB, this.getId());
+        String stmt = "DELETE FROM " + Constants.HOURLY_EMPLOYEE_DB + " WHERE id = '" + this.getId() + "';";
+        DbUtils.insertOrDelete(stmt);
     }
-
-    public static void main(String[] args) {
-        //SalaryEmployee emp = new SalaryEmployee("sam", "dkfja", 234, 10.30, 10.09, 80.0);
-        //emp.write();
-
-        SalaryEmployee emp = SalaryEmployee.getInstance("77a999fd-987a-4a5d-936a-f3ceade5b6d9");
-        emp.remove();
-
-    }
-
 
 
 }

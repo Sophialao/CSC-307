@@ -107,7 +107,7 @@ public class Driver {
             int ssn = reader.nextInt();
             System.out.println("rate: ");
             double rate = reader.nextDouble();
-            HourlyEmployee h = new HourlyEmployee(name, address, ssn, rate, "M");
+            HourlyEmployee h = new HourlyEmployee(name, address, ssn, rate, "M", 0);
             h.write();
             System.out.println("Employee created successfully!");
             return true;
@@ -126,7 +126,7 @@ public class Driver {
             double commission = reader.nextDouble();
             System.out.println("sales");
             double sales = reader.nextDouble();
-            SalaryEmployee s = new SalaryEmployee(name, address, ssn, salary, commission, sales, "M");
+            SalaryEmployee s = new SalaryEmployee(name, address, ssn, salary, commission, sales, "M", 0);
             s.write();
             System.out.println("Employee created successfully!");
             return true;
