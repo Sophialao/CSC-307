@@ -32,14 +32,35 @@ public class PaymentController {
 
 	@FXML private Text actiontarget;
 
-	@FXML protected boolean handleSubmitButtonAction(ActionEvent event) {
+	@FXML protected String handleSubmitButtonAction(ActionEvent event) {
 		if (!checkLastDateofMonth() && !checkMonday()){
-			return false;
+			return "Not Payday";
+		}
+		else if (checkPaid()){
+			return "Already Paid";
 		}
 		else{
 			calculatePayment();
-			return true;
+			return "Paid";
 		}
+	}
+
+	public static boolean checkPaid(){
+		Map<String, DbWritable> payments = Payment.getAll();
+		for (String key : payments.keySet()){
+			Payment p = (Payment) payments.get(key);
+			Date today = new Date();
+			Calendar cal1 = Calendar.getInstance();
+			Calendar cal2 = Calendar.getInstance();
+			cal1.setTime(p.getDate());
+			cal2.setTime(today);
+			boolean sameDay = cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) &&
+					cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR);
+			if (sameDay){
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public static void calculatePayment() {
@@ -168,6 +189,8 @@ public class PaymentController {
 			return 0.0;
 		}
 
+		double each_month_pay_total = 0.0;
+
 		for (String key : e_loans.keySet()) {
 			Loan e_loan = (Loan) e_loans.get(key);
 			if (e_loan.getEmployeeId() == null){
@@ -181,11 +204,12 @@ public class PaymentController {
 				e_loan.setAmount(e_loan.getAmount() - each_month);
 				e_loan.setDuration(e_loan.getDuration() - 1);
 				e_loan.write();
+				each_month_pay_total += each_month_pay;
 				//System.out.println("LOAN PAY:" + each_month_pay);
-				return each_month_pay;
 			}
 		}
-		return 0.0;
+
+		return each_month_pay_total;
 	}
 
 	public static double calculateTaxes(double before_tax_pay, Employee e){

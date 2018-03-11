@@ -10,19 +10,20 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="433.0" prefWidth="616.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EmployeeController">
-  <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="64.0" minWidth="25.0" prefWidth="29.0" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="96.0" minWidth="31.0" prefWidth="38.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="154.0" minWidth="24.0" prefWidth="70.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="202.0" minWidth="15.0" prefWidth="77.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="222.0" minWidth="0.0" prefWidth="52.0" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="226.0" minWidth="29.0" prefWidth="72.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="299.0" minWidth="32.0" prefWidth="90.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="299.0" minWidth="14.0" prefWidth="56.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="219.0" minWidth="0.0" prefWidth="50.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="219.0" minWidth="14.0" prefWidth="49.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="219.0" minWidth="0.0" prefWidth="33.0" />
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="433.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EmployeeController">
+
+    <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="94.0" minWidth="25.0" prefWidth="33.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="96.0" minWidth="0.0" prefWidth="37.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="154.0" minWidth="0.0" prefWidth="61.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="202.0" minWidth="15.0" prefWidth="70.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="222.0" minWidth="0.0" prefWidth="77.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="226.0" minWidth="29.0" prefWidth="73.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="299.0" minWidth="32.0" prefWidth="106.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="299.0" minWidth="14.0" prefWidth="75.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="219.0" minWidth="0.0" prefWidth="73.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="219.0" minWidth="14.0" prefWidth="72.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="219.0" minWidth="0.0" prefWidth="22.0" />
 
   </columnConstraints>
   <rowConstraints>
@@ -38,19 +39,26 @@
       <Label prefHeight="17.0" prefWidth="137.0" text="Name" GridPane.columnIndex="2" GridPane.rowIndex="1" />
       <Label prefHeight="17.0" prefWidth="118.0" text="Address" GridPane.columnIndex="2" GridPane.rowIndex="2" />
       <Label prefHeight="17.0" prefWidth="135.0" text="Gender" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-      <Label prefHeight="17.0" prefWidth="118.0" text="Type" textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+      <Label prefHeight="17.0" prefWidth="118.0" text="Type" textAlignment="RIGHT" GridPane.columnIndex="6" GridPane.rowIndex="4" />
       <TextField fx:id="name" GridPane.columnIndex="3" GridPane.columnSpan="6" GridPane.rowIndex="1" />
       <TextField fx:id="address" GridPane.columnIndex="3" GridPane.columnSpan="6" GridPane.rowIndex="2" />
       <RadioButton fx:id="maleButton" mnemonicParsing="false" onAction="#maleClicked" prefHeight="18.0" prefWidth="53.0" text="M" GridPane.columnIndex="3" GridPane.rowIndex="4" />
       <RadioButton fx:id="femaleButton" mnemonicParsing="false" onAction="#femaleClicked" text="F" GridPane.columnIndex="4" GridPane.rowIndex="4" />
       <Label text="SSN" GridPane.columnIndex="2" GridPane.rowIndex="3" />
       <TextField fx:id="ssn" GridPane.columnIndex="3" GridPane.columnSpan="6" GridPane.rowIndex="3" />
-      <Label prefHeight="17.0" prefWidth="45.0" text="Rate" GridPane.columnIndex="4" GridPane.rowIndex="5">
+      <Label prefHeight="17.0" prefWidth="76.0" text="Rate" GridPane.columnIndex="2" GridPane.rowIndex="5">
          <GridPane.margin>
             <Insets left="10.0" />
          </GridPane.margin>
       </Label>
-      <TextField fx:id="rate" prefHeight="27.0" prefWidth="95.0" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+      <TextField fx:id="rate" prefHeight="27.0" prefWidth="95.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+       <Label prefHeight="17.0" prefWidth="76.0" text="Sick Days" GridPane.columnIndex="4" GridPane.rowIndex="5">
+
+           <GridPane.margin>
+               <Insets left="10.0" />
+           </GridPane.margin>
+       </Label>
+       <TextField fx:id="sickdays" prefHeight="23.0" prefWidth="36.0" GridPane.columnIndex="5" GridPane.rowIndex="5" />
       <Label prefHeight="17.0" prefWidth="76.0" text="Commission" GridPane.columnIndex="6" GridPane.rowIndex="5">
 
        <GridPane.margin>
@@ -70,10 +78,8 @@
             <Insets left="10.0" />
          </GridPane.margin>
       </Button>
-      <CheckBox fx:id="salaryCheck" mnemonicParsing="false" onAction="#salaryClicked" text="Salary" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-      <CheckBox fx:id="hourlyCheck" mnemonicParsing="false" onAction="#hourlyClicked" text="Hourly" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-      <Button mnemonicParsing="false" onAction="#initializeTimecard" opacity="0.68" prefHeight="27.0" prefWidth="105.0" text="Add Timecard" translateZ="2.0" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="6" />
-      <Button mnemonicParsing="false" onAction="#initializeLoan" opacity="0.66" prefHeight="27.0" prefWidth="101.0" text="Add Loan" translateZ="2.0" GridPane.columnIndex="7" GridPane.columnSpan="2" GridPane.rowIndex="6" />
+      <CheckBox fx:id="salaryCheck" mnemonicParsing="false" onAction="#salaryClicked" text="Salary" GridPane.columnIndex="7" GridPane.rowIndex="4" />
+      <CheckBox fx:id="hourlyCheck" mnemonicParsing="false" onAction="#hourlyClicked" text="Hourly" GridPane.columnIndex="8" GridPane.rowIndex="4" />
       <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#removeEmployee" prefHeight="27.0" prefWidth="69.0" style="-fx-background-color: red;" text="Remove" GridPane.columnIndex="5" GridPane.rowIndex="6" />
    </children>
 </GridPane>
