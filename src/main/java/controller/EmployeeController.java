@@ -41,22 +41,17 @@ public class EmployeeController {
                 this.employee = this.addSalaryEmployee(null, name.getText(),
                         address.getText(), Integer.parseInt(ssn.getText()),
                         Double.parseDouble(rate.getText()), Double.parseDouble(commission.getText()),
-                        Double.parseDouble(sales.getText()), gender);
+                        Double.parseDouble(sales.getText()), gender, Integer.parseInt(sickdays.getText()));
             } else {
-                this.addSalaryEmployee(this.employee.getId(), name.getText(),
-                        address.getText(), Integer.parseInt(ssn.getText()),
-                        Double.parseDouble(rate.getText()), Double.parseDouble(commission.getText()),
-                        Double.parseDouble(sales.getText()), gender);
+                this.editEmployee(event);
             }
         } else {
             if (this.employee == null) {
                 this.employee = this.addHourlyEmployee(null, name.getText(),
                         address.getText(), Integer.parseInt(ssn.getText()),
-                        Double.parseDouble(rate.getText()), gender);
+                        Double.parseDouble(rate.getText()), gender, Integer.parseInt(sickdays.getText()));
             } else {
-                this.addHourlyEmployee(this.employee.getId(), name.getText(),
-                        address.getText(), Integer.parseInt(ssn.getText()),
-                        Double.parseDouble(rate.getText()), gender);
+                this.editEmployee(event);
             }
         }
         showAlert(Alert.AlertType.CONFIRMATION, "Success",
@@ -78,6 +73,7 @@ public class EmployeeController {
         ssn.setText(Integer.toString(employee.getSsn()));
         name.setText(employee.getName());
         address.setText(employee.getAddress());
+        sickdays.setText(Integer.toString(employee.getSickDays()));
         if (employee.getGender().equals("M")) {
             maleButton.setSelected(true);
         } else {
@@ -126,7 +122,7 @@ public class EmployeeController {
     }
 
 
-    public Employee addSalaryEmployee(String eid, String name, String address, int number, double salary,double commission, double sales, String gender) {
+    public Employee addSalaryEmployee(String eid, String name, String address, int number, double salary,double commission, double sales, String gender, int sickDays) {
 
         SalaryEmployee s = SalaryEmployee.getInstance(eid);
 
@@ -137,12 +133,13 @@ public class EmployeeController {
         s.setCommission(commission);
         s.setSales(sales);
         s.setGender(gender);
+        s.setSickDays(sickDays);
 
         s.write();
         return s;
     }
 
-    public Employee addHourlyEmployee(String eid, String name, String address, int ssn, double rate, String gender) {
+    public Employee addHourlyEmployee(String eid, String name, String address, int ssn, double rate, String gender, int sickDays) {
 
         HourlyEmployee h = HourlyEmployee.getInstance(eid);
 
@@ -151,6 +148,7 @@ public class EmployeeController {
         h.setSsn(ssn);
         h.setRate(rate);
         h.setGender(gender);
+        h.setSickDays(sickDays);
 
         h.write();
         return h;
@@ -165,27 +163,52 @@ public class EmployeeController {
         }
     }
 
-    public void editSalaryEmployee(String name, String address, int number, String eid, double salary,double commission, double sales){
+    public void editSalaryEmployee(String name, String address, int number, String eid, double salary,double commission, double sales, String gender, int sickDays){
             SalaryEmployee aSP= SalaryEmployee.getInstance(eid);
             aSP.setName(name);
             aSP.setAddress(address);
             aSP.setSsn(number);
             aSP.setSalary(salary);
+            aSP.setGender(gender);
             aSP.setCommission(commission);
             aSP.setSales(sales);
+            aSP.setSickDays(sickDays);
 
-            aSP.write();
+            aSP.update();
     }
 
-    public void editHourlyEmployee(String name, String address, int ssn, String eid, double rate){
+    public void editHourlyEmployee(String name, String address, int ssn, String eid, double rate, String gender, int sickDays){
         HourlyEmployee aHP= HourlyEmployee.getInstance(eid);
         aHP.setName(name);
         aHP.setAddress(address);
         aHP.setSsn(ssn);
         aHP.setRate(rate);
+        aHP.setGender(gender);
+        aHP.setSickDays(sickDays);
 
 
-        aHP.write();
+        aHP.update();
+    }
+
+    public void editEmployee(ActionEvent event){
+        String gender = "M";
+        if (femaleButton.isSelected()) {
+            gender = "F";
+        }
+        if (salaryCheck.isSelected()) {
+            this.editSalaryEmployee(name.getText(),
+                    address.getText(), Integer.parseInt(ssn.getText()), this.employee.getId(),
+                    Double.parseDouble(rate.getText()), Double.parseDouble(commission.getText()),
+                    Double.parseDouble(sales.getText()), gender, Integer.parseInt(sickdays.getText()));
+        } else {
+            this.editHourlyEmployee(name.getText(),
+                    address.getText(), Integer.parseInt(ssn.getText()), this.employee.getId(),
+                    Double.parseDouble(rate.getText()), gender, Integer.parseInt(sickdays.getText()));
+        }
+        showAlert(Alert.AlertType.CONFIRMATION, "Success",
+                "Employee " + this.employee.getName() + " added!");
+        ((Node) event.getSource()).getScene().getWindow().hide();
+
     }
 
     public static void showAlert(Alert.AlertType alertType, String title, String message) {

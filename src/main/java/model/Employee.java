@@ -12,7 +12,7 @@ public abstract class Employee implements DbWritable {
     private String gender;
     private int sickDays;
 
-    public Employee(String name, String address, int ssn, String gender, int sickDaysa) {
+    public Employee(String name, String address, int ssn, String gender, int sickDays) {
         this.name = name;
         this.address = address;
         this.ssn = ssn;

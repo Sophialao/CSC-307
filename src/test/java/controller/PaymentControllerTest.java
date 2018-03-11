@@ -15,7 +15,7 @@ class PaymentControllerTest {
     public void testHourlyEmpOneTimecardPayment() {
         EmployeeController ec = new EmployeeController();
         TimecardController tc = new TimecardController();
-        HourlyEmployee kelly = (HourlyEmployee) ec.addHourlyEmployee(null, "Kelly", "SLO", 1234, 10.0, "F");
+        HourlyEmployee kelly = (HourlyEmployee) ec.addHourlyEmployee(null, "Kelly", "SLO", 1234, 10.0, "F", 6);
         Date dIn = new Date(2018, currMonth, currDate, 9, 0);
         Date dOut = new Date(2018, currMonth, currDate, 17, 0);
         tc.addTimecard(kelly.getId(), dIn, dOut);
@@ -37,7 +37,7 @@ class PaymentControllerTest {
     public void testHourlyEmpMultTimecardPayment(){
         EmployeeController ec = new EmployeeController();
         TimecardController tc = new TimecardController();
-        HourlyEmployee kelly = (HourlyEmployee) ec.addHourlyEmployee(null, "Kelly", "SLO", 1234, 10.0, "F");
+        HourlyEmployee kelly = (HourlyEmployee) ec.addHourlyEmployee(null, "Kelly", "SLO", 1234, 10.0, "F", 6);
         Date dIn = new Date(2018, currMonth, currDate, 9, 0);
         Date dOut = new Date(2018, currMonth, currDate, 17, 0);
         Date dIn2 = new Date(2018, currMonth, currDate, 9, 0);
@@ -62,7 +62,7 @@ class PaymentControllerTest {
     public void testHourlyEmpMultTimecardOvertimePayment(){
         EmployeeController ec = new EmployeeController();
         TimecardController tc = new TimecardController();
-        HourlyEmployee kelly = (HourlyEmployee) ec.addHourlyEmployee(null, "Kelly", "SLO", 1234, 10.0, "F");
+        HourlyEmployee kelly = (HourlyEmployee) ec.addHourlyEmployee(null, "Kelly", "SLO", 1234, 10.0, "F", 6);
         for (int i = 0; i < 10; i++){
             Date dIn = new Date(2018, currMonth, currDate, 9, 0);
             Date dOut = new Date(2018, currMonth, currDate, 17, 0);
@@ -86,7 +86,7 @@ class PaymentControllerTest {
     public void testHourlyEmpMultTimecardLoanPayment(){
         EmployeeController ec = new EmployeeController();
         TimecardController tc = new TimecardController();
-        HourlyEmployee kelly = (HourlyEmployee) ec.addHourlyEmployee(null,"Kelly", "SLO", 1234, 10.0, "F");
+        HourlyEmployee kelly = (HourlyEmployee) ec.addHourlyEmployee(null,"Kelly", "SLO", 1234, 10.0, "F", 6);
 
         Date dIn = new Date(2018, currMonth, currDate, 9, 0);
         Date dOut = new Date(2018, currMonth, currDate, 17, 0);
@@ -115,7 +115,7 @@ class PaymentControllerTest {
     @Test
     public void testSalaryEmpPayment(){
         EmployeeController ec = new EmployeeController();
-        SalaryEmployee kelly = (SalaryEmployee) ec.addSalaryEmployee(null,"Kelly", "SLO", 1234, 100000.0, .1, 0.0, "F");
+        SalaryEmployee kelly = (SalaryEmployee) ec.addSalaryEmployee(null,"Kelly", "SLO", 1234, 100000.0, .1, 0.0, "F", 6);
 
         PaymentController pc = new PaymentController(true, true);
         pc.calculatePayment();
@@ -134,7 +134,7 @@ class PaymentControllerTest {
     @Test
     public void testSalaryEmpCommissionPayment(){
         EmployeeController ec = new EmployeeController();
-        SalaryEmployee kelly = (SalaryEmployee) ec.addSalaryEmployee(null,"Kelly", "SLO", 1234, 100000.0, .1, 100.0, "F");
+        SalaryEmployee kelly = (SalaryEmployee) ec.addSalaryEmployee(null,"Kelly", "SLO", 1234, 100000.0, .1, 100.0, "F", 6);
 
         PaymentController pc = new PaymentController(true, true);
         pc.calculatePayment();
@@ -153,7 +153,7 @@ class PaymentControllerTest {
     @Test
     public void testSalaryEmpCommissionLoanPayment(){
         EmployeeController ec = new EmployeeController();
-        SalaryEmployee kelly = (SalaryEmployee) ec.addSalaryEmployee(null,"Kelly", "SLO", 1234, 100000.0, .1, 100.0, "F");
+        SalaryEmployee kelly = (SalaryEmployee) ec.addSalaryEmployee(null,"Kelly", "SLO", 1234, 100000.0, .1, 100.0, "F", 6);
 
         Loan l = new Loan(kelly.getId(), 12000, .01, 12);
         l.write();
@@ -177,7 +177,7 @@ class PaymentControllerTest {
         //Hourly
         EmployeeController ec = new EmployeeController();
         TimecardController tc = new TimecardController();
-        HourlyEmployee kelly = (HourlyEmployee) ec.addHourlyEmployee(null,"Kelly", "SLO", 1234, 10.0, "F");
+        HourlyEmployee kelly = (HourlyEmployee) ec.addHourlyEmployee(null,"Kelly", "SLO", 1234, 10.0, "F", 6);
         Date dIn = new Date(2018, currMonth, currDate, 9, 0);
         Date dOut = new Date(2018, currMonth, currDate, 17, 0);
         tc.addTimecard(kelly.getId(), dIn, dOut);
@@ -194,7 +194,7 @@ class PaymentControllerTest {
         }
 
         //Salary
-        SalaryEmployee kelly2 = (SalaryEmployee) ec.addSalaryEmployee(null,"Kelly", "SLO", 1234, 100000.0, .1, 0.0, "F");
+        SalaryEmployee kelly2 = (SalaryEmployee) ec.addSalaryEmployee(null,"Kelly", "SLO", 1234, 100000.0, .1, 0.0, "F", 6);
         PaymentController pc2 = new PaymentController(true, true);
         pc2.calculatePayment();
         Map<String, DbWritable> payments2 = Payment.getAll();
