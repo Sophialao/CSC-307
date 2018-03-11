@@ -23,8 +23,6 @@ public class DbUtils {
         try {
             String connectionUrl = Constants.DB_URL + "/payroll";
 
-            Class.forName("com.mysql.jdbc.Driver");
-
             Connection conn = DriverManager.getConnection(connectionUrl, USER, PASSWORD);
             Statement stmt = conn.createStatement();
             ResultSet res = stmt.executeQuery("SELECT * FROM " + table + " WHERE id = '" + id + "';");
@@ -47,8 +45,6 @@ public class DbUtils {
     public static Map<String, DbWritable> getAll(Class<? extends DbWritable> clazz, String table) {
         try {
             String connectionUrl = Constants.DB_URL + "/payroll";
-
-            Class.forName("com.mysql.jdbc.Driver");
 
             Connection conn = DriverManager.getConnection(connectionUrl, USER, PASSWORD);
             Statement stmt = conn.createStatement();
@@ -76,8 +72,6 @@ public class DbUtils {
             String connectionUrl = Constants.DB_URL + "/payroll";
             System.out.println(query);
 
-            Class.forName("com.mysql.jdbc.Driver");
-
             Connection conn = DriverManager.getConnection(connectionUrl, USER, PASSWORD);
             Statement stmt = conn.createStatement();
 
@@ -91,8 +85,6 @@ public class DbUtils {
         try {
             String connectionUrl = Constants.DB_URL + "/payroll";
             String query = "SELECT * FROM " + table + " WHERE " + attName + " = '" + attValue + "';";
-
-            Class.forName("com.mysql.jdbc.Driver");
 
             Connection conn = DriverManager.getConnection(connectionUrl, USER, PASSWORD);
             Statement stmt = conn.createStatement();
