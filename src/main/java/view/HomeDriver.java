@@ -18,43 +18,6 @@ public class HomeDriver extends Application {
 
         Scene scene = new Scene(root, 700, 700);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
         stage.setTitle("Payroll");
         stage.setScene(scene);
         stage.show();
