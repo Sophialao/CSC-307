@@ -1,24 +1,13 @@
 package controller;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+
 import javafx.scene.control.*;
-import javafx.scene.layout.Region;
-import javafx.stage.Stage;
 import model.*;
 
-import javax.swing.*;
-import java.io.IOException;
 import java.util.*;
-
-import javafx.scene.text.*;
-
 
 public class SignUpController {
     @FXML Button signUp;
