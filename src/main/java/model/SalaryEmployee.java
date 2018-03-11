@@ -74,7 +74,7 @@ public class SalaryEmployee extends Employee {
 
     public void readFields(ResultSet res) throws SQLException {
         super.readFields(res);
-        this.setSalary(res.getDouble("salary"));
+        this.setSalary(res.getDouble("rate"));
         this.setCommission(res.getDouble("commission"));
         this.setSales(res.getDouble("sales"));
     }
