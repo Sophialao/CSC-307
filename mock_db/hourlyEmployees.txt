@@ -3,3 +3,5 @@ bfb5d2f4-a53e-4779-8a1a-6365f623bcba,Kelly,SLO,1234,F,10.0
 bd93f6a9-21a3-441d-be75-4c838e5597cf,Kelly,SLO,1234,F,10.0
 64fcc8e0-f383-45c4-bcf7-53148d603fef,Kelly,SLO,1234,F,10.0
 ffd1faba-1eee-498e-8f4a-7567374cd254,Kelly,SLO,1234,F,10.0
+b43383ef-bf22-49e3-bb1f-dc1c5f2bcebc,Daniel-test,123 Main st,1112223333,M,12.5
+b43383ef-bf22-49e3-bb1f-dc1c5f2bcebc,Daniel-test,123 Main st,1112223333,M,12.5

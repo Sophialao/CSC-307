@@ -49,6 +49,24 @@ public class HomeController {
         this.initializeEmployee(event, emp);
     }
 
+    public void generateReport(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GenerateReport.fxml"));
+            Parent root = loader.load();
+            ReportController rc = loader.getController();
+
+            Stage stage = new Stage();
+            stage.setTitle("Report");
+            stage.setScene(new Scene(root, 913, 652));
+
+            rc.generateReport();
+
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void addEmployeeClicked(ActionEvent event) {
         this.initializeEmployee(event, null);
     }
