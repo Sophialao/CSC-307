@@ -7,6 +7,7 @@ public class Constants {
     public final static String TIMECARD_DB = "Timecard";
     public final static String PAYMENT_DB = "Payment";
     public final static String LOAN_DB = "Loan";
+    public final static String LOGIN_DB = "Login";
 
     public final static String HOURLY = "hourly";
     public final static String SALARIED = "salaried";

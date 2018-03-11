@@ -5,6 +5,7 @@ import model.Employee;
 import model.HourlyEmployee;
 import model.Timecard;
 
+import javax.xml.transform.Result;
 import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -85,6 +86,30 @@ public class DbUtils {
             e.printStackTrace();
         }
     }
+
+    public static DbWritable queryAtt(Class<? extends DbWritable> clazz, String table, String attName, String attValue) {
+        try {
+            String connectionUrl = Constants.DB_URL + "/payroll";
+            String query = "SELECT * FROM " + table + " WHERE " + attName + " = '" + attValue + "';";
+
+            Class.forName("com.mysql.jdbc.Driver");
+
+            Connection conn = DriverManager.getConnection(connectionUrl, USER, PASSWORD);
+            Statement stmt = conn.createStatement();
+
+            ResultSet res = stmt.executeQuery(query);
+            DbWritable o = clazz.getConstructor().newInstance();
+            if (res.next()) {
+                o.readFields(res);
+            }
+            return o;
+
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
     public static void main(String[] args) {
         //Employee hourly = new HourlyEmployee("Sam test", "13243 ave", 1323552345, 20.09, "M", 0);

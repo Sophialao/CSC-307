@@ -1,18 +1,15 @@
 package model;
 
 import util.Constants;
-import util.Utils;
+import util.DbUtils;
 
-import java.sql.Time;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Map;
 import java.util.UUID;
 
 public class Login implements DbWritable {
     private String id;
-    private String loginID;
     private String username;
     private String password;
 
@@ -20,36 +17,26 @@ public class Login implements DbWritable {
         this.id = UUID.randomUUID().toString();
     }
 
-    public Login(String loginID, String username, String password) {
-        this.loginID = loginID;
+    public Login(String username, String password) {
         this.username = username;
         this.password = password;
-        this.id = UUID.randomUUID().toString();
     }
 
     public static Login getInstance(String id) {
         if (id == null)
             return new Login();
         else {
-            String[] db = Utils.readLine(Constants.LOGIN_DB, id);
-            if (db != null) {
-                Login time = new Login();
-                time.readFields(db);
-                time.setId(id);
-                return time;
-            }
-            return new Login();
+            return (Login) DbUtils.getObject(Login.class, id, Constants.LOGIN_DB);
         }
     }
 
     public static Map<String, DbWritable> getAll() {
-        Map<String, DbWritable> db = Utils.parseFile(Constants.LOGIN_DB, Timecard.class);
-
+        Map<String, DbWritable> db = DbUtils.getAll(Login.class, Constants.LOGIN_DB);
         return db;
     }
 
     public String getId() {
-        return this.id;
+        return this.username;
     }
 
     public String getUsername(){
@@ -72,20 +59,27 @@ public class Login implements DbWritable {
 
 
 
-    public void readFields(String[] args) {
-        if (args.length == 1){
-            return;
-        }
-        this.id = args[0];
-        this.username = args[1];
-        this.password = args[2];
+    public void readFields(ResultSet res) throws SQLException {
+        this.setUsername(res.getString("username"));
+        this.setPassword(res.getString("password"));
+    }
+
+    public void update() {
+        String stmt = "UPDATE " + Constants.LOGIN_DB + " SET ";
+        stmt += "password = '" + this.getPassword() + "', ";
+        stmt += " WHERE username = '" + this.getUsername() +"';";
+        DbUtils.insertOrDelete(stmt);
     }
 
     public void write() {
-        Utils.removeLine(Constants.LOGIN_DB, this.id);
-        System.out.println("loggin in" + this.id + "," + this.username + "," + this.password);
-        String toWrite = this.id + "," + this.username + "," + this.password;
-        Utils.appendLine(Constants.LOGIN_DB, toWrite);
+        String stmt = "INSERT INTO " + Constants.LOGIN_DB + "(id, password) VALUES (";
+        stmt += "'" + this.getUsername() + "', '" + this.getPassword() +  "');";
+        DbUtils.insertOrDelete(stmt);
+    }
+
+    public void remove() {
+        String stmt = "DELETE FROM " + Constants.LOGIN_DB + " WHERE id = '" + this.getUsername() + "';";
+        DbUtils.insertOrDelete(stmt);
     }
 
 

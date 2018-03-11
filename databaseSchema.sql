@@ -47,5 +47,10 @@ CREATE TABLE Timecard(
         ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+CREATE TABLE Login(
+	id VARCHAR(30) PRIMARY KEY, 
+    password VARCHAR(30)
+);
+
  
     
