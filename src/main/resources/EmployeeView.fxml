@@ -6,6 +6,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.SpinnerValueFactory?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
@@ -58,7 +60,11 @@
                <Insets left="10.0" />
            </GridPane.margin>
        </Label>
-       <TextField fx:id="sickdays" prefHeight="23.0" prefWidth="36.0" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+       <Spinner fx:id="sickdays" editable="true" GridPane.columnIndex="5" GridPane.rowIndex="5">
+           <valueFactory>
+               <SpinnerValueFactory.IntegerSpinnerValueFactory min="0" max="10" initialValue="5" amountToStepBy="1"/>
+           </valueFactory>
+       </Spinner>
       <Label prefHeight="17.0" prefWidth="76.0" text="Commission" GridPane.columnIndex="6" GridPane.rowIndex="5">
 
        <GridPane.margin>

@@ -120,6 +120,7 @@ public class PaymentController {
 			double after_tax = after_commission - (after_commission*calculateTaxes(before_tax, e));
 			double after_loans = after_tax - calculateLoans(e);
 			//System.out.println(after_loans);
+
 			Payment p = new Payment(key, after_loans, getDate());
 			p.write();
 		}
