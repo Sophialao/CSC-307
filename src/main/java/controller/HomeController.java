@@ -50,17 +50,18 @@ public class HomeController {
     }
 
     public void generateReport(ActionEvent event) {
-        ReportController rc = new ReportController();
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/GenerateReport.fxml"));
             Parent root = loader.load();
+            ReportController rc = loader.getController();
 
             Stage stage = new Stage();
             stage.setTitle("Report");
-            stage.setScene(new Scene(root, 700, 700));
+            stage.setScene(new Scene(root, 913, 652));
+
+            rc.generateReport();
+
             stage.show();
-
-
         } catch (IOException e) {
             e.printStackTrace();
         }
