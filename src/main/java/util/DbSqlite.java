@@ -109,9 +109,30 @@ public class DbSqlite {
             }
         }
 
+    public static boolean idExists(String query) {
+        try {
+            System.out.println(query);
+
+            String url = "jdbc:sqlite:test.db";
+
+            Connection conn = DriverManager.getConnection(url);
+            Statement stmt = conn.createStatement();
+
+            stmt.executeUpdate(query);
+            ResultSet res = stmt.executeQuery(query);
+//            res.next();
+            String name = res.getString("id");
+            conn.close();
+            return name != null && !name.equals("");
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
         public static DbWritable queryAtt(Class<? extends DbWritable> clazz, String table, String attName, String attValue) {
             try {
-                String query = "SELECT * FROM " + table + " WHERE " + attName + " = '" + attValue + "';";
+                String query = "SELECT * FROM " + table + "  WHERE " + attName + " = '" + attValue + "';";
 
                 String url = "jdbc:sqlite:test.db";
 

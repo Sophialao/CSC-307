@@ -4,6 +4,7 @@ import util.Constants;
 import util.DbUtils;
 import util.DbSqlite;
 
+import java.awt.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;
@@ -83,5 +84,12 @@ public class Login implements DbWritable {
         DbSqlite.insertOrDelete(stmt);
     }
 
+
+    public static boolean valueExistsInDb(String username, String password) {
+        String stmt = "SELECT * FROM " + Constants.LOGIN_DB + " WHERE id = '" + username + "' and password='" + password + "';";
+
+        return DbSqlite.idExists(stmt);
+
+    }
 
 }

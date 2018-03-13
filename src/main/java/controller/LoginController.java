@@ -16,6 +16,8 @@ import model.Login;
 import java.io.IOException;
 import java.util.UUID;
 
+import static model.Login.valueExistsInDb;
+
 
 public class LoginController {
     @FXML Button signUpButton;
@@ -32,7 +34,7 @@ public class LoginController {
     }
 
     public void goToHome(ActionEvent event){
-        this.initializeHomeView();
+        this.verifyAccount();
         ((Node) event.getSource()).getScene().getWindow().hide();
     }
 
@@ -75,7 +77,7 @@ public class LoginController {
         }
     }
 
-    public void verifyAccount(ActionEvent event){
+    public void verifyAccount(){
         String username;
         String password;
 
@@ -108,11 +110,13 @@ public class LoginController {
             return;
         }
 
-
-
-
-
-        ((Node) event.getSource()).getScene().getWindow().hide();
+         if(valueExistsInDb(username,password)){
+            initializeHomeView();
+         }
+         else{
+             showAlert(Alert.AlertType.ERROR, "Bad Boy!",
+                     "Passwords wrong");
+         }
     }
 
     private void showAlert(Alert.AlertType alertType,String title, String message) {
