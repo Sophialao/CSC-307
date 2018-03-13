@@ -9,12 +9,12 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="467.0" prefWidth="832.0" style="-fx-background-color: #ffff;" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="467.0" prefWidth="832.0" style="-fx-background-color: #ffff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
    <children>
       <AnchorPane layoutX="479.0" layoutY="14.0" prefHeight="439.0" prefWidth="315.0" style="-fx-background-color: #D8D8D8;">
          <children>
-            <TextField layoutX="36.0" layoutY="120.0" prefHeight="26.0" prefWidth="235.0" promptText="username" />
-            <PasswordField layoutX="35.0" layoutY="207.0" prefHeight="26.0" prefWidth="235.0" promptText="password" />
+            <TextField fx:id="aUsername" layoutX="36.0" layoutY="120.0" prefHeight="26.0" prefWidth="235.0" promptText="username" />
+            <PasswordField fx:id="aPassword" layoutX="35.0" layoutY="207.0" prefHeight="26.0" prefWidth="235.0" promptText="password" />
             <Button fx:id="loginButton" layoutX="38.0" layoutY="301.0" mnemonicParsing="false" onAction="#goToHome" prefHeight="26.0" prefWidth="229.0" text="Log In" />
             <Label layoutX="112.0" layoutY="34.0" prefHeight="50.0" prefWidth="84.0" text="Sign In">
                <font>

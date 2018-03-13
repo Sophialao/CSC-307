@@ -2,6 +2,7 @@ package model;
 
 import util.Constants;
 import util.DbUtils;
+import util.DbSqlite;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,12 +27,12 @@ public class Login implements DbWritable {
         if (id == null)
             return new Login();
         else {
-            return (Login) DbUtils.getObject(Login.class, id, Constants.LOGIN_DB);
+            return (Login) DbSqlite.getObject(Login.class, id, Constants.LOGIN_DB);
         }
     }
 
     public static Map<String, DbWritable> getAll() {
-        Map<String, DbWritable> db = DbUtils.getAll(Login.class, Constants.LOGIN_DB);
+        Map<String, DbWritable> db = DbSqlite.getAll(Login.class, Constants.LOGIN_DB);
         return db;
     }
 
@@ -68,18 +69,18 @@ public class Login implements DbWritable {
         String stmt = "UPDATE " + Constants.LOGIN_DB + " SET ";
         stmt += "password = '" + this.getPassword() + "', ";
         stmt += " WHERE username = '" + this.getUsername() +"';";
-        DbUtils.insertOrDelete(stmt);
+        DbSqlite.insertOrDelete(stmt);
     }
 
     public void write() {
         String stmt = "INSERT INTO " + Constants.LOGIN_DB + "(id, password) VALUES (";
         stmt += "'" + this.getUsername() + "', '" + this.getPassword() +  "');";
-        DbUtils.insertOrDelete(stmt);
+        DbSqlite.insertOrDelete(stmt);
     }
 
     public void remove() {
         String stmt = "DELETE FROM " + Constants.LOGIN_DB + " WHERE id = '" + this.getUsername() + "';";
-        DbUtils.insertOrDelete(stmt);
+        DbSqlite.insertOrDelete(stmt);
     }
 
 

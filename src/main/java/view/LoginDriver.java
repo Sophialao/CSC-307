@@ -12,7 +12,7 @@ public class LoginDriver extends Application{
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/LoginView.fxml"));
 
-        Scene scene = new Scene(root, 300, 275);
+        Scene scene = new Scene(root, 800, 500);
         stage.setTitle("Login");
         stage.setScene(scene);
         stage.show();

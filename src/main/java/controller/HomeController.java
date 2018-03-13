@@ -83,6 +83,7 @@ public class HomeController {
                 Date today = new Date();
                 Calendar cal1 = Calendar.getInstance();
                 Calendar cal2 = Calendar.getInstance();
+                System.out.println(p.getDate());
                 cal1.setTime(p.getDate());
                 cal2.setTime(today);
                 boolean sameDay = cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) &&
@@ -107,8 +108,21 @@ public class HomeController {
                     "Already paid employees!");
         }
     }
-
-
+    /*
+    public static boolean valueExistsInDb(String table, String field, String value) {
+        SQLiteDatabase sqldb = EGLifeStyleApplication.sqLiteDatabase;
+        String sql = "SELECT COUNT(*) FROM " + table + " WHERE " + field + " = ?";
+        String[] sqlArgs = new String[]{ value };
+        Cursor cursor = sqldb.rawQuery(sql, sqlArgs);
+        if (cursor != null) {
+            try {
+                return cursor.getInt(0) > 0;
+            } finally {
+                cursor.close();
+            }
+            return false;
+        }
+        */
     public void initializeEmployee(ActionEvent event, Employee employee) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/EmployeeTotalView.fxml"));

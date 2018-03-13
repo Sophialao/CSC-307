@@ -133,12 +133,12 @@ public class ReportController {
 
     public static double calculateLoans(Employee e) {
         String e_id = e.getId();
-        try {
+        /*try {
             Map<String, DbWritable> e_loans = Loan.getAll();
         }
         catch (Exception ex){
             return 0.0;
-        }
+        }*/
 
         Map<String, DbWritable> e_loans = Loan.getAll();
         if (e_loans.isEmpty()){

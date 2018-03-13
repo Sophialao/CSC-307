@@ -2,6 +2,7 @@ package model;
 
 import util.Constants;
 import util.DbUtils;
+import util.DbSqlite;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -32,12 +33,12 @@ public class Loan implements DbWritable {
         if (id == null)
             return new Loan();
         else {
-            return (Loan) DbUtils.getObject(Loan.class, id, Constants.LOAN_DB);
+            return (Loan) DbSqlite.getObject(Loan.class, id, Constants.LOAN_DB);
         }
     }
 
     public static Map<String, DbWritable> getAll() {
-        Map<String, DbWritable> db = DbUtils.getAll(Loan.class, Constants.LOAN_DB);
+        Map<String, DbWritable> db = DbSqlite.getAll(Loan.class, Constants.LOAN_DB);
         return db;
     }
 
@@ -96,18 +97,18 @@ public class Loan implements DbWritable {
         stmt += "duration = " + this.getDuration() + ", ";
         stmt += "employeeId = '" + this.getEmployeeId() + "'";
         stmt += " WHERE id = '" + this.getId() +"';";
-        DbUtils.insertOrDelete(stmt);
+        DbSqlite.insertOrDelete(stmt);
     }
 
     public void write() {
         String stmt = "INSERT INTO " + Constants.LOAN_DB + "(id, amount, interestRate, duration, employeeId) VALUES (";
         stmt += "'" + this.getId() + "', " + this.getAmount() + ", " + this.getInterestRate() + ", " + this.getDuration() + ", '" +
                 this.getEmployeeId() + "');";
-        DbUtils.insertOrDelete(stmt);
+        DbSqlite.insertOrDelete(stmt);
     }
 
     public void remove() {
         String stmt = "DELETE FROM " + Constants.LOAN_DB + " WHERE id = '" + this.getId() + "';";
-        DbUtils.insertOrDelete(stmt);
+        DbSqlite.insertOrDelete(stmt);
     }
 }
