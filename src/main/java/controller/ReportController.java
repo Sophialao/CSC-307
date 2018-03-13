@@ -48,7 +48,7 @@ public class ReportController {
         hRate.setCellValueFactory(new PropertyValueFactory<Report, String>("rate"));
         hLoan.setCellValueFactory(new PropertyValueFactory<Report, String>("loan"));
         hTaxes.setCellValueFactory(new PropertyValueFactory<Report, String>("taxes"));
-        hTaxes.setCellValueFactory(new PropertyValueFactory<Report, String>("hours"));
+        hHours.setCellValueFactory(new PropertyValueFactory<Report, String>("hours"));
         hPayment.setCellValueFactory(new PropertyValueFactory<Report, String>("payment"));
         hourlyTable.setItems(getAllHourlyEmpl());
     }
@@ -124,12 +124,12 @@ public class ReportController {
 
     public static double calculateLoans(Employee e) {
         String e_id = e.getId();
-        try {
+        /*try {
             Map<String, DbWritable> e_loans = Loan.getAll();
         }
         catch (Exception ex){
             return 0.0;
-        }
+        }*/
 
         Map<String, DbWritable> e_loans = Loan.getAll();
         if (e_loans.isEmpty()){

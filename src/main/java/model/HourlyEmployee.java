@@ -1,7 +1,8 @@
 package model;
 
 import util.Constants;
-import util.DbUtils;
+import util.DbSqlite;
+import util.DbSqlite;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;
@@ -21,12 +22,12 @@ public class HourlyEmployee extends Employee {
         if (id == null)
             return new HourlyEmployee();
         else {
-            return (HourlyEmployee) DbUtils.getObject(HourlyEmployee.class, id, Constants.HOURLY_EMPLOYEE_DB);
+            return (HourlyEmployee) DbSqlite.getObject(HourlyEmployee.class, id, Constants.HOURLY_EMPLOYEE_DB);
         }
     }
 
     public static Map<String, DbWritable> getAll() {
-        Map<String, DbWritable> db = DbUtils.getAll(HourlyEmployee.class, Constants.HOURLY_EMPLOYEE_DB);
+        Map<String, DbWritable> db = DbSqlite.getAll(HourlyEmployee.class, Constants.HOURLY_EMPLOYEE_DB);
         return db;
     }
 
@@ -62,20 +63,20 @@ public class HourlyEmployee extends Employee {
         stmt += "sickDays = " + this.getSickDays() + ", ";
         stmt += "rate = " + this.getRate();
         stmt += " WHERE id = '" + this.getId() +"';";
-        DbUtils.insertOrDelete(stmt);
+        DbSqlite.insertOrDelete(stmt);
     }
 
     public void write() {
-        String stmt = "INSERT INTO " + Constants.HOURLY_EMPLOYEE_DB + "(id, name, address, ssn, gender, sickDays, " +
+        String stmt = "INSERT INTO " + Constants.HOURLY_EMPLOYEE_DB + "(id, name, type, address, ssn, gender, sickDays, " +
                 "rate) VALUES (";
-        stmt += "'" + this.getId() + "', '" + this.getName() + "', '" + this.getAddress() + "', " + this.getSsn() + ", '" +
+        stmt += "'" + this.getId() + "', '" + this.getName() + "', '" + "Hourly" + "', '" + this.getAddress() + "', " + this.getSsn() + ", '" +
                 this.getGender() + "', " + this.getSickDays() + ", " + this.getRate() + ");";
-        DbUtils.insertOrDelete(stmt);
+        DbSqlite.insertOrDelete(stmt);
     }
 
     public void remove() {
         String stmt = "DELETE FROM " + Constants.HOURLY_EMPLOYEE_DB + " WHERE id = '" + this.getId() + "';";
-        DbUtils.insertOrDelete(stmt);
+        DbSqlite.insertOrDelete(stmt);
     }
 
 

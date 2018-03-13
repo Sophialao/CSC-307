@@ -83,6 +83,7 @@ public class HomeController {
                 Date today = new Date();
                 Calendar cal1 = Calendar.getInstance();
                 Calendar cal2 = Calendar.getInstance();
+                System.out.println(p.getDate());
                 cal1.setTime(p.getDate());
                 cal2.setTime(today);
                 boolean sameDay = cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) &&

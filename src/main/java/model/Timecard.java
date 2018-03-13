@@ -2,7 +2,7 @@ package model;
 
 import util.Constants;
 import util.DbUtils;
-
+import util.DbSqlite;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
@@ -32,12 +32,12 @@ public class Timecard implements DbWritable {
         if (id == null)
             return new Timecard();
         else {
-            return (Timecard) DbUtils.getObject(Timecard.class, id, Constants.TIMECARD_DB);
+            return (Timecard) DbSqlite.getObject(Timecard.class, id, Constants.TIMECARD_DB);
         }
     }
 
     public static Map<String, DbWritable> getAll() {
-        Map<String, DbWritable> db = DbUtils.getAll(Timecard.class, Constants.TIMECARD_DB);
+        Map<String, DbWritable> db = DbSqlite.getAll(Timecard.class, Constants.TIMECARD_DB);
         return db;
     }
 
@@ -79,16 +79,38 @@ public class Timecard implements DbWritable {
         System.out.println("Time in: " + df.format(timeIn) + "  Time out: " + df.format(timeOut));
     }
 
+    public Date parseDateString(String d){
+        String[] date_time = d.split(" ");
+        String[] date_split = date_time[0].split("-");
+        String[] time_split = date_time[1].split(":");
+        //System.out.print("STRING: " + d);
+        //System.out.print("DATE_SPLIT: " + date_split[0] + date_split[1]);
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd kk:mm");
+        Date date = new Date(Integer.parseInt(date_split[0]), Integer.parseInt(date_split[1]), Integer.parseInt(date_split[2]), Integer.parseInt(time_split[0]), Integer.parseInt(time_split[1]));
+        //System.out.println(date);
+        Date date2 = null;
+        try{
+            date2 = df.parse(d);
+        }
+        catch (Exception e){
+            System.out.println(e.getStackTrace());
+        }
+
+        return date2;
+    }
+
     public void readFields(ResultSet res) throws SQLException {
         this.setId(res.getString("id"));
         this.setEId(res.getString("employeeId"));
-        this.setTimeIn(res.getDate("timeIn"));
-        this.setTimeOut(res.getDate("timeOut"));
+        this.setTimeIn(parseDateString(res.getString("timeIn")));
+        this.setTimeOut(parseDateString(res.getString("timeOut")));
+        //this.setTimeIn(res.getDate("timeIn"));
+        //this.setTimeOut(res.getDate("timeOut"));
 
     }
 
     public void update() {
-        DateFormat df = new SimpleDateFormat("yyyy-mm-dd kk:mm:00");
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd kk:mm:00");
         String timeInFormat = df.format(this.getTimeIn());
         String timeOutFormat = df.format(this.getTimeOut());
 
@@ -97,7 +119,7 @@ public class Timecard implements DbWritable {
         stmt += "timeOut = '" + timeOutFormat + "', ";
         stmt += "employeeId = '" + this.getEId() + "'";
         stmt += " WHERE id = '" + this.getId() +"';";
-        DbUtils.insertOrDelete(stmt);
+        DbSqlite.insertOrDelete(stmt);
     }
 
     public void write() {
@@ -110,12 +132,12 @@ public class Timecard implements DbWritable {
                 "'" + timeInFormat + "', " +
                 "'" + timeOutFormat + "', '" +
                 this.getEId() + "');";
-        DbUtils.insertOrDelete(stmt);
+        DbSqlite.insertOrDelete(stmt);
     }
 
     public void remove() {
         String stmt = "DELETE FROM " + Constants.TIMECARD_DB + " WHERE id = '" + this.getId() + "';";
-        DbUtils.insertOrDelete(stmt);
+        DbSqlite.insertOrDelete(stmt);
     }
 
 

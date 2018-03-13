@@ -2,7 +2,7 @@ package model;
 
 import util.Constants;
 import util.DbUtils;
-
+import util.DbSqlite;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;
@@ -28,12 +28,12 @@ public class SalaryEmployee extends Employee {
         if (id == null)
             return new SalaryEmployee();
         else {
-            return (SalaryEmployee) DbUtils.getObject(SalaryEmployee.class, id, Constants.SALARY_EMPLOYEE_DB);
+            return (SalaryEmployee) DbSqlite.getObject(SalaryEmployee.class, id, Constants.SALARY_EMPLOYEE_DB);
         }
     }
 
     public static Map<String, DbWritable> getAll() {
-        Map<String, DbWritable> db = DbUtils.getAll(SalaryEmployee.class, Constants.SALARY_EMPLOYEE_DB);
+        Map<String, DbWritable> db = DbSqlite.getAll(SalaryEmployee.class, Constants.SALARY_EMPLOYEE_DB);
         return db;
     }
 
@@ -89,21 +89,21 @@ public class SalaryEmployee extends Employee {
         stmt += "commission = " + this.getCommission() + ", ";
         stmt += "sales = " + this.getSales() + ", ";
         stmt += " WHERE id = '" + this.getId() +"';";
-        DbUtils.insertOrDelete(stmt);
+        DbSqlite.insertOrDelete(stmt);
     }
 
     public void write() {
-        String stmt = "INSERT INTO " + Constants.SALARY_EMPLOYEE_DB + "(id, name, address, ssn, gender, sickDays, " +
+        String stmt = "INSERT INTO " + Constants.SALARY_EMPLOYEE_DB + "(id, name, type, address, ssn, gender, sickDays, " +
                 "rate, commission, sales) VALUES (";
-        stmt += "'" + this.getId() + ", '" + this.getName() + "', '" + this.getAddress() + "', " + this.getSsn() +
+        stmt += "'" + this.getId() + "', '" + this.getName() + "', '" + "Salary" + "', '" + this.getAddress() + "', " + this.getSsn() +
                 ", '" + this.getGender() + "', " +
                 this.getSickDays() + ", " + this.getSalary() + ", " + this.getCommission() + ", " +
                 this.getSales() + ");";
-        DbUtils.insertOrDelete(stmt);
+        DbSqlite.insertOrDelete(stmt);
     }
 
     public void remove() {
         String stmt = "DELETE FROM " + Constants.SALARY_EMPLOYEE_DB + " WHERE id = '" + this.getId() + "';";
-        DbUtils.insertOrDelete(stmt);
+        DbSqlite.insertOrDelete(stmt);
     }
 }
