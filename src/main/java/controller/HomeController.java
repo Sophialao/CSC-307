@@ -128,7 +128,6 @@ public class HomeController {
         }
     }
 
-
     public void initializeEmployee(ActionEvent event, Employee employee) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/EmployeeTotalView.fxml"));

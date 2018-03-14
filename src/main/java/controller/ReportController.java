@@ -7,8 +7,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import model.*;
 
+import java.io.File;
 import java.util.*;
 
 public class ReportController {
@@ -29,6 +32,8 @@ public class ReportController {
     @FXML private TableColumn hTaxes;
     @FXML private TableColumn hHours;
     @FXML private TableColumn hPayment;
+
+    @FXML private ImageView pradeep1;
 
     public ReportController() {
 
@@ -51,6 +56,10 @@ public class ReportController {
         hHours.setCellValueFactory(new PropertyValueFactory<Report, String>("hours"));
         hPayment.setCellValueFactory(new PropertyValueFactory<Report, String>("payment"));
         hourlyTable.setItems(getAllHourlyEmpl());
+
+        File file = new File("pradeep1.jpg");
+        Image image = new Image(file.toURI().toString());
+        pradeep1.setImage(image);
     }
 
     public ObservableList<Report> getAllSalaryEmpl() {
