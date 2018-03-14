@@ -31,6 +31,8 @@ public class EmployeeTimecardsController {
 
 
     public void generateTimecards(Employee e) {
+        this.e = e;
+
         StimeIn.setCellValueFactory(new PropertyValueFactory<Timecard, Date>("timeIn"));
         StimeOut.setCellValueFactory(new PropertyValueFactory<Timecard, Date>("timeOut"));
         timecardTable.setItems(getAllTimecards(e));

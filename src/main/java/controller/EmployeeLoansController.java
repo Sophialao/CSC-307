@@ -36,6 +36,7 @@ public class EmployeeLoansController {
 
 
     public void generateLoans(Employee e) {
+        this.e = e;
         SAmount.setCellValueFactory(new PropertyValueFactory<Timecard, Double>("amount"));
         SInterest.setCellValueFactory(new PropertyValueFactory<Timecard, Double>("interestRate"));
         SDuration.setCellValueFactory(new PropertyValueFactory<Timecard, Integer>("duration"));

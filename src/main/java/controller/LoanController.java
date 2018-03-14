@@ -71,7 +71,12 @@ public class LoanController {
                     "Duration not formatted correctly");
             return;
         }
-        Loan new_loan = new Loan(eId, l, interest, duration);
+        //Loan new_loan = new Loan(eId, l, interest, duration);
+        Loan new_loan = Loan.getInstance(null);
+        new_loan.setEmployeeId(eId);
+        new_loan.setAmount(l);
+        new_loan.setInterestRate(interest);
+        new_loan.setDuration(duration);
         new_loan.write();
 
         showAlert(Alert.AlertType.CONFIRMATION, "New loan added!",
