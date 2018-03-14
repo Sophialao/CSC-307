@@ -87,7 +87,7 @@ public class SalaryEmployee extends Employee {
         stmt += "sickDays = " + this.getSickDays() + ", ";
         stmt += "rate = " + this.getSalary() + ", ";
         stmt += "commission = " + this.getCommission() + ", ";
-        stmt += "sales = " + this.getSales() + ", ";
+        stmt += "sales = " + this.getSales() + "";
         stmt += " WHERE id = '" + this.getId() +"';";
         DbSqlite.insertOrDelete(stmt);
     }

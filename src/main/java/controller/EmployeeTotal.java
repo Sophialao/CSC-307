@@ -5,13 +5,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import model.Employee;
+import model.SalaryEmployee;
 
 public class EmployeeTotal {
     @FXML
-    private TabPane tabPane;
+    public TabPane tabPane;
 
     @FXML
-    private Tab timecard_tab;
+    public Tab timecard_tab;
 
     @FXML
     private Tab loan_tab;
@@ -42,7 +43,8 @@ public class EmployeeTotal {
             Parent root = loader.load();
 */
         if (employee != null) {
-            employeeTimecardsController.initializeTC2(employee);
+            //employeeTimecardsController.initializeTC2(employee);
+            employeeTimecardsController.generateTimecards(employee);
         }
        /* } catch (Exception e) {
             e.printStackTrace();
@@ -72,7 +74,7 @@ public class EmployeeTotal {
             e.printStackTrace();
         }*/
         if (employee != null) {
-            employeeLoansController.initializeL2(employee);
+            employeeLoansController.generateLoans(employee);
         }
     }
 }

@@ -2,10 +2,17 @@ package controller;
 import javafx.event.ActionEvent;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 import model.*;
 import javafx.scene.text.*;
+
+import java.io.IOException;
 
 
 public class EmployeeController {
@@ -56,6 +63,7 @@ public class EmployeeController {
         }
         showAlert(Alert.AlertType.CONFIRMATION, "Success",
                 "Employee " + this.employee.getName() + " added!");
+        this.setData();
         ((Node) event.getSource()).getScene().getWindow().hide();
     }
 
@@ -63,8 +71,21 @@ public class EmployeeController {
         this.deleteEmployee(this.employee.getId());
         showAlert(Alert.AlertType.CONFIRMATION, "Success",
                 "Employee " + this.employee.getName() + " removed!");
+        this.setData();
         ((Node) event.getSource()).getScene().getWindow().hide();
+    }
 
+    public void setData() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/HomeView.fxml"));
+            Parent root = loader.load();
+            HomeController hc = loader.getController();
+
+            hc.refreshPage();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -95,6 +116,7 @@ public class EmployeeController {
             hourlyCheck.setSelected(true);
             rate.setText(Double.toString(hourly.getRate()));
         }
+        this.setData();
 
     }
 

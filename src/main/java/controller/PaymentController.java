@@ -1,13 +1,12 @@
 package controller;
 import java.util.Calendar;
 
-import model.Employee;
-import model.SalaryEmployee;
-import model.HourlyEmployee;
-import model.Payment;
-import model.Loan;
-import model.Timecard;
-import model.DbWritable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import model.*;
+
 import java.util.*;
 
 import javafx.event.ActionEvent;
@@ -29,7 +28,114 @@ public class PaymentController {
     	this.invoke_hourly = invoke_hourly;
 	}
 
-	@FXML private Text actiontarget;
+	@FXML private TableView salaryTable;
+	@FXML private TableColumn sName;
+	@FXML private TableColumn sRate;
+	@FXML private TableColumn sCommission;
+	@FXML private TableColumn sLoan;
+	@FXML private TableColumn sCommissionAmt;
+	@FXML private TableColumn sTaxes;
+	@FXML private TableColumn sPayment;
+
+	@FXML private TableView hourlyTable;
+	@FXML private TableColumn hName;
+	@FXML private TableColumn hRate;
+	@FXML private TableColumn hLoan;
+	@FXML private TableColumn hTaxes;
+	@FXML private TableColumn hHours;
+	@FXML private TableColumn hPayment;
+
+	@FXML private Button payButton;
+
+
+	public void generatePayments() {
+		sName.setCellValueFactory(new PropertyValueFactory<Report, String>("name"));
+		sRate.setCellValueFactory(new PropertyValueFactory<Report, String>("rate"));
+		sCommission.setCellValueFactory(new PropertyValueFactory<Report, String>("commission"));
+		sLoan.setCellValueFactory(new PropertyValueFactory<Report, String>("loan"));
+		sCommissionAmt.setCellValueFactory(new PropertyValueFactory<Report, String>("commissionAmt"));
+		sTaxes.setCellValueFactory(new PropertyValueFactory<Report, String>("taxes"));
+		sPayment.setCellValueFactory(new PropertyValueFactory<Report, String>("payment"));
+		salaryTable.setItems(getAllSalaryEmpl());
+
+		hName.setCellValueFactory(new PropertyValueFactory<Report, String>("name"));
+		hRate.setCellValueFactory(new PropertyValueFactory<Report, String>("rate"));
+		hLoan.setCellValueFactory(new PropertyValueFactory<Report, String>("loan"));
+		hTaxes.setCellValueFactory(new PropertyValueFactory<Report, String>("taxes"));
+		hHours.setCellValueFactory(new PropertyValueFactory<Report, String>("hours"));
+		hPayment.setCellValueFactory(new PropertyValueFactory<Report, String>("payment"));
+		hourlyTable.setItems(getAllHourlyEmpl());
+	}
+
+	public ObservableList<Report> getAllSalaryEmpl() {
+		Map<String, DbWritable> allS = SalaryEmployee.getAll();
+		ObservableList<Report> salaryReports = FXCollections.observableArrayList();
+
+		Iterator<String> it = allS.keySet().iterator();
+		while(it.hasNext()){
+			String key = it.next();
+			SalaryEmployee se = (SalaryEmployee)allS.get(key);
+			double salary = se.getSalary();
+			double loans = Math.floor(calculateLoansForShow(se) * 100)/100;
+			double commissionAmt = Math.floor(PaymentController.calculateCommission(se) * 100)/100;
+			double taxes = PaymentController.calculateTaxes((salary/12.0), se);
+			double payment = Math.floor(calculateSalaryPayment(se, loans, commissionAmt, salary) * 100)/100;
+			Report report = new Report(se.getName(), salary, se.getCommission(), loans, commissionAmt, taxes, 0.0, payment);
+			salaryReports.add(report);
+		}
+
+		return salaryReports;
+	}
+
+	public ObservableList<Report> getAllHourlyEmpl() {
+		Map<String, DbWritable> allH = HourlyEmployee.getAll();
+		ObservableList<Report> hourlyReports = FXCollections.observableArrayList();
+
+		Iterator<String> it = allH.keySet().iterator();
+		while(it.hasNext()){
+			String key = it.next();
+			HourlyEmployee he = (HourlyEmployee) allH.get(key);
+			double wage = he.getRate();
+			double loans = Math.floor(calculateLoansForShow(he) * 100)/100;
+			double taxes = PaymentController.calcRestTaxes(wage*2080);
+			double hours = calculateHoursWorked(he);
+			double payment = Math.floor(PaymentController.calculateTime(he)*100)/100;
+			Report report = new Report(he.getName(), wage, 0.0, loans, 0.0, taxes, hours, payment);
+			hourlyReports.add(report);
+		}
+
+		return hourlyReports;
+	}
+
+	public static double calculateHoursWorked(HourlyEmployee e) {
+		Map<String, DbWritable> e_timecards = Timecard.getAll();
+		double total_timeWorked = 0;
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.DATE, -7);
+		Date dateBefore7Days = cal.getTime();
+		for (String key : e_timecards.keySet()){
+			Timecard e_timecard = (Timecard) e_timecards.get(key);
+			if (e_timecard.getEId().equals(e.getId())){
+				if (e_timecard.getTimeIn().after(dateBefore7Days)){
+					total_timeWorked += Math.abs(e_timecard.getTimeOut().getTime() - e_timecard.getTimeIn().getTime());
+				}
+			}
+		}
+
+		double seconds = total_timeWorked / 1000.0;
+		double minutes = seconds / 60.0;
+		double hours = minutes / 60.0;
+		return hours;
+	}
+
+	public static double calculateSalaryPayment(SalaryEmployee se, double loans, double commissionAmt, double salary) {
+		double before_tax = salary/12.0;
+		double after_commission = before_tax + commissionAmt;
+		double after_tax = after_commission - (after_commission*PaymentController.calculateTaxes(before_tax, se));
+		double after_loans = after_tax - loans;
+		return after_loans;
+	}
+
 
 	@FXML protected String handleSubmitButtonAction(ActionEvent event) {
 		if (!checkLastDateofMonth() && !checkMonday()){
@@ -43,6 +149,24 @@ public class PaymentController {
 			return "Paid";
 		}
 	}
+
+
+	public ObservableList<Loan> getAllLoans(Employee e) {
+		Map<String, DbWritable> allL = Loan.getAll();
+		ObservableList<Loan> loans = FXCollections.observableArrayList();
+
+		Iterator<String> it = allL.keySet().iterator();
+		while(it.hasNext()){
+			String key = it.next();
+			Loan l = (Loan)allL.get(key);
+			if (l.getEmployeeId().equals(e.getId())){
+				loans.add(l);
+			}
+		}
+
+		return loans;
+	}
+
 
 	public static boolean checkPaid(){
 		Map<String, DbWritable> payments = Payment.getAll();
@@ -61,6 +185,24 @@ public class PaymentController {
 		}
 		return false;
 	}
+
+
+	public void payEmployee(ActionEvent event) {
+		String result = this.handleSubmitButtonAction(event);
+		if (result.equals("Paid")){
+			showAlert(Alert.AlertType.CONFIRMATION, "Success", "Paid Employees!");
+		}
+		else if (result.equals("Not Payday")){
+			showAlert(Alert.AlertType.ERROR, "Error",
+					"Not payday for any employees!");
+		}
+		else{
+			showAlert(Alert.AlertType.ERROR, "Error",
+					"Already paid employees!");
+		}
+	}
+
+
 
 	public static void calculatePayment() {
 		boolean monthly_payday = checkLastDateofMonth();
@@ -119,8 +261,8 @@ public class PaymentController {
 			double after_tax = after_commission - (after_commission*calculateTaxes(before_tax, e));
 			double after_loans = after_tax - calculateLoans(e);
 			//System.out.println(after_loans);
-
-			Payment p = new Payment(key, after_loans, getDate());
+			double after_sickDays = after_loans - calcSickDays(after_loans, e);
+			Payment p = new Payment(key, after_sickDays, getDate());
 			p.write();
 		}
 	}
@@ -203,9 +345,42 @@ public class PaymentController {
 				double each_month_pay = each_month * (1 + interest_decimal);
 				e_loan.setAmount(e_loan.getAmount() - each_month);
 				e_loan.setDuration(e_loan.getDuration() - 1);
-				e_loan.write();
+				e_loan.update();
 				each_month_pay_total += each_month_pay;
 				//System.out.println("LOAN PAY:" + each_month_pay);
+			}
+		}
+
+		return each_month_pay_total;
+	}
+
+	public static double calculateLoansForShow(Employee e) {
+		String e_id = e.getId();
+        /*try {
+            Map<String, DbWritable> e_loans = Loan.getAll();
+        }
+        catch (Exception ex){
+            return 0.0;
+        }*/
+
+		Map<String, DbWritable> e_loans = Loan.getAll();
+		if (e_loans.isEmpty()){
+			return 0.0;
+		}
+
+		double each_month_pay_total = 0.0;
+
+		for (String key : e_loans.keySet()) {
+			Loan e_loan = (Loan) e_loans.get(key);
+			if (e_loan.getEmployeeId() == null){
+				continue;
+			}
+			else if (e_loan.getEmployeeId().equals(e_id)) {
+				double interest_decimal = e_loan.getInterestRate();
+				int time = e_loan.getDuration();
+				double each_month = e_loan.getAmount() / (double) time;
+				double each_month_pay = each_month * (1 + interest_decimal);
+				each_month_pay_total += each_month_pay;
 			}
 		}
 
@@ -251,6 +426,25 @@ public class PaymentController {
 		else{
 			return .123;
 		}
+	}
+
+	public static double calcSickDays(double money, SalaryEmployee se){
+		// deducts a tenth of monthly salary for each extra sick day taken
+		int sickDays = se.getSickDays();
+		se.setSickDays(3);
+		se.update();
+		if (sickDays < 0){
+			return Math.abs(sickDays)*.1*money;
+		}
+		return 0.0;
+	}
+
+	public static void showAlert(Alert.AlertType alertType, String title, String message) {
+		Alert alert = new Alert(alertType);
+		alert.setTitle(title);
+		alert.setHeaderText(null);
+		alert.setContentText(message);
+		alert.show();
 	}
 
 

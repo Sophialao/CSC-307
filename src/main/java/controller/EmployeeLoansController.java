@@ -1,23 +1,66 @@
 package controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.DbWritable;
 import model.Employee;
 import model.Loan;
 import javafx.scene.control.Label;
+import model.Timecard;
 
 import java.io.IOException;
+import java.util.Date;
+import java.util.Iterator;
 import java.util.Map;
 
 public class EmployeeLoansController {
     @FXML Label loans;
     Employee e;
+
+
+
+    @FXML private TableView loanTable;
+    @FXML private TableColumn SAmount;
+    @FXML private TableColumn SInterest;
+    @FXML private TableColumn SDuration;
+
+
+    public void generateLoans(Employee e) {
+        SAmount.setCellValueFactory(new PropertyValueFactory<Timecard, Double>("amount"));
+        SInterest.setCellValueFactory(new PropertyValueFactory<Timecard, Double>("interestRate"));
+        SDuration.setCellValueFactory(new PropertyValueFactory<Timecard, Integer>("duration"));
+
+        loanTable.setItems(getAllLoans(e));
+    }
+
+    public ObservableList<Loan> getAllLoans(Employee e) {
+        Map<String, DbWritable> allL = Loan.getAll();
+        ObservableList<Loan> loans = FXCollections.observableArrayList();
+
+        Iterator<String> it = allL.keySet().iterator();
+        while(it.hasNext()){
+            String key = it.next();
+            Loan l = (Loan)allL.get(key);
+            if (l.getEmployeeId().equals(e.getId())){
+                loans.add(l);
+            }
+        }
+
+        return loans;
+    }
+
+
+
 
     public void initializeL2(Employee e){
         Map<String, DbWritable> lc = Loan.getAll();

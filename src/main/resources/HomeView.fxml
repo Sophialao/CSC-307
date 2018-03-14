@@ -31,9 +31,9 @@
       <RowConstraints maxHeight="107.0" minHeight="7.0" prefHeight="13.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-       <Label prefWidth="102.0" text="PayDay" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="0">
+       <Label prefWidth="102.0" text="GoldenSoft" GridPane.columnIndex="3" GridPane.columnSpan="4" GridPane.rowIndex="0">
          <font>
-            <Font name="System Bold Italic" size="24.0" />
+            <Font name="System Bold Italic" size="17.0" />
          </font></Label>
       <Button fx:id="editSalaryButton" mnemonicParsing="false" onAction="#editSalaryEmployeeClicked" prefHeight="26.0" prefWidth="305.0" text="View/Edit" GridPane.columnIndex="2" GridPane.rowIndex="3" />
       <ListView fx:id="sLV" prefHeight="247.0" prefWidth="118.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
@@ -59,7 +59,7 @@
       </Button>
       <AmbientLight color="CHARTREUSE" lightOn="true" GridPane.columnIndex="3" />
       <PointLight color="CHARTREUSE" lightOn="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-      <Button fx:id="payButton" mnemonicParsing="false" onAction="#payEmployee" text="Pay!" GridPane.columnIndex="1">
+      <Button fx:id="payButton" mnemonicParsing="false" onAction="#generatePayments" text="Payments" GridPane.columnIndex="1">
          <GridPane.margin>
             <Insets left="20.0" />
          </GridPane.margin>

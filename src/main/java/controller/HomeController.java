@@ -11,6 +11,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import model.DbWritable;
 import model.Employee;
@@ -56,6 +57,24 @@ public class HomeController {
             stage.setScene(new Scene(root, 913, 652));
 
             rc.generateReport();
+
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void generatePayments(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GeneratePayments.fxml"));
+            Parent root = loader.load();
+            PaymentController pc = loader.getController();
+
+            Stage stage = new Stage();
+            stage.setTitle("Payments");
+            stage.setScene(new Scene(root, 913, 652));
+
+            pc.generatePayments();
 
             stage.show();
         } catch (IOException e) {
@@ -123,12 +142,19 @@ public class HomeController {
             if (employee != null) {
                 EmployeeTotal controller = loader.getController();
                 controller.empController.setFields(employee);
+                if (employee instanceof SalaryEmployee){
+                    controller.tabPane.getTabs().remove(controller.timecard_tab);
+                }
+
                 //controller.setFields(employee);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+
+
 
     public void setData(){
 

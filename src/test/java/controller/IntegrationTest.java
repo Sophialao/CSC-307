@@ -12,7 +12,7 @@ class IntegrationTest {
     int currMonth = d.getMonth();
 
     @Test
-    public void testHourlyMultTimecardsLoanAndSalaryCommissionLoan(){
+    public void testHourlyMultTimecardsLoanAndSalaryCommissionLoanSickDays(){
         EmployeeController ec = new EmployeeController();
         TimecardController tc = new TimecardController();
 
@@ -75,7 +75,7 @@ class IntegrationTest {
 
 
         // Add salary employee
-        SalaryEmployee kelly2 = (SalaryEmployee) ec.addSalaryEmployee(null,"Kelly", "SLO", 1234, 100000.0, .1, 100.0, "F", 6);
+        SalaryEmployee kelly2 = (SalaryEmployee) ec.addSalaryEmployee(null,"Kelly", "SLO", 1234, 100000.0, .1, 100.0, "F", -1);
 
         // Checks gets back same employee
         String kelly_id2 = kelly2.getId();
@@ -110,7 +110,7 @@ class IntegrationTest {
                 break;
             }
         }
-        assertEquals(6557.4, pay2, .01);
+        assertEquals(5901.66, pay2, .01);
 
         // Checks gets right payment back
         Payment p4 = Payment.getInstance(p3.getId());
