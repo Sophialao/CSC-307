@@ -61,6 +61,8 @@ public class EmployeeController {
                 this.editEmployee(event);
             }
         }
+        this.setData();
+
         showAlert(Alert.AlertType.CONFIRMATION, "Success",
                 "Employee " + this.employee.getName() + " added!");
         this.setData();
@@ -77,11 +79,16 @@ public class EmployeeController {
 
     public void setData() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/HomeView.fxml"));
+            /*FXMLLoader loader = new FXMLLoader(getClass().getResource("/HomeView.fxml"));
             Parent root = loader.load();
+            HomeController hc = loader.getController();*/
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/HomeView.fxml"));
+            Node node = loader.load();
+
             HomeController hc = loader.getController();
 
-            hc.refreshPage();
+
 
         } catch (IOException e) {
             e.printStackTrace();

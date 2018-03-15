@@ -10,6 +10,7 @@
 <?import javafx.scene.text.Text?>
 <?scenebuilder-stylesheet Timecard.css?>
 
+<?import javafx.scene.control.DatePicker?>
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="398.0" prefWidth="567.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TimecardController">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="294.1307067871094" minWidth="10.0" prefWidth="115.0" />
@@ -29,8 +30,10 @@
         <Button mnemonicParsing="false" onAction="#exampleButtonAction" prefHeight="26.0" prefWidth="194.0" text="Import timecard" GridPane.columnIndex="1" GridPane.rowIndex="1" />
       <GridPane GridPane.columnIndex="1">
         <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -39,8 +42,10 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-             <TextField fx:id="timeInF" GridPane.rowIndex="2" />
-            <TextField fx:id="timeOutF" GridPane.rowIndex="3" />
+             <TextField fx:id="timeInF" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+             <DatePicker fx:id="dp" GridPane.rowIndex="2" GridPane.columnIndex="0"></DatePicker>
+            <TextField fx:id="timeOutF" GridPane.rowIndex="3" GridPane.columnIndex="1" />
+             <DatePicker fx:id="dp2" GridPane.rowIndex="3" GridPane.columnIndex="0"></DatePicker>
          </children>
       </GridPane>
       <GridPane>

@@ -34,6 +34,8 @@ public class HomeController {
     @FXML ListView hLV;
     Employee emp;
 
+
+
     public void editSalaryEmployeeClicked(ActionEvent event) {
         emp = (Employee) sLV.getSelectionModel().getSelectedItem();
         this.initializeEmployee(event, emp);
@@ -87,6 +89,7 @@ public class HomeController {
     }
 
     public void refreshPage() {
+        System.out.println("REFRESHING");
         this.setData();
     }
 

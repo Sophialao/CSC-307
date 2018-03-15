@@ -12,6 +12,7 @@ public class Report {
     private final ObjectProperty<Double> commissionAmt = new SimpleObjectProperty<>();
     private final ObjectProperty<Double> taxes = new SimpleObjectProperty<>();
     private final ObjectProperty<Double> hours = new SimpleObjectProperty<>();
+    private final ObjectProperty<Double> sickDays = new SimpleObjectProperty<>();
     private final ObjectProperty<Double> payment = new SimpleObjectProperty<>();
 
     public Report() {
@@ -20,7 +21,7 @@ public class Report {
         this.commission.set(0.0);
     }
 
-    public Report(String name, double rate, double commission, double loan, double commissionAmt, double taxes, double hours, double payment) {
+    public Report(String name, double rate, double commission, double loan, double commissionAmt, double taxes, double hours, double sickDays, double payment) {
         this.name.set(name);
         this.rate.set(rate);
         this.commission.set(commission);
@@ -28,6 +29,7 @@ public class Report {
         this.commissionAmt.set(commissionAmt);
         this.taxes.set(taxes);
         this.hours.set(hours);
+        this.sickDays.set(sickDays);
         this.payment.set(payment);
     }
 
@@ -91,6 +93,12 @@ public class Report {
         return this.taxes;
     }
 
+    public final Double getSickDays() { return this.sickDays.get(); }
+    public final void setSickDays(double value) { this.sickDays.set(value); }
+    public final ObjectProperty<Double> sickDaysProperty() {
+        return this.sickDays;
+    }
+
     public final Double getHours() {
         return this.hours.get();
     }
@@ -101,6 +109,7 @@ public class Report {
         return this.hours;
     }
 
+
     public final Double getPayment() {
         return this.payment.get();
     }
@@ -110,6 +119,8 @@ public class Report {
     public final ObjectProperty<Double> paymentProperty() {
         return this.payment;
     }
+
+
 
 
 }

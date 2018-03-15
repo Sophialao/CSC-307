@@ -23,6 +23,7 @@ public class ReportController {
     @FXML private TableColumn sLoan;
     @FXML private TableColumn sCommissionAmt;
     @FXML private TableColumn sTaxes;
+    @FXML private TableColumn sSickDays;
     @FXML private TableColumn sPayment;
 
     @FXML private TableView hourlyTable;
@@ -31,6 +32,7 @@ public class ReportController {
     @FXML private TableColumn hLoan;
     @FXML private TableColumn hTaxes;
     @FXML private TableColumn hHours;
+    @FXML private TableColumn hSickDays;
     @FXML private TableColumn hPayment;
 
     @FXML private ImageView pradeep1;
@@ -46,6 +48,7 @@ public class ReportController {
         sLoan.setCellValueFactory(new PropertyValueFactory<Report, String>("loan"));
         sCommissionAmt.setCellValueFactory(new PropertyValueFactory<Report, String>("commissionAmt"));
         sTaxes.setCellValueFactory(new PropertyValueFactory<Report, String>("taxes"));
+        sSickDays.setCellValueFactory(new PropertyValueFactory<Report, String>("sickDays"));
         sPayment.setCellValueFactory(new PropertyValueFactory<Report, String>("payment"));
         salaryTable.setItems(getAllSalaryEmpl());
 
@@ -54,6 +57,7 @@ public class ReportController {
         hLoan.setCellValueFactory(new PropertyValueFactory<Report, String>("loan"));
         hTaxes.setCellValueFactory(new PropertyValueFactory<Report, String>("taxes"));
         hHours.setCellValueFactory(new PropertyValueFactory<Report, String>("hours"));
+        hSickDays.setCellValueFactory(new PropertyValueFactory<Report, String>("sickDays"));
         hPayment.setCellValueFactory(new PropertyValueFactory<Report, String>("payment"));
         hourlyTable.setItems(getAllHourlyEmpl());
 
@@ -71,11 +75,12 @@ public class ReportController {
             String key = it.next();
             SalaryEmployee se = (SalaryEmployee)allS.get(key);
             double salary = se.getSalary();
-            double loans = Math.floor(calculateLoans(se) * 100)/100;
+            double loans = Math.floor(PaymentController.calculateLoansForShow(se) * 100)/100;
             double commissionAmt = Math.floor(PaymentController.calculateCommission(se) * 100)/100;
             double taxes = PaymentController.calculateTaxes((salary/12.0), se);
+            double sickDays = PaymentController.calcSickDaysWithoutSet(calculatePayBeforeSickDays(se, loans, commissionAmt, salary), se);
             double payment = Math.floor(calculateSalaryPayment(se, loans, commissionAmt, salary) * 100)/100;
-            Report report = new Report(se.getName(), salary, se.getCommission(), loans, commissionAmt, taxes, 0.0, payment);
+            Report report = new Report(se.getName(), salary, se.getCommission(), loans, commissionAmt, taxes, 0.0, sickDays, payment);
             salaryReports.add(report);
         }
 
@@ -91,11 +96,12 @@ public class ReportController {
             String key = it.next();
             HourlyEmployee he = (HourlyEmployee) allH.get(key);
             double wage = he.getRate();
-            double loans = Math.floor(calculateLoans(he) * 100)/100;
+            double loans = Math.floor(PaymentController.calculateLoansForShow(he) * 100)/100;
             double taxes = PaymentController.calcRestTaxes(wage*2080);
             double hours = calculateHoursWorked(he);
-            double payment = Math.floor(PaymentController.calculateTime(he)*100)/100;
-            Report report = new Report(he.getName(), wage, 0.0, loans, 0.0, taxes, hours, payment);
+            double sickDays = PaymentController.calcSickDaysWithoutSet(calculatePayBeforeHourlySick(he, loans), he);
+            double payment = Math.floor(PaymentController.calculateHourlyPayment(he, loans)*100)/100;
+            Report report = new Report(he.getName(), wage, 0.0, loans, 0.0, taxes, hours, sickDays, payment);
             hourlyReports.add(report);
         }
 
@@ -127,6 +133,23 @@ public class ReportController {
         double before_tax = salary/12.0;
         double after_commission = before_tax + commissionAmt;
         double after_tax = after_commission - (after_commission*PaymentController.calculateTaxes(before_tax, se));
+        double after_loans = after_tax - loans;
+        double after_sickDays = after_loans - PaymentController.calcSickDaysWithoutSet(after_loans, se);
+        return after_sickDays;
+    }
+
+
+    public static double calculatePayBeforeSickDays(SalaryEmployee se, double loans, double commissionAmt, double salary){
+        double before_tax = salary/12.0;
+        double after_commission = before_tax + commissionAmt;
+        double after_tax = after_commission - (after_commission*PaymentController.calculateTaxes(before_tax, se));
+        double after_loans = after_tax - loans;
+        return after_loans;
+    }
+
+    public static double calculatePayBeforeHourlySick(HourlyEmployee he, double loans){
+        double before_tax = PaymentController.calculateTime(he);
+        double after_tax = before_tax - PaymentController.calculateTaxes(before_tax, he);
         double after_loans = after_tax - loans;
         return after_loans;
     }
