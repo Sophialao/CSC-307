@@ -11,6 +11,12 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.util.* ?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.* ?>
+<?import javafx.scene.layout.* ?>
 
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="433.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EmployeeController">
 
@@ -61,7 +67,6 @@
            </GridPane.margin>
        </Label>
        <TextField fx:id="sickdays" prefHeight="27.0" prefWidth="95.0" GridPane.columnIndex="5" GridPane.rowIndex="5" />
-
        <Label prefHeight="17.0" prefWidth="76.0" text="Commission" GridPane.columnIndex="6" GridPane.rowIndex="5">
 
        <GridPane.margin>
