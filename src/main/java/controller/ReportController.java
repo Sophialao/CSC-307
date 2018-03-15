@@ -4,14 +4,19 @@ package controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 import model.*;
 
+import javafx.event.ActionEvent;
+
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class ReportController {
@@ -35,7 +40,8 @@ public class ReportController {
     @FXML private TableColumn hSickDays;
     @FXML private TableColumn hPayment;
 
-    @FXML private ImageView pradeep1;
+    @FXML private Button salaryReport;
+    @FXML private Button hourlyReport;
 
     public ReportController() {
 
@@ -61,9 +67,64 @@ public class ReportController {
         hPayment.setCellValueFactory(new PropertyValueFactory<Report, String>("payment"));
         hourlyTable.setItems(getAllHourlyEmpl());
 
-        File file = new File("pradeep1.jpg");
-        Image image = new Image(file.toURI().toString());
-        pradeep1.setImage(image);
+    }
+
+    @FXML
+    public void saveSalaryReport(ActionEvent event) throws IOException {
+        Date today = Calendar.getInstance().getTime();
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        String fileName = "salary_report_" + df.format(today) + ".txt";
+        BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
+
+        writer.write(String.format("|%-15s|%-15s|%-15s|%-15s|%-20s|%-15s|%-15s|%-15s|\n",
+            "Name","Salary","Commission %","Loan Amt Owed","Commission Accrued","Taxes Owed","Sick Day Owed","Total Pay Owed"));
+        writer.write(String.format(" --------------- --------------- --------------- --------------- -------------------- --------------- --------------- ---------------\n"));
+
+        ObservableList<Report> allS = getAllSalaryEmpl();
+        for(Report r : allS) {
+            writer.write(r.toSalaryString()+"\n");
+        }
+        writer.close();
+        showAlert(Alert.AlertType.CONFIRMATION, "Generate Report","Report successfully generated: " + fileName);
+    }
+
+    @FXML
+    public void saveHourlyReport(ActionEvent event) throws IOException{
+        Date today = Calendar.getInstance().getTime();
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        String fileName = "hourly_report_" + df.format(today) + ".txt";
+        BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
+
+        writer.write(String.format("|%-15s|%-15s|%-15s|%-15s|%-15s|%-15s|%-15s|\n",
+                "Name","Rate","Loan Amt Owed","Taxes Owed","Hours Worked", "Sick Day Owed","Total Pay Owed"));
+        writer.write(String.format(" --------------- --------------- --------------- --------------- --------------- --------------- ---------------\n"));
+
+        ObservableList<Report> allS = getAllHourlyEmpl();
+        for(Report r : allS) {
+            writer.write(r.toHourlyString()+"\n");
+        }
+        writer.close();
+        showAlert(Alert.AlertType.CONFIRMATION, "Generate Report","Report successfully generated: " + fileName);
+    }
+
+    public static void showAlert(Alert.AlertType alertType, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        if (title.equals("Success: Paid Employees")) {
+            alert.setHeaderText("Payments:");
+            Text t = new Text(message);
+            ScrollPane scrollPane = new ScrollPane();
+            //scrollPane.setFitToHeight(true);
+            //scrollPane.setFitToWidth(true);
+            scrollPane.setContent(t);
+            alert.getDialogPane().setContent(scrollPane);
+            alert.getDialogPane().setPrefSize(480, 320);
+        }
+        else{
+            alert.setContentText(message);
+        }
+        alert.show();
     }
 
     public ObservableList<Report> getAllSalaryEmpl() {
