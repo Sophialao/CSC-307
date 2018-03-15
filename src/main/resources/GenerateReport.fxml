@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 
-
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="652.0" prefWidth="912.9998779296875" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="controller.ReportController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="652.0" prefWidth="912.9998779296875" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="controller.ReportController">
   <children>
     <TableView fx:id="salaryTable" layoutX="46.0" layoutY="39.0" prefHeight="254.0" prefWidth="817.0">
       <columns>
@@ -33,6 +32,7 @@
         <TableColumn prefWidth="140.0" text="Total Pay Owed" fx:id="hPayment" />
       </columns>
     </TableView>
-    <ImageView fx:id="pradeep1" fitHeight="93.75" fitWidth="125.0" layoutX="46.0" layoutY="603.0" pickOnBounds="true" preserveRatio="true" />
+    <Button fx:id="salaryReport" onAction="#saveSalaryReport" layoutX="757.0" layoutY="300.0" mnemonicParsing="false" text="Save Report" />
+    <Button fx:id="hourlyReport" onAction="#saveHourlyReport" layoutX="757.0" layoutY="612.0" mnemonicParsing="false" text="Save Report" />
   </children>
 </AnchorPane>

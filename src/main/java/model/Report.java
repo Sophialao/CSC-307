@@ -33,6 +33,23 @@ public class Report {
         this.payment.set(payment);
     }
 
+    public String toSalaryString() {
+        //name, rate, commission, loan, commAmt, taxes, hours, sickDays, payment
+        return String.format("|%-15s|%-15.2f|%-15.2f|%-15.2f|%-20.2f|%-15.2f|%-15.2f|%-15.2f|",
+                getName(),getRate(),getCommission(),getLoan(),getCommissionAmt(),getTaxesAmt(),getSickDays(),getPayment());
+    }
+
+    public String toHourlyString() {
+        //name, rate, commission, loan, commAmt, taxes, hours, sickDays, payment
+        return String.format("|%-15s|%-15.2f|%-15.2f|%-15.2f|%-15.2f|%-15.2f|%-15.2f|",
+                getName(),getRate(),getLoan(),getTaxesAmt(),getHours(),getSickDays(),getPayment());
+    }
+
+    public double truncateDouble(double value) {
+        double res = Math.floor(value * 100) / 100;
+        return (res);
+    }
+
     public final String getName() {
         return this.name.get();
     }
@@ -44,7 +61,7 @@ public class Report {
     }
 
     public final double getRate() {
-        return this.rate.get();
+        return truncateDouble(this.rate.get());
     }
     public final void setRate(double value) {
         this.rate.set(value);
@@ -54,7 +71,7 @@ public class Report {
     }
 
     public final Double getCommission() {
-        return this.commission.get();
+        return truncateDouble(this.commission.get());
     }
     public final void setName(double value) {
         this.commission.set(value);
@@ -64,7 +81,7 @@ public class Report {
     }
 
     public final Double getLoan() {
-        return this.loan.get();
+        return truncateDouble(this.loan.get());
     }
     public final void setLoan(double value) {
         this.loan.set(value);
@@ -74,7 +91,7 @@ public class Report {
     }
 
     public final Double getCommissionAmt() {
-        return this.commissionAmt.get();
+        return truncateDouble(this.commissionAmt.get());
     }
     public final void setCommissionAmt(double value) {
         this.commissionAmt.set(value);
@@ -84,7 +101,7 @@ public class Report {
     }
 
     public final Double getTaxesAmt() {
-        return this.taxes.get();
+        return truncateDouble(this.taxes.get());
     }
     public final void setTaxes(double value) {
         this.taxes.set(value);
@@ -93,14 +110,14 @@ public class Report {
         return this.taxes;
     }
 
-    public final Double getSickDays() { return this.sickDays.get(); }
+    public final Double getSickDays() { return truncateDouble(this.sickDays.get()); }
     public final void setSickDays(double value) { this.sickDays.set(value); }
     public final ObjectProperty<Double> sickDaysProperty() {
         return this.sickDays;
     }
 
     public final Double getHours() {
-        return this.hours.get();
+        return truncateDouble(this.hours.get());
     }
     public final void setHours(double value) {
         this.hours.set(value);
@@ -111,7 +128,7 @@ public class Report {
 
 
     public final Double getPayment() {
-        return this.payment.get();
+        return truncateDouble(this.payment.get());
     }
     public final void setPayment(double value) {
         this.payment.set(value);
