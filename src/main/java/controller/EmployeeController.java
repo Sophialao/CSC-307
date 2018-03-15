@@ -72,34 +72,26 @@ public class EmployeeController {
                 this.editEmployee(event);
             }
         }
-        this.setData();
-
         showAlert(Alert.AlertType.CONFIRMATION, "Success",
                 "Employee " + this.employee.getName() + " added!");
-        this.setData();
         ((Node) event.getSource()).getScene().getWindow().hide();
+        //this.setHomeData();
     }
 
     public void removeEmployee(ActionEvent event) {
         this.deleteEmployee(this.employee.getId());
         showAlert(Alert.AlertType.CONFIRMATION, "Success",
                 "Employee " + this.employee.getName() + " removed!");
-        this.setData();
+        //this.setData();
         ((Node) event.getSource()).getScene().getWindow().hide();
     }
 
-    public void setData() {
+    public void setHomeData() {
         try {
-            /*FXMLLoader loader = new FXMLLoader(getClass().getResource("/HomeView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/HomeView.fxml"));
             Parent root = loader.load();
-            HomeController hc = loader.getController();*/
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/HomeView.fxml"));
-            Node node = loader.load();
-
             HomeController hc = loader.getController();
             hc.refreshPage();
-
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -146,7 +138,7 @@ public class EmployeeController {
             sickdaysSpinner.setEditable(true);
 
         }
-        this.setData();
+        //this.setData();
 
     }
 

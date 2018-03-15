@@ -78,7 +78,7 @@ public class ReportController {
             double loans = Math.floor(PaymentController.calculateLoansForShow(se) * 100)/100;
             double commissionAmt = Math.floor(PaymentController.calculateCommission(se) * 100)/100;
             double taxes = PaymentController.calculateTaxes((salary/12.0), se);
-            double sickDays = PaymentController.calcSickDaysWithoutSet(calculatePayBeforeSickDays(se, loans, commissionAmt, salary), se);
+            double sickDays = Math.floor(PaymentController.calcSickDaysWithoutSet(calculatePayBeforeSickDays(se, loans, commissionAmt, salary), se)*100)/100;
             double payment = Math.floor(calculateSalaryPayment(se, loans, commissionAmt, salary) * 100)/100;
             Report report = new Report(se.getName(), salary, se.getCommission(), loans, commissionAmt, taxes, 0.0, sickDays, payment);
             salaryReports.add(report);
@@ -99,7 +99,7 @@ public class ReportController {
             double loans = Math.floor(PaymentController.calculateLoansForShow(he) * 100)/100;
             double taxes = PaymentController.calcRestTaxes(wage*2080);
             double hours = calculateHoursWorked(he);
-            double sickDays = PaymentController.calcSickDaysWithoutSet(calculatePayBeforeHourlySick(he, loans), he);
+            double sickDays = Math.floor(PaymentController.calcSickDaysWithoutSet(calculatePayBeforeHourlySick(he, loans), he)*100)/100;
             double payment = Math.floor(PaymentController.calculateHourlyPayment(he, loans)*100)/100;
             Report report = new Report(he.getName(), wage, 0.0, loans, 0.0, taxes, hours, sickDays, payment);
             hourlyReports.add(report);

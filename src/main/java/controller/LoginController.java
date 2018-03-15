@@ -30,7 +30,7 @@ public class LoginController {
 
     public void goToSignUp(ActionEvent event) {
         this.initializeSignUp(event);
-        ((Node) event.getSource()).getScene().getWindow().hide();
+        //((Node) event.getSource()).getScene().getWindow().hide();
     }
 
     public void goToHome(ActionEvent event){

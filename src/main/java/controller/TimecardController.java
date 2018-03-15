@@ -80,7 +80,7 @@ public class TimecardController {
 
         timeInF.clear();
         timeOutF.clear();
-        //((Node) event.getSource()).getScene().getWindow().hide();
+        ((Node) event.getSource()).getScene().getWindow().hide();
     }
 
 
