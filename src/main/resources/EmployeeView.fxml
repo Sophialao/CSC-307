@@ -5,20 +5,13 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.Spinner?>
-<?import javafx.scene.control.SpinnerValueFactory?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.util.* ?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.* ?>
-<?import javafx.scene.layout.* ?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="433.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EmployeeController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="433.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EmployeeController">
 
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="94.0" minWidth="25.0" prefWidth="33.0" />
@@ -66,7 +59,6 @@
                <Insets left="10.0" />
            </GridPane.margin>
        </Label>
-       <TextField fx:id="sickdays" prefHeight="27.0" prefWidth="95.0" GridPane.columnIndex="5" GridPane.rowIndex="5" />
        <Label prefHeight="17.0" prefWidth="76.0" text="Commission" GridPane.columnIndex="6" GridPane.rowIndex="5">
 
        <GridPane.margin>
@@ -89,5 +81,7 @@
       <CheckBox fx:id="salaryCheck" mnemonicParsing="false" onAction="#salaryClicked" text="Salary" GridPane.columnIndex="7" GridPane.rowIndex="4" />
       <CheckBox fx:id="hourlyCheck" mnemonicParsing="false" onAction="#hourlyClicked" text="Hourly" GridPane.columnIndex="8" GridPane.rowIndex="4" />
       <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#removeEmployee" prefHeight="27.0" prefWidth="69.0" style="-fx-background-color: red;" text="Remove" GridPane.columnIndex="5" GridPane.rowIndex="6" />
+      <Spinner fx:id="sickdaysSpinner" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+
    </children>
 </GridPane>

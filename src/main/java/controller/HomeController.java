@@ -140,10 +140,12 @@ public class HomeController {
             stage.setTitle("Employee");
             stage.setScene(new Scene(root, 700, 700));
             stage.show();
+            EmployeeTotal controller = loader.getController();
+            controller.empController.instantiate();
 
             if (employee != null) {
-                EmployeeTotal controller = loader.getController();
                 controller.empController.setFields(employee);
+
                 if (employee instanceof SalaryEmployee){
                     controller.tabPane.getTabs().remove(controller.timecard_tab);
                 }
