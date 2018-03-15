@@ -33,6 +33,10 @@ public class EmployeeController {
     @FXML Text loans;
     @FXML Text timecards;
 
+    int numberSickDays = 3;
+
+    @FXML Spinner<Integer> sickdaysSpinner;
+
     public Employee employee;
 
     public EmployeeController() {
@@ -45,18 +49,25 @@ public class EmployeeController {
         }
         if (salaryCheck.isSelected()) {
             if (this.employee == null) {
+
                 this.employee = this.addSalaryEmployee(null, name.getText(),
                         address.getText(), Integer.parseInt(ssn.getText()),
                         Double.parseDouble(rate.getText()), Double.parseDouble(commission.getText()),
-                        Double.parseDouble(sales.getText()), gender, Integer.parseInt(sickdays.getText()));
+                        Double.parseDouble(sales.getText()), gender,
+                        sickdaysSpinner.getValue());
+                        //Integer.parseInt(sickdays.getText()));
             } else {
                 this.editEmployee(event);
             }
         } else {
             if (this.employee == null) {
+               // sickdaysSpinner.setEditable(true);
+
                 this.employee = this.addHourlyEmployee(null, name.getText(),
                         address.getText(), Integer.parseInt(ssn.getText()),
-                        Double.parseDouble(rate.getText()), gender, Integer.parseInt(sickdays.getText()));
+                        Double.parseDouble(rate.getText()), gender,
+                        sickdaysSpinner.getValue());
+                        // Integer.parseInt(sickdays.getText()));
             } else {
                 this.editEmployee(event);
             }
@@ -89,6 +100,7 @@ public class EmployeeController {
             HomeController hc = loader.getController();
             hc.refreshPage();
 
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -100,7 +112,8 @@ public class EmployeeController {
         ssn.setText(Integer.toString(employee.getSsn()));
         name.setText(employee.getName());
         address.setText(employee.getAddress());
-        sickdays.setText(Integer.toString(employee.getSickDays()));
+        //sickdays.setText(Integer.toString(employee.getSickDays()));
+        //sickdaysSpinner.
         if (employee.getGender().equals("M")) {
             maleButton.setSelected(true);
         } else {
@@ -117,10 +130,21 @@ public class EmployeeController {
             commission.setText(Double.toString(salary.getCommission()));
             sales.setText(Double.toString(salary.getSales()));
             rate.setText(Double.toString(salary.getSalary()));
+
+            SpinnerValueFactory<Integer> sickdaysValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(-30,30, employee.getSickDays());
+
+            this.sickdaysSpinner.setValueFactory(sickdaysValueFactory);
+            sickdaysSpinner.setEditable(true);
         } else {
             HourlyEmployee hourly = (HourlyEmployee) employee;
             hourlyCheck.setSelected(true);
             rate.setText(Double.toString(hourly.getRate()));
+
+
+            SpinnerValueFactory<Integer> sickdaysValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(-30,30,employee.getSickDays());
+            this.sickdaysSpinner.setValueFactory(sickdaysValueFactory);
+            sickdaysSpinner.setEditable(true);
+
         }
         this.setData();
 
@@ -190,6 +214,18 @@ public class EmployeeController {
             SalaryEmployee.getInstance(eid).remove();
         }
     }
+    public void instantiate(){
+        SpinnerValueFactory<Integer> sickdaysValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(-30,30, 0);
+
+        this.sickdaysSpinner.setValueFactory(sickdaysValueFactory);
+        sickdaysSpinner.setEditable(true);
+        sickdaysSpinner.setEditable(true);
+        sickdaysSpinner.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue) {
+                sickdaysSpinner.increment(0); // won't change value, but will commit editor
+            }
+        });
+    }
 
     public void editSalaryEmployee(String name, String address, int number, String eid, double salary,double commission, double sales, String gender, int sickDays){
             SalaryEmployee aSP= SalaryEmployee.getInstance(eid);
@@ -227,11 +263,15 @@ public class EmployeeController {
             this.editSalaryEmployee(name.getText(),
                     address.getText(), Integer.parseInt(ssn.getText()), this.employee.getId(),
                     Double.parseDouble(rate.getText()), Double.parseDouble(commission.getText()),
-                    Double.parseDouble(sales.getText()), gender, Integer.parseInt(sickdays.getText()));
+                    Double.parseDouble(sales.getText()), gender,
+                    sickdaysSpinner.getValue());
+                    //Integer.parseInt(sickdays.getText()));
         } else {
             this.editHourlyEmployee(name.getText(),
                     address.getText(), Integer.parseInt(ssn.getText()), this.employee.getId(),
-                    Double.parseDouble(rate.getText()), gender, Integer.parseInt(sickdays.getText()));
+                    Double.parseDouble(rate.getText()), gender,
+                    sickdaysSpinner.getValue());
+                    //Integer.parseInt(sickdays.getText()));
         }
         showAlert(Alert.AlertType.CONFIRMATION, "Success",
                 "Employee " + this.employee.getName() + " added!");
