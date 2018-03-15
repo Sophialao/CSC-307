@@ -29,7 +29,7 @@
             <Image url="@sammoney.jpg" />
          </image>
       </ImageView>
-      <Label alignment="CENTER" contentDisplay="TOP" layoutX="21.0" layoutY="25.0" prefHeight="35.0" prefWidth="420.0" text="Golden Soft" textFill="#59e801">
+      <Label alignment="CENTER" contentDisplay="TOP" layoutX="21.0" layoutY="25.0" prefHeight="35.0" prefWidth="420.0" text="GoldenSoft" textFill="#59e801">
          <font>
             <Font size="53.0" />
          </font>

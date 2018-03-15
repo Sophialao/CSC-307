@@ -87,8 +87,7 @@ public class EmployeeController {
             Node node = loader.load();
 
             HomeController hc = loader.getController();
-
-
+            hc.refreshPage();
 
         } catch (IOException e) {
             e.printStackTrace();

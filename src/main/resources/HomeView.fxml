@@ -31,7 +31,7 @@
       <RowConstraints maxHeight="107.0" minHeight="7.0" prefHeight="13.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-       <Label prefWidth="102.0" text="GoldenSoft" GridPane.columnIndex="3" GridPane.columnSpan="4" GridPane.rowIndex="0">
+       <Label prefWidth="102.0" text="GoldenSoft" GridPane.columnIndex="3" GridPane.columnSpan="4" GridPane.rowIndex="0" textFill="#59e801">
          <font>
             <Font name="System Bold Italic" size="17.0" />
          </font></Label>
